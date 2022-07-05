@@ -1,17 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import { Store } from "../store";
 
-const UnderlinedLetters = () => {
+const CategorySpaces = () => {
   const { state, dispatch } = useContext(Store);
-  const { randomWord, guessedLetters, hasWon } = state;
-  const letterArray = randomWord.toString().split("");
+  const { categoryWord, guessedLetters, hasWon } = state;
+  const letterArray = categoryWord.toString().split("");
 
-  // console.log(`letterArray: ${letterArray}`);
-  // console.log(`Guessed Letters: ${guessedLetters}`);
-  // console.log(hasWon);
+  console.log(`letterArray: ${letterArray}`);
+  console.log(`Guessed Letters: ${guessedLetters}`);
+  console.log(hasWon);
 
   useEffect(() => {
-    const containsAll = letterArray.every((letter: String) => {
+    const containsAll = letterArray.every((letter) => {
       return guessedLetters.includes(letter);
     });
     if (
@@ -19,12 +19,11 @@ const UnderlinedLetters = () => {
       letterArray.length >= guessedLetters.length &&
       containsAll
     ) {
-      // setHasWon(true);
       dispatch({ type: "HAS_WON", payload: true });
     }
   }, [guessedLetters]);
 
-  const underlinedLetters = letterArray.map((letter: String, index: number) => {
+  const underlinedLetters = letterArray.map((letter, index) => {
     let isGuessed = false;
     if (guessedLetters.includes(letter)) {
       isGuessed = true;
@@ -47,4 +46,4 @@ const UnderlinedLetters = () => {
   );
 };
 
-export default UnderlinedLetters;
+export default CategorySpaces;

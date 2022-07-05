@@ -8,4 +8,12 @@ categoryRouter.get("/", async (req, res) => {
   res.json(categories);
 });
 
+categoryRouter.get("/:name", async (req, res) => {
+  const { name } = req.params;
+  const category = await Word.findOne({ name: name });
+  category
+    ? res.json(category)
+    : res.status(404).send({ msg: "Category not found..." });
+});
+
 module.exports = categoryRouter;

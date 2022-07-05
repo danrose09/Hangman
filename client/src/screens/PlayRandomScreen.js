@@ -6,14 +6,6 @@ import GuessedLetters from "../components/GuessedLetters";
 import { Store } from "../store";
 
 const PlayRandomScreen = () => {
-  //     const { state, dispatch } = useContext(Store)
-  //     const {}
-  //   const [hasWon, setHaswon] = useState(false);
-
-  //   useEffect(() => {
-
-  //   })
-
   return (
     <div>
       <RandomWord />

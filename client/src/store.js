@@ -61,6 +61,7 @@ const initialState = {
     "z",
   ],
   guessedLetters: [],
+  categoryWord: "",
   hasWon: false,
 };
 
@@ -74,6 +75,16 @@ const reducer = (state, action) => {
         guessedLetters: [],
         hasWon: false,
       };
+    case "NEW_CATEGORY_WORD":
+      return {
+        ...state,
+        categoryWord: action.payload,
+        letterBank: state.alphabet,
+        guessedLetters: [],
+        haswon: false,
+      };
+    case "NEW_GAME":
+      return { ...state, hasWon: false };
     case "GUESS_LETTER":
       const guessedLetter = action.payload;
 
