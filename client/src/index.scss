@@ -1,4 +1,26 @@
+$font-stack: "Lato", sans-serif;
+
+* {
+  font-family: $font-stack;
+}
+
+body {
+  text-align: center;
+}
+
 .underlined-letters {
   display: flex;
   flex-direction: row;
+}
+
+.letter-button {
+  width: 25px;
+}
+
+.guessed-letters-button {
+  width: 25px;
+}
+
+.button-link {
+  text-decoration: none;
 }

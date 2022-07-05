@@ -4,7 +4,35 @@ export const Store = createContext();
 
 const initialState = {
   randomWord: "",
-  letters: [
+  alphabet: [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ],
+  letterBank: [
     "a",
     "b",
     "c",
@@ -33,12 +61,38 @@ const initialState = {
     "z",
   ],
   guessedLetters: [],
+  hasWon: false,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "NEW_RANDOM_WORD":
-      return { ...state, randomWord: action.payload };
+      return {
+        ...state,
+        randomWord: action.payload,
+        letterBank: state.alphabet,
+        guessedLetters: [],
+        hasWon: false,
+      };
+    case "GUESS_LETTER":
+      const guessedLetter = action.payload;
+
+      const remainingLetters = state.letterBank.filter((letter) => {
+        return String(letter) !== String(guessedLetter);
+      });
+
+      // let intersection = arr1.filter(x => arr2.includes(x));
+      const guessedLetters = state.alphabet.filter((letter) => {
+        return !remainingLetters.includes(letter);
+      });
+
+      return {
+        ...state,
+        letterBank: remainingLetters,
+        guessedLetters: guessedLetters,
+      };
+    case "HAS_WON":
+      return { ...state, hasWon: action.payload };
     default:
       return state;
   }

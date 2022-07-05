@@ -4,7 +4,8 @@
   "description": "Hangman Game",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server/index"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/danrose09/Hangman/issues"
   },
-  "homepage": "https://github.com/danrose09/Hangman#readme"
+  "homepage": "https://github.com/danrose09/Hangman#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.2",
+    "nodemon": "^2.0.18"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1"
+  }
 }

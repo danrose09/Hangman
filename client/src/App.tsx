@@ -1,12 +1,17 @@
 import React from "react";
-import RandomWord from "./components/RandomWord";
-import UnderlinedLetters from "./components/UnderlinedLetters";
+import { Routes, Route } from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen";
+import PlayRandomScreen from "./screens/PlayRandomScreen";
+import CategoriesScreen from "./screens/CategoriesScreen";
 
 function App() {
   return (
     <div className="App">
-      <RandomWord />
-      <UnderlinedLetters />
+      <Routes>
+        <Route path="/" element={<HomeScreen />}></Route>
+        <Route path="/playrandom" element={<PlayRandomScreen />}></Route>
+        <Route path="/categories" element={<CategoriesScreen />}></Route>
+      </Routes>
     </div>
   );
 }
