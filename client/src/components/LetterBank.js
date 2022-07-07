@@ -5,17 +5,15 @@ const LetterBank = () => {
   const { state, dispatch } = useContext(Store);
   const { letterBank, guessedLetters } = state;
 
-  console.log(letterBank);
-  console.log(guessedLetters);
-
   const submitLetterHandler = (letter) => {
-    console.log(`${letter} got clicked!`);
+    // console.log(`${letter} got clicked!`);
     dispatch({ type: "GUESS_LETTER", payload: letter });
   };
 
-  const availableLetters = letterBank.map((letter) => {
+  const availableLetters = letterBank.map((letter, index) => {
     return (
       <button
+        key={index}
         className="letter-button"
         onClick={() => submitLetterHandler(String(letter))}
       >

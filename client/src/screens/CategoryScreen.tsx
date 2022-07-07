@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState, useContext } from "react";
+import { useEffect, useReducer, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import CategoryWord from "../components/CategoryWord";
@@ -6,6 +6,8 @@ import LetterBank from "../components/LetterBank";
 import GuessedLetters from "../components/GuessedLetters";
 import CategorySpaces from "../components/CategorySpaces";
 import { Store } from "../store";
+import Refresh from "../components/Refresh";
+import AddWord from "../components/AddWord";
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
@@ -22,12 +24,9 @@ const reducer = (state: any, action: any) => {
 
 const CategoryScreen = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
-  const hasWon = state;
   const [gameHasStarted, setGameHasStarted] = useState(false);
   const params = useParams();
   const { name } = params;
-
-  console.log(`Has Won? ${hasWon}`);
 
   const [{ loading, error, category }, dispatch] = useReducer(reducer, {
     loading: false,
@@ -48,25 +47,23 @@ const CategoryScreen = () => {
       }
     };
     fetchCategory();
-  }, []);
-
-  console.log(category);
+  }, [name]);
 
   const handleClick = () => {
-    contextDispatch({ type: "NEW_GAME" });
     setGameHasStarted(true);
   };
 
   const categoryName = category.name;
   const categoryWords = category.words;
   const allCategoryWords = String(categoryWords).split("");
-  console.log(categoryWords);
+
   return (
     <div>
       {!gameHasStarted ? (
         <div>
           {categoryName}
           <p>{allCategoryWords}</p>
+          <AddWord />
           <button onClick={handleClick}>Start</button>
         </div>
       ) : (
@@ -75,6 +72,7 @@ const CategoryScreen = () => {
           <CategorySpaces />
           <LetterBank />
           <GuessedLetters />
+          <Refresh />
         </div>
       )}
     </div>

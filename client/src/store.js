@@ -83,8 +83,15 @@ const reducer = (state, action) => {
         guessedLetters: [],
         haswon: false,
       };
-    case "NEW_GAME":
-      return { ...state, hasWon: false };
+    case "REFRESH":
+      return {
+        ...state,
+        hasWon: false,
+        randomWord: "",
+        categoryWord: "",
+        guessedLetters: [],
+        letterBank: state.alphabet,
+      };
     case "GUESS_LETTER":
       const guessedLetter = action.payload;
 

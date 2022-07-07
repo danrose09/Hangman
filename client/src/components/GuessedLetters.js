@@ -4,8 +4,12 @@ import { Store } from "../store";
 const GuessedLetters = () => {
   const { state } = useContext(Store);
   const { guessedLetters } = state;
-  const allGuessedLetters = guessedLetters.map((letter) => {
-    return <button className="guessed-letters-button">{letter}</button>;
+  const allGuessedLetters = guessedLetters.map((letter, index) => {
+    return (
+      <button key={index} className="guessed-letters-button">
+        {letter}
+      </button>
+    );
   });
   return (
     <div>

@@ -16,6 +16,7 @@ const vocabulary = [
       "rabbit",
     ],
   },
+
   {
     name: "colors",
     words: [

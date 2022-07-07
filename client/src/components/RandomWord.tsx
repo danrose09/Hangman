@@ -4,8 +4,8 @@ import { Store } from "../store";
 
 const RandomWord = () => {
   const { state, dispatch } = useContext(Store);
-  const { randomWord } = state;
-  console.log(`The word is: ${randomWord}`);
+  const { randomWord, hasWon } = state;
+  console.log(`Has Won?: ${hasWon}`);
 
   const fetchRandomWord = async () => {
     const { data } = await axios.get(

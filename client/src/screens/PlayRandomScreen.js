@@ -4,6 +4,7 @@ import UnderlinedLetters from "../components/UnderlinedLetters";
 import LetterBank from "../components/LetterBank";
 import GuessedLetters from "../components/GuessedLetters";
 import { Store } from "../store";
+import Refresh from "../components/Refresh";
 
 const PlayRandomScreen = () => {
   return (
@@ -12,6 +13,7 @@ const PlayRandomScreen = () => {
       <UnderlinedLetters />
       <LetterBank />
       <GuessedLetters />
+      <Refresh />
     </div>
   );
 };

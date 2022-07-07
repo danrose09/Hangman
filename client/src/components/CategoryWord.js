@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../store";
@@ -8,7 +8,6 @@ const CategoryWord = () => {
   const { name } = params;
   const { state, dispatch } = useContext(Store);
   const { categoryWord } = state;
-  console.log(`The word is: ${categoryWord}`);
 
   const fetchCategoryWord = async () => {
     const { data } = await axios.get(
@@ -22,7 +21,7 @@ const CategoryWord = () => {
 
   return (
     <div>
-      RandomWord: {categoryWord}
+      Category Word: {categoryWord}
       <button onClick={fetchCategoryWord}>Start</button>
     </div>
   );

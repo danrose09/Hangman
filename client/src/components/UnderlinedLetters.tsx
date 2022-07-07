@@ -6,11 +6,13 @@ const UnderlinedLetters = () => {
   const { randomWord, guessedLetters, hasWon } = state;
   const letterArray = randomWord.toString().split("");
 
-  // console.log(`letterArray: ${letterArray}`);
-  // console.log(`Guessed Letters: ${guessedLetters}`);
-  // console.log(hasWon);
-
   useEffect(() => {
+    const won = () => {
+      dispatch({ type: "HAS_WON", payload: true });
+    };
+    const hasNotWon = () => {
+      dispatch({ type: "HAS_WON", payload: false });
+    };
     const containsAll = letterArray.every((letter: String) => {
       return guessedLetters.includes(letter);
     });
@@ -19,10 +21,11 @@ const UnderlinedLetters = () => {
       letterArray.length >= guessedLetters.length &&
       containsAll
     ) {
-      // setHasWon(true);
-      dispatch({ type: "HAS_WON", payload: true });
+      won();
+    } else {
+      hasNotWon();
     }
-  }, [guessedLetters]);
+  }, [guessedLetters, dispatch, letterArray]);
 
   const underlinedLetters = letterArray.map((letter: String, index: number) => {
     let isGuessed = false;

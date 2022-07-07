@@ -4,10 +4,12 @@ import HomeScreen from "./screens/HomeScreen";
 import PlayRandomScreen from "./screens/PlayRandomScreen";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import CategoryScreen from "./screens/CategoryScreen";
+import Header from "./components/global components/Header";
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <Routes>
         <Route path="/" element={<HomeScreen />}></Route>
         <Route path="/playrandom" element={<PlayRandomScreen />}></Route>

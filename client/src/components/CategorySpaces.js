@@ -6,22 +6,39 @@ const CategorySpaces = () => {
   const { categoryWord, guessedLetters, hasWon } = state;
   const letterArray = categoryWord.toString().split("");
 
-  console.log(`letterArray: ${letterArray}`);
-  console.log(`Guessed Letters: ${guessedLetters}`);
-  console.log(hasWon);
+  const containsAll = letterArray.every((letter) => {
+    return guessedLetters.includes(letter);
+  });
+  const guessedLength = guessedLetters.length;
+  const arrayLength = letterArray.length;
 
   useEffect(() => {
-    const containsAll = letterArray.every((letter) => {
-      return guessedLetters.includes(letter);
-    });
-    if (
-      guessedLetters.length > 1 &&
-      letterArray.length >= guessedLetters.length &&
-      containsAll
-    ) {
-      dispatch({ type: "HAS_WON", payload: true });
-    }
-  }, [guessedLetters]);
+    const checkIfWon = (containsall, guessedlength, arraylength) => {
+      const won = () => {
+        dispatch({ type: "HAS_WON", payload: true });
+      };
+      const hasNotWon = () => {
+        dispatch({ type: "HAS_WON", payload: false });
+      };
+      // const containsAll = letterArray.every((letter) => {
+      //   return guessedLetters.includes(letter);
+      // });
+
+      if (
+        // guessedLetters.length > 1 &&
+        // letterArray.length >= guessedLetters.length &&
+        // containsAll
+        guessedlength > 1 &&
+        arraylength >= guessedlength &&
+        containsall
+      ) {
+        won();
+      } else {
+        hasNotWon();
+      }
+    };
+    checkIfWon(containsAll, guessedLength, arrayLength);
+  }, [guessedLetters, dispatch, containsAll, arrayLength, guessedLength]);
 
   const underlinedLetters = letterArray.map((letter, index) => {
     let isGuessed = false;
@@ -29,11 +46,8 @@ const CategorySpaces = () => {
       isGuessed = true;
     }
     return (
-      <div>
-        <h3 hidden={!isGuessed} key={index}>
-          {letter}{" "}
-        </h3>{" "}
-        <span hidden={isGuessed}>_</span>
+      <div key={index}>
+        <h3 hidden={!isGuessed}>{letter} </h3> <span hidden={isGuessed}>_</span>
       </div>
     );
   });

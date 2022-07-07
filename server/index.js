@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const seedRouter = require("./routes/seedRoute.js");
 const categoryRouter = require("./routes/categoryRoute.js");
+const vocabularyRouter = require("./routes/vocabulayRoutes.js");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
@@ -21,6 +22,7 @@ app.use(
 );
 app.use("/api/seed", seedRouter);
 app.use("/api/categories", categoryRouter);
+app.use("/api/vocabulary", vocabularyRouter);
 
 app.listen(5000, (req, res) => {
   console.log("App is running on 5000!");
