@@ -5,7 +5,10 @@ const LetterBank = () => {
   const { state, dispatch } = useContext(Store);
   const { letterBank } = state;
 
+  const audio = new Audio("/audio/click.wav");
+
   const submitLetterHandler = (letter: String) => {
+    audio.play();
     dispatch({ type: "GUESS_LETTER", payload: letter });
   };
 

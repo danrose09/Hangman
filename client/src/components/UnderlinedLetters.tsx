@@ -12,6 +12,8 @@ const UnderlinedLetters = () => {
   const guessedLength = guessedLetters.length;
   const arrayLength = letterArray.length;
 
+  const audio = new Audio("/audio/unlock.wav");
+
   useEffect(() => {
     const checkIfWon = (
       containsall: String,
@@ -19,6 +21,7 @@ const UnderlinedLetters = () => {
       guessedlength: number
     ) => {
       const won = () => {
+        audio.play();
         dispatch({ type: "HAS_WON", payload: true });
       };
       const hasNotWon = () => {

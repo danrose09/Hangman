@@ -12,6 +12,8 @@ const CategorySpaces = () => {
   const guessedLength = guessedLetters.length;
   const arrayLength = letterArray.length;
 
+  const audio = new Audio("/audio/win.wav");
+
   useEffect(() => {
     const checkIfWon = (
       containsall: String,
@@ -19,6 +21,7 @@ const CategorySpaces = () => {
       arraylength: number
     ) => {
       const won = () => {
+        audio.play();
         dispatch({ type: "HAS_WON", payload: true });
       };
       const hasNotWon = () => {

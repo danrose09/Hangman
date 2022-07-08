@@ -9,6 +9,15 @@ $transition-speed: 600ms;
   font-family: $font-stack;
 }
 
+.title {
+  font-family: "Schoolbell", cursive;
+  text-align: center;
+  font-size: 3rem;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.3ch;
+}
+
 body {
   color: black;
   background-color: white;
@@ -34,14 +43,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 .navbar {
-  height: 100vh;
   position: fixed;
-  transition: width $transition-speed ease;
+  // transition: width $transition-speed ease;
   background-color: $bg-primary;
-}
-
-.navbar:hover .logo i {
-  transform: rotateY(180deg);
 }
 
 .navbar-nav {
@@ -54,27 +58,12 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
 }
 
-.logo {
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: center;
-  color: $text-secondary;
-  // background: $bg-secondary;
-  font-size: 1.5rem;
-  letter-spacing: 0.3ch;
-}
-
-.logo i {
-  transform: rotateY(0deg);
-  transition: transform $transition-speed;
+.navbar:hover .logo i {
+  transform: rotateX(360deg);
 }
 
 .nav-item {
   width: 100%;
-}
-
-.nav-item:last-child {
-  // margin-top: auto;
 }
 
 .nav-link {
@@ -105,6 +94,22 @@ body::-webkit-scrollbar-thumb {
   margin-left: 1rem;
 }
 
+.logo {
+  font-weight: bold;
+  text-transform: uppercase;
+  // text-align: center;
+  color: $text-secondary;
+  background: $bg-secondary;
+  font-size: 1.2rem;
+  letter-spacing: 0.3ch;
+  width: 100%;
+}
+
+.logo i {
+  transform: rotateX(0deg);
+  transition: transform $transition-speed;
+}
+
 .underlined-letters {
   display: flex;
   flex-direction: row;
@@ -124,6 +129,36 @@ body::-webkit-scrollbar-thumb {
 
 /* Small Screens */
 @media only screen and (max-width: 600px) {
+  .navbar {
+    bottom: 0;
+    width: 100vw;
+    height: 5rem;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+  }
+
+  .nav-link {
+    justify-content: center;
+    align-items: center;
+  }
+
+  main {
+    margin-left: 0;
+    margin-bottom: 5rem;
+  }
+
+  .homescreen-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 505;
+  }
 }
 
 /* Large Screens */
@@ -139,6 +174,6 @@ body::-webkit-scrollbar-thumb {
   }
 
   .navbar:hover .link-text {
-    display: block;
+    display: inline;
   }
 }

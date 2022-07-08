@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div>
+    <div className="header">
       <nav className="navbar">
         <ul className="navbar-nav">
-          <li className="logo">
+          <li className="logo nav-item">
             <Link className="nav-link" to="/">
               <i className="fa-brands fa-drupal"></i>
               <span className="link-text logo-text">HANGMAN</span>
