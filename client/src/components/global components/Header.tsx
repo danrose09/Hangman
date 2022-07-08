@@ -12,16 +12,18 @@ const Header = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <a href="#">Categories</a>
+          <Link to="/categories">Categories</Link>
         </li>
         <li>
-          <a href="#">Quick Play</a>
+          <Link to="/playrandom">Quick Play</Link>
         </li>
       </ul>
 
       <div className="navbar">
-        <label htmlFor="toggle">
-          <i className="fa-solid fa-bars">Menu</i>
+        <label className="toggle-label" htmlFor="toggle">
+          <i className="fa-solid fa-bars">
+            <span style={{ marginLeft: "10px" }}>Menu</span>
+          </i>
         </label>
       </div>
     </div>

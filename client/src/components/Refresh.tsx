@@ -1,12 +1,16 @@
-import React, { useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { Store } from "../store";
 
 const Refresh = () => {
   const { dispatch } = useContext(Store);
 
   useEffect(() => {
-    dispatch({ type: "REFRESH" });
-  }, []);
+    const refresh = () => {
+      dispatch({ type: "REFRESH" });
+    };
+
+    refresh();
+  }, [dispatch]);
 
   return <div></div>;
 };

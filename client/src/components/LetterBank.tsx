@@ -3,14 +3,13 @@ import { Store } from "../store";
 
 const LetterBank = () => {
   const { state, dispatch } = useContext(Store);
-  const { letterBank, guessedLetters } = state;
+  const { letterBank } = state;
 
-  const submitLetterHandler = (letter) => {
-    // console.log(`${letter} got clicked!`);
+  const submitLetterHandler = (letter: String) => {
     dispatch({ type: "GUESS_LETTER", payload: letter });
   };
 
-  const availableLetters = letterBank.map((letter, index) => {
+  const availableLetters = letterBank.map((letter: String, index: number) => {
     return (
       <button
         key={index}

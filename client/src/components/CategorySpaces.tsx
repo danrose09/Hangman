@@ -6,32 +6,26 @@ const CategorySpaces = () => {
   const { categoryWord, guessedLetters, hasWon } = state;
   const letterArray = categoryWord.toString().split("");
 
-  const containsAll = letterArray.every((letter) => {
+  const containsAll = letterArray.every((letter: String) => {
     return guessedLetters.includes(letter);
   });
   const guessedLength = guessedLetters.length;
   const arrayLength = letterArray.length;
 
   useEffect(() => {
-    const checkIfWon = (containsall, guessedlength, arraylength) => {
+    const checkIfWon = (
+      containsall: String,
+      guessedlength: number,
+      arraylength: number
+    ) => {
       const won = () => {
         dispatch({ type: "HAS_WON", payload: true });
       };
       const hasNotWon = () => {
         dispatch({ type: "HAS_WON", payload: false });
       };
-      // const containsAll = letterArray.every((letter) => {
-      //   return guessedLetters.includes(letter);
-      // });
 
-      if (
-        // guessedLetters.length > 1 &&
-        // letterArray.length >= guessedLetters.length &&
-        // containsAll
-        guessedlength > 1 &&
-        arraylength >= guessedlength &&
-        containsall
-      ) {
+      if (guessedlength > 1 && arraylength >= guessedlength && containsall) {
         won();
       } else {
         hasNotWon();
@@ -40,7 +34,7 @@ const CategorySpaces = () => {
     checkIfWon(containsAll, guessedLength, arrayLength);
   }, [guessedLetters, dispatch, containsAll, arrayLength, guessedLength]);
 
-  const underlinedLetters = letterArray.map((letter, index) => {
+  const underlinedLetters = letterArray.map((letter: String, index: number) => {
     let isGuessed = false;
     if (guessedLetters.includes(letter)) {
       isGuessed = true;
