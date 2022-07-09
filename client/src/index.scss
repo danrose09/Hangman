@@ -127,6 +127,30 @@ body::-webkit-scrollbar-thumb {
   text-decoration: none;
 }
 
+//Dictionary Page
+
+.dictionary-grid {
+  max-width: 40%;
+  display: grid;
+  grid-template-columns: 1;
+}
+
+.grid-item {
+  align-self: center;
+}
+
+.grid-item-1 {
+  display: flex;
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+.grid-button {
+  max-width: 12rem;
+  max-height: 2rem;
+  margin: 1.2rem 1rem 0 1rem;
+}
+
 /* Small Screens */
 @media only screen and (max-width: 600px) {
   .navbar {
@@ -158,6 +182,10 @@ body::-webkit-scrollbar-thumb {
     margin-left: auto;
     margin-right: auto;
     width: 505;
+  }
+
+  .dictionary-grid {
+    max-width: 100%;
   }
 }
 

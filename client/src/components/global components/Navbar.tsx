@@ -31,7 +31,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/mydictionary">
               <i className="fa-solid fa-book"></i>
               <span className="link-text">My Dictionary</span>
             </Link>
