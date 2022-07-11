@@ -1,45 +1,26 @@
-import { Fragment, useEffect, useReducer, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Fragment, useEffect, useContext } from "react";
+// import { Link } from "react-router-dom";
 import axios from "axios";
-
-const reducer = (state: any, action: any) => {
-  switch (action.type) {
-    case "FETCH_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_SUCCESS":
-      return { ...state, myDictionary: action.payload, loading: false };
-    case "FETCH_FAILURE":
-      return { ...state, error: action.payload, loading: false };
-
-    default:
-      return state;
-  }
-};
+import { Store } from "../store";
 
 const MyDictionaryScreen = () => {
-  const [{ loading, error, myDictionary }, dispatch] = useReducer(reducer, {
-    loading: false,
-    error: "",
-    myDictionary: [],
-  });
-
-  console.log(myDictionary);
+  const { state, dispatch } = useContext(Store);
+  const { myDictionary } = state;
 
   useEffect(() => {
     const fetchMyDictionary = async () => {
-      dispatch({ type: "FETCH_REQUEST" });
       try {
         const { data } = await axios.get(
           "http://localhost:5000/api/mydictionary"
         );
         console.log(data);
-        dispatch({ type: "FETCH_SUCCESS", payload: data });
+        dispatch({ type: "FETCH_MY_DICTIONARY", payload: data });
       } catch (error: any) {
         dispatch({ type: "FETCH_FAILURE", payload: error.message });
       }
     };
     fetchMyDictionary();
-  }, []);
+  }, [dispatch]);
 
   const allDefinitions = myDictionary.map((term: any, index: number) => {
     const deleteFromDictionary = async () => {
@@ -51,15 +32,15 @@ const MyDictionaryScreen = () => {
       <div key={index}>
         <div className="dictionary-grid">
           <div className="grid-item grid-item-1">
-            <h2>{`${index + 1}: ${term.word}`}</h2>
-            <button className="grid-button">
-              <Link
-                to={`/mydictionary/update/${term.word}`}
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                Update
-              </Link>
-            </button>
+            <h2 className="dictionary-word">{`${index + 1}: ${term.word}`}</h2>
+
+            {/* <Link
+              to={`/mydictionary/update/${term.word}`}
+              style={{ textDecoration: "none", color: "ffffff" }}
+            > */}
+            <button className="grid-button">Update</button>
+            {/* </Link> */}
+
             <button className="grid-button" onClick={deleteFromDictionary}>
               Delete
             </button>

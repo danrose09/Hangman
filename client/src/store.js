@@ -3,7 +3,13 @@ import React, { createContext, useReducer } from "react";
 export const Store = createContext();
 
 const initialState = {
-  randomWord: "",
+  randomWord: [
+    {
+      word: "",
+      definition: "",
+      pronunciation: "",
+    },
+  ],
   alphabet: [
     "a",
     "b",
@@ -63,6 +69,7 @@ const initialState = {
   guessedLetters: [],
   categoryWord: "",
   hasWon: false,
+  myDictionary: [],
 };
 
 const reducer = (state, action) => {
@@ -98,8 +105,6 @@ const reducer = (state, action) => {
       const remainingLetters = state.letterBank.filter((letter) => {
         return String(letter) !== String(guessedLetter);
       });
-
-      // let intersection = arr1.filter(x => arr2.includes(x));
       const guessedLetters = state.alphabet.filter((letter) => {
         return !remainingLetters.includes(letter);
       });
@@ -108,6 +113,31 @@ const reducer = (state, action) => {
         ...state,
         letterBank: remainingLetters,
         guessedLetters: guessedLetters,
+      };
+    // case "PROVIDE_CLUE":
+    //   const randomLetter = action.payload;
+    //   const remainLetters = state.letterBank.filter((letter) => {
+    //     return String(letter) !== String(randomLetter);
+    //   });
+    //   const guessLetters = state.alphabet.filter((letter) => {
+    //     return !remainLetters.includes(letter);
+    //   });
+    //   return {
+    //     ...state,
+    //     letterBank: remainLetters,
+    //     guessLetters: guessLetters,
+    //   };
+    case "FETCH_MY_DICTIONARY":
+      return {
+        ...state,
+        myDictionary: action.payload,
+      };
+    case "FETCH_FAILURE":
+      return { ...state, error: action.payload };
+    case "ADD_TO_DICTIONARY":
+      return {
+        ...state,
+        myDictionary: action.payload,
       };
     case "HAS_WON":
       return { ...state, hasWon: action.payload };

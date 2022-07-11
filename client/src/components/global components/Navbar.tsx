@@ -8,6 +8,12 @@ const Header = () => {
         <ul className="navbar-nav">
           <li className="logo nav-item">
             <Link className="nav-link" to="/">
+              {/* <img
+                className="logo-png"
+                src="./images/hangman.png"
+                height={50}
+                width={50}
+              ></img> */}
               <i className="fa-brands fa-drupal"></i>
               <span className="link-text logo-text">HANGMAN</span>
             </Link>

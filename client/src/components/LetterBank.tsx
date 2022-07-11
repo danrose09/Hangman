@@ -6,11 +6,17 @@ const LetterBank = () => {
   const { letterBank } = state;
 
   const audio = new Audio("/audio/click.wav");
+  // const randomIndex = Math.floor(Math.random() * letterBank.length);
+  // const randomLetter = letterBank[randomIndex];
 
   const submitLetterHandler = (letter: String) => {
     audio.play();
     dispatch({ type: "GUESS_LETTER", payload: letter });
   };
+
+  // const getClue = (randomletter: String) => {
+  //   dispatch({ type: "PROVIDE_CLUE", payload: randomletter });
+  // };
 
   const availableLetters = letterBank.map((letter: String, index: number) => {
     return (
@@ -25,8 +31,8 @@ const LetterBank = () => {
   });
   return (
     <div>
-      LetterBank
       {availableLetters}
+      {/* <button onClick={() => getClue(randomLetter)}>Clue?</button> */}
     </div>
   );
 };
