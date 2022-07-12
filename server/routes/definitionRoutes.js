@@ -3,15 +3,23 @@ const Definition = require("../models/definitionModel");
 
 const definitionRouter = express.Router();
 
-definitionRouter.post("/addtomydictionary/:word", async (req, res) => {
+definitionRouter.post("/addtomydictionary", async (req, res) => {
   const addedDefinition = await new Definition({
     word: req.body.word,
     partOfSpeech: req.body.partOfSpeech,
     origin: req.body.origin,
-    definitino: req.body.newDefinition,
+    definition: req.body.definition,
   });
-  console.log(addedDefinition);
-  addedDefinition.save();
+
+  const def = addedDefinition.save();
+  res.send(def);
+  console.log(def);
+});
+
+definitionRouter.put("/update/:word", async (req, res) => {
+  const updateDefinition = await Definition.findOneAndUpdate({
+    word: req.params.word,
+  });
 });
 
 module.exports = definitionRouter;

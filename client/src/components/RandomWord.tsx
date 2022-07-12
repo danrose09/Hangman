@@ -96,12 +96,11 @@ const RandomWord = () => {
       >
         <button hidden={!hasWon}>Look Up</button>
       </a>
-      <button>Add to My Dictionary</button>
       <br />
       <div hidden={!defIsVisible ? true : false}>Definition: {definition}</div>
       <h1 hidden={!hasWon}>You won!</h1>
       <div className="underlined-letters">{underlinedLetters}</div>
-      <AddToDictionary hasWon={hasWon} word={word} definition={definition} />
+      <AddToDictionary hasWon={hasWon} />
     </div>
   );
 };
