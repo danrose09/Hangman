@@ -69,6 +69,7 @@ const initialState = {
   guessedLetters: [],
   categoryWord: "",
   hasWon: false,
+  myDefinition: {},
   myDictionary: [],
 };
 
@@ -131,6 +132,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         myDictionary: action.payload,
+      };
+    case "FETCH_MY_DEFINITION":
+      return {
+        ...state,
+        myDefinition: action.payload,
       };
     case "FETCH_FAILURE":
       return { ...state, error: action.payload };

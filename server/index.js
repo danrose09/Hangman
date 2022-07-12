@@ -4,9 +4,10 @@ const seedRouter = require("./routes/seedRoute.js");
 const categoryRouter = require("./routes/categoryRoute.js");
 const vocabularyRouter = require("./routes/vocabulayRoutes.js");
 const dictionaryRouter = require("./routes/dictionaryRoutes.js");
+const definitionRouter = require("./routes/definitionRoutes.js");
+const updateRouter = require("./routes/updateRoutes.js");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const definitionRouter = require("./routes/definitionRoutes.js");
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use("/api/categories", categoryRouter);
 app.use("/api/vocabulary", vocabularyRouter);
 app.use("/api/mydictionary", dictionaryRouter);
 app.use("/api/definitions", definitionRouter);
+app.use("/api/update", updateRouter);
 
 app.listen(5000, (req, res) => {
   console.log("App is running on 5000!");

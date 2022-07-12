@@ -6,6 +6,7 @@ import CategoriesScreen from "./screens/CategoriesScreen";
 import CategoryScreen from "./screens/CategoryScreen";
 import MyDictionaryScreen from "./screens/MyDictionaryScreen";
 import Navbar from "./components/global components/Navbar";
+import UpdateDefinitionScreen from "./screens/UpdateDefinitionScreen";
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
           <Route path="/categories" element={<CategoriesScreen />}></Route>
           <Route path="/categories/:name" element={<CategoryScreen />}></Route>
           <Route path="/mydictionary" element={<MyDictionaryScreen />}></Route>
+          <Route
+            path="/update/:word"
+            element={<UpdateDefinitionScreen />}
+          ></Route>
         </Routes>
       </main>
     </div>

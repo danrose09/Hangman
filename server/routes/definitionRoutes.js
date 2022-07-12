@@ -16,10 +16,11 @@ definitionRouter.post("/addtomydictionary", async (req, res) => {
   console.log(def);
 });
 
-definitionRouter.put("/update/:word", async (req, res) => {
-  const updateDefinition = await Definition.findOneAndUpdate({
+definitionRouter.get("/:word", async (req, res) => {
+  const myDefinition = await Definition.findOne({
     word: req.params.word,
   });
+  res.send(myDefinition);
 });
 
 module.exports = definitionRouter;
