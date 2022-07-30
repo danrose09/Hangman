@@ -137,7 +137,7 @@ body::-webkit-scrollbar-thumb {
 //Dictionary Page
 
 .dictionary-grid {
-  max-width: 40%;
+  max-width: 50%;
   display: grid;
   grid-template-columns: 1;
 }
@@ -158,8 +158,8 @@ body::-webkit-scrollbar-thumb {
   box-sizing: border-box;
   outline: none;
   cursor: pointer;
-  max-width: 12rem;
-  max-height: 2rem;
+  width: 5rem;
+  height: 2rem;
   margin: 1.2rem 1rem 0 1rem;
   background-color: #ff7eee;
   color: #ffffff;
@@ -226,10 +226,15 @@ body::-webkit-scrollbar-thumb {
   .navbar:hover .link-text {
     display: inline;
   }
+
+  .dictionary-word {
+    width: 10rem;
+  }
 }
 
 .letter-button {
   background-color: #ff7eee;
+
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -238,13 +243,11 @@ body::-webkit-scrollbar-thumb {
   display: inline-block;
   font-size: 0.8rem;
   font-weight: 500;
-  height: 40px;
-  line-height: 20px;
+  height: 30px;
+  width: 30px;
   list-style: none;
   margin: 0;
   outline: none;
-  padding: 10px 16px;
-
   text-align: center;
   text-decoration: none;
   transition: color 100ms;

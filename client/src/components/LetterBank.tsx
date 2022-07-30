@@ -5,7 +5,7 @@ const LetterBank = () => {
   const { state, dispatch } = useContext(Store);
   const { letterBank } = state;
 
-  const audio = new Audio("/audio/click.wav");
+  const audio = new Audio("/audio/soft-click.wav");
   // const randomIndex = Math.floor(Math.random() * letterBank.length);
   // const randomLetter = letterBank[randomIndex];
 

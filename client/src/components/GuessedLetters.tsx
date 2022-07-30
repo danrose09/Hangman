@@ -7,7 +7,7 @@ const GuessedLetters = () => {
   const allGuessedLetters = guessedLetters.map(
     (letter: String, index: number) => {
       return (
-        <button key={index} className="guessed-letters-button">
+        <button key={index} className="letter-button">
           {letter}
         </button>
       );

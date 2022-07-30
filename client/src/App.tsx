@@ -7,6 +7,8 @@ import CategoryScreen from "./screens/CategoryScreen";
 import MyDictionaryScreen from "./screens/MyDictionaryScreen";
 import Navbar from "./components/global components/Navbar";
 import UpdateDefinitionScreen from "./screens/UpdateDefinitionScreen";
+import LoginScreen from "./screens/LoginScreen";
+import SignupScreen from "./screens/SignupScreen";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
             path="/update/:word"
             element={<UpdateDefinitionScreen />}
           ></Route>
+          <Route path="/signup" element={<SignupScreen />}></Route>
+          <Route path="/login" element={<LoginScreen />}></Route>
         </Routes>
       </main>
     </div>

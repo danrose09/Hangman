@@ -46,7 +46,6 @@ const UpdateDefinitionScreen = () => {
       origin: definitionState.origin,
       definition: definitionState.definition,
     });
-    // navigate("/mydictionary");
   };
 
   return (
