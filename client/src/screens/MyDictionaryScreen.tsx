@@ -7,14 +7,20 @@ const MyDictionaryScreen = () => {
   const navigate = useNavigate();
 
   const { state, dispatch } = useContext(Store);
-  const { myDictionary } = state;
+  const { myDictionary, userInfo } = state;
   const [allDictionaryTerms, setAllDictionaryTerms] = useState(myDictionary);
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/login");
+    }
+  }, [navigate, userInfo]);
 
   useEffect(() => {
     const fetchMyDictionary = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/mydictionary"
+          `http://localhost:5000/api/mydictionary/${userInfo.username}`
         );
         console.log(data);
         dispatch({ type: "FETCH_MY_DICTIONARY", payload: data });
@@ -29,7 +35,7 @@ const MyDictionaryScreen = () => {
     const deleteFromDictionary = async () => {
       try {
         await axios.put(
-          `http://localhost:5000/api/mydictionary/delete/${term.word}`
+          `http://localhost:5000/api/delete/${userInfo.username}/${term.word}`
         );
         setAllDictionaryTerms(myDictionary);
       } catch (error) {

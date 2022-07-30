@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Store } from "../store";
 
 const SignupScreen = () => {
   const navigate = useNavigate();
@@ -8,7 +9,10 @@ const SignupScreen = () => {
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
 
-  const [state, setState] = useState({
+  const { dispatch, state } = useContext(Store);
+  const { userInfo } = state;
+
+  const [userState, setUserState] = useState({
     name: "",
     username: "",
     email: "",
@@ -18,11 +22,11 @@ const SignupScreen = () => {
   });
 
   const { name, username, email, password, confirmedPassword, passMatch } =
-    state;
+    userState;
 
   const handleChange = (e: any) => {
-    setState({
-      ...state,
+    setUserState({
+      ...userState,
       [e.target.name]: e.target.value,
     });
   };
@@ -30,13 +34,13 @@ const SignupScreen = () => {
   const submitHandler = async (e: any) => {
     e.preventDefault();
     if (password !== confirmedPassword) {
-      setState({
-        ...state,
+      setUserState({
+        ...userState,
         passMatch: false,
       });
     } else {
-      setState({
-        ...state,
+      setUserState({
+        ...userState,
         passMatch: true,
       });
       try {
@@ -49,15 +53,16 @@ const SignupScreen = () => {
             password: password,
           }
         );
-
+        dispatch({ type: "SIGN_IN", payload: data });
+        localStorage.setItem("userInfo", JSON.stringify(data));
         navigate(redirect || "/");
       } catch (error) {
         alert(error);
       }
     }
+    console.log(userInfo);
   };
 
-  console.log(state);
   return (
     <div>
       <form onSubmit={submitHandler}>

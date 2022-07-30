@@ -3,6 +3,9 @@ import React, { createContext, useReducer } from "react";
 export const Store = createContext();
 
 const initialState = {
+  userInfo: localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null,
   randomWord: [
     {
       word: "",
@@ -147,6 +150,10 @@ const reducer = (state, action) => {
       };
     case "HAS_WON":
       return { ...state, hasWon: action.payload };
+    case "SIGN_IN":
+      return { ...state, userInfo: action.payload };
+    case "SIGN_OUT":
+      return { ...state, userInfo: null };
     default:
       return state;
   }

@@ -20,10 +20,29 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    dictionary: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "dictionary",
-    },
+    dictionary: [
+      {
+        word: {
+          type: String,
+          required: true,
+          unique: true,
+        },
+        origin: {
+          type: String,
+          required: true,
+          default: "unknown",
+        },
+        partOfSpeech: {
+          type: String,
+          required: true,
+        },
+        definition: {
+          type: String,
+          required: true,
+          unique: "true",
+        },
+      },
+    ],
   },
 
   {

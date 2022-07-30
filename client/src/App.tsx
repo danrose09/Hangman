@@ -9,6 +9,7 @@ import Navbar from "./components/global components/Navbar";
 import UpdateDefinitionScreen from "./screens/UpdateDefinitionScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
+import AccountScreen from "./screens/AccountScreen";
 
 function App() {
   return (
@@ -20,13 +21,17 @@ function App() {
           <Route path="/playrandom" element={<PlayRandomScreen />}></Route>
           <Route path="/categories" element={<CategoriesScreen />}></Route>
           <Route path="/categories/:name" element={<CategoryScreen />}></Route>
-          <Route path="/mydictionary" element={<MyDictionaryScreen />}></Route>
+          <Route
+            path="/mydictionary/:username"
+            element={<MyDictionaryScreen />}
+          ></Route>
           <Route
             path="/update/:word"
             element={<UpdateDefinitionScreen />}
           ></Route>
           <Route path="/signup" element={<SignupScreen />}></Route>
           <Route path="/login" element={<LoginScreen />}></Route>
+          <Route path="/account" element={<AccountScreen />}></Route>
         </Routes>
       </main>
     </div>

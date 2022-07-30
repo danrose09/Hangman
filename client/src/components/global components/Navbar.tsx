@@ -1,7 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Store } from "../../store";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const { dispatch, state } = useContext(Store);
+  const { userInfo } = state;
+
+  const handleSignOut = () => {
+    dispatch({ type: "SIGN_OUT" });
+    localStorage.removeItem("userInfo");
+    navigate("/");
+  };
+
+  console.log(userInfo);
+
   return (
     <div className="header">
       <nav className="navbar">
@@ -37,17 +50,34 @@ const Header = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/mydictionary">
+            <Link
+              className="nav-link"
+              to={userInfo ? `/mydictionary/${userInfo.username}` : "/login"}
+            >
               <i className="fa-solid fa-book"></i>
               <span className="link-text">My Dictionary</span>
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to={userInfo ? "/account" : "/login"}>
               <i className="fa-solid fa-user"></i>
-              <span className="link-text">Login</span>
+              <span className="link-text">
+                {userInfo ? userInfo.username : "Login"}
+              </span>
             </Link>
           </li>
+          {userInfo ? (
+            <li className="nav-item">
+              <Link
+                onClick={handleSignOut}
+                className="nav-link"
+                to={userInfo ? "/account" : "/login"}
+              >
+                <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                <span className="link-text">Logout</span>
+              </Link>
+            </li>
+          ) : null}
         </ul>
       </nav>
     </div>
