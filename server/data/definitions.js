@@ -7,7 +7,7 @@ const definitions = [
   },
   {
     word: "clupeoid",
-    partOfSpeech: "noun",
+    partOfSpeech: "adjective",
     origin: "Latin",
     definition:
       "a marine fish of a group that includes the herring family together with the anchovies and related fish.",
