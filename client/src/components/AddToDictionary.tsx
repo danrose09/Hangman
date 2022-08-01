@@ -1,7 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import axios from "axios";
+import { Store } from "../store";
 
 const AddToDictionary = (props: any) => {
+  const { state } = useContext(Store);
+  const { userInfo } = state;
   const { hasWon } = props;
   const [addToDictionary, setAddToDictionary] = useState(false);
   const [newWord, setNewWord] = useState("");
@@ -18,6 +21,7 @@ const AddToDictionary = (props: any) => {
           partOfSpeech: partOfSpeech,
           origin: origin,
           definition: newDefinition,
+          username: userInfo.username,
         }
       );
     } catch (error) {

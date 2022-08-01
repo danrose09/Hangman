@@ -7,7 +7,7 @@ const UpdateDefinitionScreen = () => {
   const params = useParams();
   const navigate = useNavigate();
   const { state, dispatch } = useContext(Store);
-  const { myDefinition } = state;
+  const { myDefinition, userInfo } = state;
   const [definitionState, setDefinitionState] = useState({
     word: "",
     partOfSpeech: "",
@@ -15,14 +15,16 @@ const UpdateDefinitionScreen = () => {
     definition: "",
   });
 
+  console.log(userInfo);
+
   useEffect(() => {
     const fetchMyDefinition = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/definitions/${params.word}`
+          `http://localhost:5000/api/definitions/${userInfo.username}/${params.word}`
         );
-        console.log(data);
-        dispatch({ type: "FETCH_MY_DEFINITION", payload: data });
+
+        dispatch({ type: "FETCH_MY_DEFINITION", payload: data[0] });
       } catch (error) {
         dispatch({ type: "FETCH_FAILURE", payload: error.message });
       }
@@ -45,6 +47,7 @@ const UpdateDefinitionScreen = () => {
       partOfSpeech: definitionState.partOfSpeech,
       origin: definitionState.origin,
       definition: definitionState.definition,
+      username: userInfo.username,
     });
   };
 

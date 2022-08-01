@@ -25,7 +25,6 @@ const userSchema = new mongoose.Schema(
         word: {
           type: String,
           required: true,
-          unique: true,
         },
         origin: {
           type: String,
@@ -39,7 +38,6 @@ const userSchema = new mongoose.Schema(
         definition: {
           type: String,
           required: true,
-          unique: "true",
         },
       },
     ],

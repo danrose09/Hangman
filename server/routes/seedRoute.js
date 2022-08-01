@@ -13,8 +13,8 @@ seedRouter.get("/", async (req, res) => {
   const createdUsers = await User.insertMany(users);
   await Word.deleteMany({});
   const createdWords = await Word.insertMany(vocabulary);
-  await Definition.deleteMany({});
-  const createdDefinitions = await Definition.insertMany(definitions);
+  // await Definition.deleteMany({});
+  // const createdDefinitions = await Definition.insertMany(definitions);
   res.json(createdUsers);
 });
 

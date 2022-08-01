@@ -50,7 +50,9 @@ const MyDictionaryScreen = () => {
             <h2 className="dictionary-word">{`${index + 1}: ${term.word}`}</h2>
 
             <button
-              onClick={() => navigate(`/update/${term.word}`)}
+              onClick={() =>
+                navigate(`/update/${userInfo.username}/${term.word}`)
+              }
               className="grid-button"
             >
               Update
@@ -93,7 +95,11 @@ const MyDictionaryScreen = () => {
   return (
     <Fragment>
       <h1>My Dictionary</h1>
-      <div>{allDefinitions}</div>
+      {myDictionary.length === 0 ? (
+        <h3>Your Dictionary is Empty</h3>
+      ) : (
+        <div>{allDefinitions}</div>
+      )}
     </Fragment>
   );
 };

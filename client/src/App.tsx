@@ -26,7 +26,7 @@ function App() {
             element={<MyDictionaryScreen />}
           ></Route>
           <Route
-            path="/update/:word"
+            path="/update/:username/:word"
             element={<UpdateDefinitionScreen />}
           ></Route>
           <Route path="/signup" element={<SignupScreen />}></Route>

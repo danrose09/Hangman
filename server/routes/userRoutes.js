@@ -12,6 +12,21 @@ userRouter.post("/signup", async (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 10),
+    dictionary: [
+      {
+        word: "shrieve",
+        partOfSpeech: "noun",
+        origin: "Old English",
+        definition: "an archaic term for sheriff",
+      },
+      {
+        word: "clupeoid",
+        partOfSpeech: "adjective",
+        origin: "Latin",
+        definition:
+          "a marine fish of a group that includes the herring family together with the anchovies and related fish.",
+      },
+    ],
   });
 
   const user = await newUser.save();
@@ -21,6 +36,7 @@ userRouter.post("/signup", async (req, res) => {
     name: user.name,
     username: user.username,
     email: user.email,
+    dictionary: user.dictionary,
     token: generateToken(user),
   });
   console.log(user);
