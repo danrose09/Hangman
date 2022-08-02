@@ -1,16 +1,37 @@
 const express = require("express");
-const Word = require("../models/wordModel");
 const User = require("../models/userModel");
 
 const vocabularyRouter = express.Router();
 
 vocabularyRouter.post("/new", async (req, res) => {
-  const { newWord, name } = req.body;
+  const { newWord, categoryName, username } = req.body;
+  const user = await User.findOne({ username: username });
 
-  await Word.updateOne(
-    { name: name },
-    { $push: { words: newWord.toLowerCase() } }
+  const category = user.categories.filter((category) => {
+    return category.name === categoryName;
+  });
+
+  const updatedCategory = category[0].words.push(newWord);
+
+  const userCategories = user.categories;
+  const index = userCategories.indexOf(category[0]);
+
+  if (index !== -1) {
+    userCategories[index] = updatedCategory;
+  }
+
+  await User.findOneAndUpdate(
+    { username: username },
+    { categories: userCategories }
   );
-});
 
+  // vocabularyRouter.post("/new", async (req, res) => {
+  //   const { newWord, name } = req.body;
+
+  //   await Word.updateOne(
+  //     { name: name },
+  //     { $push: { words: newWord.toLowerCase() } }
+  //   );
+  // });
+});
 module.exports = vocabularyRouter;

@@ -74,6 +74,8 @@ const initialState = {
   hasWon: false,
   myDefinition: {},
   myDictionary: [],
+  categories: [],
+  category: [],
 };
 
 const reducer = (state, action) => {
@@ -131,6 +133,16 @@ const reducer = (state, action) => {
     //     letterBank: remainLetters,
     //     guessLetters: guessLetters,
     //   };
+    case "FETCH_CATEGORIES":
+      return {
+        ...state,
+        categories: action.payload,
+      };
+    case "FETCH_CATEGORY":
+      return {
+        ...state,
+        category: action.payload,
+      };
     case "FETCH_MY_DICTIONARY":
       return {
         ...state,

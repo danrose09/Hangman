@@ -5,7 +5,6 @@ import { Store } from "../store";
 
 const MyDictionaryScreen = () => {
   const navigate = useNavigate();
-
   const { state, dispatch } = useContext(Store);
   const { myDictionary, userInfo } = state;
   const [allDictionaryTerms, setAllDictionaryTerms] = useState(myDictionary);
@@ -29,7 +28,7 @@ const MyDictionaryScreen = () => {
       }
     };
     fetchMyDictionary();
-  }, [dispatch]);
+  }, [dispatch, userInfo.username]);
 
   const allDefinitions = myDictionary.map((term: any, index: number) => {
     const deleteFromDictionary = async () => {
@@ -37,6 +36,7 @@ const MyDictionaryScreen = () => {
         await axios.put(
           `http://localhost:5000/api/delete/${userInfo.username}/${term.word}`
         );
+
         setAllDictionaryTerms(myDictionary);
       } catch (error) {
         console.log(error);

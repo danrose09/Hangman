@@ -10,6 +10,7 @@ import UpdateDefinitionScreen from "./screens/UpdateDefinitionScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import AccountScreen from "./screens/AccountScreen";
+import ErrorScreen from "./screens/ErrorScreen";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/signup" element={<SignupScreen />}></Route>
           <Route path="/login" element={<LoginScreen />}></Route>
           <Route path="/account" element={<AccountScreen />}></Route>
+          <Route path="*" element={<ErrorScreen />}></Route>
         </Routes>
       </main>
     </div>

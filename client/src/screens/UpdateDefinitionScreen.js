@@ -5,7 +5,7 @@ import { Store } from "../store";
 
 const UpdateDefinitionScreen = () => {
   const params = useParams();
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   const { state, dispatch } = useContext(Store);
   const { myDefinition, userInfo } = state;
   const [definitionState, setDefinitionState] = useState({
@@ -14,8 +14,6 @@ const UpdateDefinitionScreen = () => {
     origin: "",
     definition: "",
   });
-
-  console.log(userInfo);
 
   useEffect(() => {
     const fetchMyDefinition = async () => {
@@ -30,7 +28,7 @@ const UpdateDefinitionScreen = () => {
       }
     };
     fetchMyDefinition();
-  }, [dispatch]);
+  }, [dispatch, params.word, userInfo.username]);
 
   const handleChange = (e) => {
     const newDefinitionState = { ...definitionState };
@@ -38,17 +36,17 @@ const UpdateDefinitionScreen = () => {
     setDefinitionState(newDefinitionState);
   };
 
-  console.log(definitionState);
-
   const submitHandler = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:5000/api/update/${params.word}`, {
-      word: definitionState.word,
-      partOfSpeech: definitionState.partOfSpeech,
-      origin: definitionState.origin,
-      definition: definitionState.definition,
-      username: userInfo.username,
-    });
+    await axios
+      .put(`http://localhost:5000/api/update/${params.word}`, {
+        word: definitionState.word,
+        partOfSpeech: definitionState.partOfSpeech,
+        origin: definitionState.origin,
+        definition: definitionState.definition,
+        username: userInfo.username,
+      })
+      .then(navigate(`/mydictionary/${userInfo.username}`));
   };
 
   return (

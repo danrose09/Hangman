@@ -16,15 +16,19 @@ updateRouter.put("/:word", async (req, res) => {
     definition: req.body.definition,
   };
 
-  // const updatedDefinition = await Definition.findOneAndUpdate(
-  //   { word: req.params.word },
-  //   {
-  //     word: req.body.word,
-  //     partOfSpeech: req.body.partOfSpeech,
-  //     origin: req.body.origin,
-  //     definition: req.body.definition,
-  //   }
-  // );
+  const userDictionary = user.dictionary;
+  const index = userDictionary.indexOf(word[0]);
+
+  if (index !== -1) {
+    userDictionary[index] = updatedWord;
+  }
+
+  console.log(userDictionary);
+
+  await User.findOneAndUpdate(
+    { username: req.body.username },
+    { dictionary: userDictionary }
+  );
 });
 
 // updateRouter.put("/:word", async (req, res) => {

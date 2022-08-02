@@ -43,8 +43,6 @@ const LoginScreen = () => {
     }
   };
 
-  console.log(userState);
-
   return (
     <div>
       <form onSubmit={loginHandler}>

@@ -1,41 +1,39 @@
-import React, { useEffect, useReducer } from "react";
+import { useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Store } from "../store";
 
-const reducer = (state: any, action: any) => {
-  switch (action.type) {
-    case "FETCH_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_SUCCESS":
-      return { ...state, categories: action.payload, loading: false };
-    case "FETCH_FAILURE":
-      return { ...state, error: action.payload, loading: false };
-    default:
-      return state;
-  }
-};
+// const reducer = (state: any, action: any) => {
+//   switch (action.type) {
+//     case "FETCH_REQUEST":
+//       return { ...state, loading: true };
+//     case "FETCH_SUCCESS":
+//       return { ...state, categories: action.payload, loading: false };
+//     case "FETCH_FAILURE":
+//       return { ...state, error: action.payload, loading: false };
+//     default:
+//       return state;
+//   }
+// };
 
 const CategoriesScreen = () => {
-  const [{ loading, error, categories }, dispatch] = useReducer(reducer, {
-    loading: false,
-    error: "",
-    categories: [],
-  });
+  const { dispatch, state } = useContext(Store);
+  const { userInfo, categories } = state;
 
   useEffect(() => {
     const fetchCategories = async () => {
-      dispatch({ type: "FETCH_REQUEST" });
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/categories"
+          `http://localhost:5000/api/categories/${userInfo.username}`
         );
-        dispatch({ type: "FETCH_SUCCESS", payload: data });
+
+        dispatch({ type: "FETCH_CATEGORIES", payload: data });
       } catch (error: any) {
-        dispatch({ type: "FETCH_FAILURE", payload: error.message });
+        alert(error);
       }
     };
     fetchCategories();
-  }, []);
+  }, [dispatch, userInfo.username]);
 
   const allCategories = categories.map((category: any, index: number) => {
     return (

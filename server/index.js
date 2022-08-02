@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const seedRouter = require("./routes/seedRoute.js");
 const categoryRouter = require("./routes/categoryRoute.js");
+const singleCategoryRouter = require("./routes/singleCategoryRoute");
 const vocabularyRouter = require("./routes/vocabulayRoutes.js");
 const dictionaryRouter = require("./routes/dictionaryRoutes.js");
 const definitionRouter = require("./routes/definitionRoutes.js");
@@ -27,6 +28,7 @@ app.use(
 );
 app.use("/api/seed", seedRouter);
 app.use("/api/categories", categoryRouter);
+app.use("/api/category", singleCategoryRouter);
 app.use("/api/vocabulary", vocabularyRouter);
 app.use("/api/mydictionary", dictionaryRouter);
 app.use("/api/definitions", definitionRouter);

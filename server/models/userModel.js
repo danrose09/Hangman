@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
 
+const categorySchema = new mongoose.Schema({
+  name: String,
+  words: Array,
+});
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -41,6 +46,7 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+    categories: [categorySchema],
   },
 
   {
@@ -49,5 +55,7 @@ const userSchema = new mongoose.Schema(
 );
 
 const User = mongoose.model("user", userSchema);
+const Category = mongoose.model("category", categorySchema);
 
+module.exports = Category;
 module.exports = User;
