@@ -60,7 +60,6 @@ const SignupScreen = () => {
         alert(error);
       }
     }
-    console.log(userInfo);
   };
 
   return (

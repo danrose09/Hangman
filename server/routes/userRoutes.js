@@ -27,6 +27,55 @@ userRouter.post("/signup", async (req, res) => {
           "a marine fish of a group that includes the herring family together with the anchovies and related fish.",
       },
     ],
+    categories: [
+      {
+        name: "animals",
+        words: [
+          "elephant",
+          "tiger",
+          "lion",
+          "eagle",
+          "panda",
+          "snake",
+          "mouse",
+          "cat",
+          "dog",
+          "rabbit",
+        ],
+      },
+
+      {
+        name: "colors",
+        words: [
+          "white",
+          "black",
+          "red",
+          "green",
+          "blue",
+          "orange",
+          "yellow",
+          "purple",
+          "brown",
+          "pink",
+        ],
+      },
+
+      {
+        name: "food",
+        words: [
+          "hamburger",
+          "bagel",
+          "lollipop",
+          "cookies",
+          "waffle",
+          "banana",
+          "spaghetti",
+          "juice",
+          "soup",
+          "coffee",
+        ],
+      },
+    ],
   });
 
   const user = await newUser.save();
@@ -37,6 +86,7 @@ userRouter.post("/signup", async (req, res) => {
     username: user.username,
     email: user.email,
     dictionary: user.dictionary,
+    categories: user.categories,
     token: generateToken(user),
   });
   console.log(user);

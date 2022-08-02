@@ -14,7 +14,7 @@ vocabularyRouter.post("/new", async (req, res) => {
   const updatedCategory = category[0].words.push(newWord);
 
   const userCategories = user.categories;
-  const index = userCategories.indexOf(category[0]);
+  const index = userCategories.indexOf(category[0].name);
 
   if (index !== -1) {
     userCategories[index] = updatedCategory;
@@ -24,14 +24,19 @@ vocabularyRouter.post("/new", async (req, res) => {
     { username: username },
     { categories: userCategories }
   );
-
-  // vocabularyRouter.post("/new", async (req, res) => {
-  //   const { newWord, name } = req.body;
-
-  //   await Word.updateOne(
-  //     { name: name },
-  //     { $push: { words: newWord.toLowerCase() } }
-  //   );
-  // });
 });
+
+vocabularyRouter.put("/remove/:word", async (req, res) => {
+  const { removedWord, categoryName, username } = req.body;
+
+  const user = await User.findOne({ username: username });
+
+  const category = user.categories.filter((category) => {
+    return category.name === categoryName;
+  });
+  let categoryWords = category[0].words;
+
+  category[0].words.map((word) => {});
+});
+
 module.exports = vocabularyRouter;

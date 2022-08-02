@@ -8,6 +8,7 @@ import CategorySpaces from "../components/CategorySpaces";
 import { Store } from "../store";
 import Refresh from "../components/Refresh";
 import AddWord from "../components/AddWord";
+import DeleteWord from "../components/DeleteWord";
 
 const CategoryScreen = () => {
   const { dispatch, state } = useContext(Store);
@@ -37,7 +38,7 @@ const CategoryScreen = () => {
   const categoryName = category.name;
   const categoryWords = category.words;
   const allCategoryWords = String(categoryWords).split("");
-  // const displayCategoryWords = allCategoryWords.map((word: string) => {
+  // const displayCategoryWords = categoryWords.map((word: string) => {
   //   return (
   //     <Fragment>
   //       <p>{word}</p>
@@ -50,6 +51,7 @@ const CategoryScreen = () => {
         <div>
           <h1>{categoryName}</h1>
           <AddWord />
+          <DeleteWord />
           <button onClick={handleClick}>Start</button>
           <p>{allCategoryWords}</p>
         </div>

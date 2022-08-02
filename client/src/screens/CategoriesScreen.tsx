@@ -1,24 +1,18 @@
 import { useEffect, useContext } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../store";
 
-// const reducer = (state: any, action: any) => {
-//   switch (action.type) {
-//     case "FETCH_REQUEST":
-//       return { ...state, loading: true };
-//     case "FETCH_SUCCESS":
-//       return { ...state, categories: action.payload, loading: false };
-//     case "FETCH_FAILURE":
-//       return { ...state, error: action.payload, loading: false };
-//     default:
-//       return state;
-//   }
-// };
-
 const CategoriesScreen = () => {
+  const navigate = useNavigate();
   const { dispatch, state } = useContext(Store);
   const { userInfo, categories } = state;
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/login");
+    }
+  }, [navigate, userInfo]);
 
   useEffect(() => {
     const fetchCategories = async () => {

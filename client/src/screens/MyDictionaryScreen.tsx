@@ -21,7 +21,7 @@ const MyDictionaryScreen = () => {
         const { data } = await axios.get(
           `http://localhost:5000/api/mydictionary/${userInfo.username}`
         );
-        console.log(data);
+
         dispatch({ type: "FETCH_MY_DICTIONARY", payload: data });
       } catch (error: any) {
         dispatch({ type: "FETCH_FAILURE", payload: error.message });

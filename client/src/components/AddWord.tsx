@@ -11,7 +11,7 @@ const AddWord = () => {
   const { userInfo } = state;
 
   const handleClick = async () => {
-    if (newWord) {
+    if (newWord.length > 1) {
       try {
         await axios.post("http://localhost:5000/api/vocabulary/new", {
           newWord,
