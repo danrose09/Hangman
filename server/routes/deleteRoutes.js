@@ -13,6 +13,8 @@ deleteRouter.put(`/:username/:word`, async (req, res) => {
     { username: req.params.username },
     { dictionary: newDictionary }
   );
+
+  return res.status(201);
 });
 
 module.exports = deleteRouter;

@@ -38,13 +38,7 @@ const CategoryScreen = () => {
   const categoryName = category.name;
   const categoryWords = category.words;
   const allCategoryWords = String(categoryWords).split("");
-  // const displayCategoryWords = categoryWords.map((word: string) => {
-  //   return (
-  //     <Fragment>
-  //       <p>{word}</p>
-  //     </Fragment>
-  //   );
-  // });
+
   return (
     <div>
       {!gameHasStarted ? (

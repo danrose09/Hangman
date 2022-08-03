@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useContext, useState } from "react";
+import { Fragment, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../store";
@@ -7,7 +7,6 @@ const MyDictionaryScreen = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useContext(Store);
   const { myDictionary, userInfo } = state;
-  const [allDictionaryTerms, setAllDictionaryTerms] = useState(myDictionary);
 
   useEffect(() => {
     if (!userInfo) {
@@ -36,8 +35,6 @@ const MyDictionaryScreen = () => {
         await axios.put(
           `http://localhost:5000/api/delete/${userInfo.username}/${term.word}`
         );
-
-        setAllDictionaryTerms(myDictionary);
       } catch (error) {
         console.log(error);
       }

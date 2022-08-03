@@ -31,11 +31,17 @@ const CategoriesScreen = () => {
 
   const allCategories = categories.map((category: any, index: number) => {
     return (
-      <button key={index}>
-        <Link className="button-link" to={`/categories/${category.name}`}>
-          {category.name}
-        </Link>
-      </button>
+      <div>
+        <button key={index} className="grid-button">
+          <Link className="button-link" to={`/categories/${category.name}`}>
+            {category.name}
+          </Link>
+          <i
+            style={{ height: "20px", width: "20px" }}
+            className={category.icon}
+          ></i>
+        </button>
+      </div>
     );
   });
   return (

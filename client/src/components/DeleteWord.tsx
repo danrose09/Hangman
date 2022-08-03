@@ -15,13 +15,13 @@ const DeleteWord = () => {
   };
 
   const submitHandler = async (e: any) => {
-    e.preventDefault();
     try {
       await axios.put(`http://localhost:5000/api/vocabulary/remove/${word}`, {
         removedWord: word,
         username: userInfo.username,
         categoryName: name,
       });
+      setWord("");
     } catch (error) {
       alert(error);
     }

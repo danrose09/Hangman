@@ -36,6 +36,7 @@ const users = [
           "dog",
           "rabbit",
         ],
+        icon: "fa-solid fa-elephant",
       },
 
       {
@@ -52,6 +53,7 @@ const users = [
           "brown",
           "pink",
         ],
+        icon: "fa-solid fa-elephant",
       },
 
       {
@@ -68,6 +70,7 @@ const users = [
           "soup",
           "coffee",
         ],
+        icon: "fa-solid fa-elephant",
       },
     ],
   },
@@ -106,6 +109,7 @@ const users = [
           "dog",
           "rabbit",
         ],
+        icon: "fa-solid fa-elephant",
       },
 
       {
@@ -122,6 +126,7 @@ const users = [
           "brown",
           "pink",
         ],
+        icon: "fa-solid fa-elephant",
       },
 
       {
@@ -138,6 +143,7 @@ const users = [
           "soup",
           "coffee",
         ],
+        icon: "fa-solid fa-elephant",
       },
     ],
   },

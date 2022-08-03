@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const categorySchema = new mongoose.Schema({
   name: String,
   words: Array,
+  icon: String,
 });
 
 const userSchema = new mongoose.Schema(
