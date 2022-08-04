@@ -8,8 +8,8 @@ const LoginScreen = () => {
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
-  const { dispatch, state } = useContext(Store);
-  const { userInfo } = state;
+  const { dispatch } = useContext(Store);
+  const [errorMessage, setErrorMessage] = useState("");
   const [userState, setUserState] = useState({
     username: "",
     password: "",
@@ -39,7 +39,7 @@ const LoginScreen = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
       navigate(redirect || "/");
     } catch (error) {
-      alert(error);
+      setErrorMessage("Login unsuccessful");
     }
   };
 
@@ -62,6 +62,9 @@ const LoginScreen = () => {
         ></input>
         <button type="submit">Login</button>
       </form>
+      {errorMessage.length > 1 ? (
+        <p style={{ color: "red" }}>{errorMessage}</p>
+      ) : null}
       <p>
         Don't have an account? <Link to="/signup">Create Account</Link>
       </p>

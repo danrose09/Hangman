@@ -17,6 +17,8 @@ const CategoryScreen = () => {
   const params = useParams();
   const { name } = params;
 
+  console.log(userInfo);
+
   useEffect(() => {
     const fetchCategory = async () => {
       try {

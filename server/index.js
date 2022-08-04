@@ -11,7 +11,7 @@ const userRouter = require("./routes/userRoutes.js");
 const deleteRouter = require("./routes/deleteRoutes.js");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-
+const cookieParser = require("cookie-parser");
 const app = express();
 
 dotenv.config();
@@ -21,6 +21,7 @@ mongoose.connect(process.env.MONGO_URI, { dbName: "word_db" }, (err) => {
 });
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(
   cors({
     origin: "http://localhost:3000",

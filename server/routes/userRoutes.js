@@ -89,7 +89,6 @@ userRouter.post("/signup", async (req, res) => {
     categories: user.categories,
     token: generateToken(user),
   });
-  console.log(user);
 });
 
 //Login
@@ -105,10 +104,13 @@ userRouter.post("/login", async (req, res) => {
         username: user.username,
         token: generateToken(user),
       });
+      const accessToken = generateToken(user);
       return;
     }
+  } else {
+    return res.status(401).send({ msg: "Invalid credentials" });
+    // throw new Error("Invalid user credentials");
   }
-  res.status(401).send({ message: "Invalid email or password" });
 });
 
 module.exports = userRouter;

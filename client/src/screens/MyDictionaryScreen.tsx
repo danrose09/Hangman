@@ -12,9 +12,6 @@ const MyDictionaryScreen = () => {
     if (!userInfo) {
       navigate("/login");
     }
-  }, [navigate, userInfo]);
-
-  useEffect(() => {
     const fetchMyDictionary = async () => {
       try {
         const { data } = await axios.get(
@@ -26,8 +23,10 @@ const MyDictionaryScreen = () => {
         dispatch({ type: "FETCH_FAILURE", payload: error.message });
       }
     };
-    fetchMyDictionary();
-  }, [dispatch, userInfo.username]);
+    if (userInfo) {
+      fetchMyDictionary();
+    }
+  }, [dispatch, navigate, userInfo]);
 
   const allDefinitions = myDictionary.map((term: any, index: number) => {
     const deleteFromDictionary = async () => {
