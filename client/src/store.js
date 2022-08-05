@@ -76,6 +76,7 @@ const initialState = {
   myDictionary: [],
   categories: [],
   category: [],
+  activeSince: "",
 };
 
 const reducer = (state, action) => {
@@ -152,6 +153,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         myDefinition: action.payload,
+      };
+    case "FETCH_CREATED_AT":
+      return {
+        ...state,
+        activeSince: action.payload,
       };
     case "FETCH_FAILURE":
       return { ...state, error: action.payload };

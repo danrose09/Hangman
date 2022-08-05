@@ -112,4 +112,15 @@ userRouter.post("/login", async (req, res) => {
   }
 });
 
+userRouter.get("/account/:username", async (req, res) => {
+  const user = await User.findOne({ username: req.params.username });
+  const myDictionary = user.dictionary;
+  const activeSince = user.createdAt;
+  res.json({
+    user,
+    myDictionary,
+    activeSince,
+  });
+});
+
 module.exports = userRouter;

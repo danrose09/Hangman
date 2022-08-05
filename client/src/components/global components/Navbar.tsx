@@ -19,12 +19,6 @@ const Header = () => {
         <ul className="navbar-nav">
           <li className="logo nav-item">
             <Link className="nav-link" to="/">
-              {/* <img
-                className="logo-png"
-                src="./images/hangman.png"
-                height={50}
-                width={50}
-              ></img> */}
               <i className="fa-brands fa-drupal"></i>
               <span className="link-text logo-text">HANGMAN</span>
             </Link>
@@ -57,7 +51,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to={userInfo ? "/account" : "/login"}>
+            <Link className="nav-link" to={userInfo ? `/account` : "/login"}>
               <i className="fa-solid fa-user"></i>
               <span className="link-text">
                 {userInfo ? userInfo.username : "Login"}
@@ -66,11 +60,7 @@ const Header = () => {
           </li>
           {userInfo ? (
             <li className="nav-item">
-              <Link
-                onClick={handleSignOut}
-                className="nav-link"
-                to={userInfo ? "/account" : "/login"}
-              >
+              <Link onClick={handleSignOut} className="nav-link" to="/">
                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 <span className="link-text">Logout</span>
               </Link>
