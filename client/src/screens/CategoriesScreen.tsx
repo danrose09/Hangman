@@ -12,9 +12,6 @@ const CategoriesScreen = () => {
     if (!userInfo) {
       navigate("/login");
     }
-  }, [navigate, userInfo]);
-
-  useEffect(() => {
     const fetchCategories = async () => {
       try {
         const { data } = await axios.get(
@@ -23,24 +20,25 @@ const CategoriesScreen = () => {
 
         dispatch({ type: "FETCH_CATEGORIES", payload: data });
       } catch (error: any) {
-        alert(error);
+        console.log(error);
       }
     };
     fetchCategories();
-  }, [dispatch, userInfo.username]);
+  }, [dispatch, navigate, userInfo]);
 
   const allCategories = categories.map((category: any, index: number) => {
     return (
-      <div>
-        <button key={index} className="grid-button">
-          <Link className="button-link" to={`/categories/${category.name}`}>
+      <div key={index}>
+        <Link className="button-link" to={`/categories/${category.name}`}>
+          <button className="grid-button">
             {category.name}
-          </Link>
-          <i
-            style={{ height: "20px", width: "20px" }}
-            className={category.icon}
-          ></i>
-        </button>
+
+            <i
+              style={{ height: "20px", width: "20px" }}
+              className={category.icon}
+            ></i>
+          </button>
+        </Link>
       </div>
     );
   });

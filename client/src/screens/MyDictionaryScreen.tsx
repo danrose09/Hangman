@@ -13,9 +13,15 @@ const MyDictionaryScreen = () => {
       navigate("/login");
     }
     const fetchMyDictionary = async () => {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/mydictionary/${userInfo.username}`
+          `http://localhost:5000/api/mydictionary/${userInfo.username}`,
+          config
         );
 
         dispatch({ type: "FETCH_MY_DICTIONARY", payload: data });
