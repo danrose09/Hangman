@@ -5,14 +5,14 @@ import { Store } from "../store";
 
 const MyDictionaryScreen = () => {
   const navigate = useNavigate();
-  const { state, dispatch } = useContext(Store);
+  const { dispatch, state } = useContext(Store);
   const { myDictionary, userInfo } = state;
 
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     }
-    const fetchMyDictionary = async () => {
+    const authorizeAndFetch = async () => {
       const config = {
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
@@ -23,23 +23,22 @@ const MyDictionaryScreen = () => {
           `http://localhost:5000/api/mydictionary/${userInfo.username}`,
           config
         );
-
         dispatch({ type: "FETCH_MY_DICTIONARY", payload: data });
-      } catch (error: any) {
-        dispatch({ type: "FETCH_FAILURE", payload: error.message });
-      }
+      } catch (error: any) {}
     };
     if (userInfo) {
-      fetchMyDictionary();
+      authorizeAndFetch();
     }
-  }, [dispatch, navigate, userInfo]);
+  }, [navigate, userInfo, dispatch]);
 
   const allDefinitions = myDictionary.map((term: any, index: number) => {
     const deleteFromDictionary = async () => {
       try {
-        await axios.put(
+        const { data } = await axios.put(
           `http://localhost:5000/api/delete/${userInfo.username}/${term.word}`
         );
+        dispatch({ type: "REMOVE_FROM_DICTIONARY", payload: data });
+        console.log(userInfo);
       } catch (error) {
         console.log(error);
       }

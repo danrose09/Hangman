@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../store";
@@ -103,6 +103,7 @@ const UpdateDefinitionScreen = () => {
           src="https://i.etsystatic.com/13221305/r/il/294079/1501754794/il_570xN.1501754794_8hlr.jpg"
           height={70}
           width={120}
+          alt=""
         ></img>
         <button type="submit">Update</button>
       </form>

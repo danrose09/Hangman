@@ -1,5 +1,4 @@
 const express = require("express");
-const Definition = require("../models/definitionModel");
 const User = require("../models/userModel");
 
 const definitionRouter = express.Router();
@@ -32,12 +31,5 @@ definitionRouter.get("/:username/:word", async (req, res) => {
 
   res.send(word);
 });
-
-// definitionRouter.get("/:word", async (req, res) => {
-//   const myDefinition = await Definition.findOne({
-//     word: req.params.word,
-//   });
-//   res.send(myDefinition);
-// });
 
 module.exports = definitionRouter;

@@ -87,6 +87,7 @@ userRouter.post("/signup", async (req, res) => {
     email: user.email,
     dictionary: user.dictionary,
     categories: user.categories,
+    createdAt: user.createdAt,
     token: generateToken(user),
   });
 });
@@ -102,6 +103,7 @@ userRouter.post("/login", async (req, res) => {
         name: user.name,
         email: user.email,
         username: user.username,
+        createdAt: user.createdAt,
         token: generateToken(user),
       });
     } else {

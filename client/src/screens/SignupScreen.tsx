@@ -8,9 +8,7 @@ const SignupScreen = () => {
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
-
-  const { dispatch, state } = useContext(Store);
-  const { userInfo } = state;
+  const { dispatch } = useContext(Store);
 
   const [userState, setUserState] = useState({
     name: "",

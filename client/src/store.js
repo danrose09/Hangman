@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
 export const Store = createContext();
 
@@ -6,6 +6,11 @@ const initialState = {
   userInfo: localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
     : null,
+  myDictionary: [],
+  categories: [],
+  category: [],
+  activeSince: "",
+  myDefinition: {},
   randomWord: [
     {
       word: "",
@@ -72,11 +77,6 @@ const initialState = {
   guessedLetters: [],
   categoryWord: "",
   hasWon: false,
-  myDefinition: {},
-  myDictionary: [],
-  categories: [],
-  category: [],
-  activeSince: "",
 };
 
 const reducer = (state, action) => {
@@ -121,19 +121,7 @@ const reducer = (state, action) => {
         letterBank: remainingLetters,
         guessedLetters: guessedLetters,
       };
-    // case "PROVIDE_CLUE":
-    //   const randomLetter = action.payload;
-    //   const remainLetters = state.letterBank.filter((letter) => {
-    //     return String(letter) !== String(randomLetter);
-    //   });
-    //   const guessLetters = state.alphabet.filter((letter) => {
-    //     return !remainLetters.includes(letter);
-    //   });
-    //   return {
-    //     ...state,
-    //     letterBank: remainLetters,
-    //     guessLetters: guessLetters,
-    //   };
+
     case "FETCH_CATEGORIES":
       return {
         ...state,
@@ -154,14 +142,14 @@ const reducer = (state, action) => {
         ...state,
         myDefinition: action.payload,
       };
-    case "FETCH_CREATED_AT":
-      return {
-        ...state,
-        activeSince: action.payload,
-      };
     case "FETCH_FAILURE":
       return { ...state, error: action.payload };
     case "ADD_TO_DICTIONARY":
+      return {
+        ...state,
+        myDictionary: action.payload,
+      };
+    case "REMOVE_FROM_DICTIONARY":
       return {
         ...state,
         myDictionary: action.payload,

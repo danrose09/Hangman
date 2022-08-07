@@ -3,7 +3,7 @@ import axios from "axios";
 import { Store } from "../store";
 
 const AddToDictionary = (props: any) => {
-  const { state } = useContext(Store);
+  const { dispatch, state } = useContext(Store);
   const { userInfo } = state;
   const { hasWon } = props;
   const [addToDictionary, setAddToDictionary] = useState(false);
@@ -14,7 +14,7 @@ const AddToDictionary = (props: any) => {
 
   const submitHandler = async (e: any) => {
     try {
-      const data = await axios.post(
+      const { data } = await axios.post(
         `http://localhost:5000/api/definitions/addtomydictionary`,
         {
           word: newWord,
@@ -24,6 +24,8 @@ const AddToDictionary = (props: any) => {
           username: userInfo.username,
         }
       );
+      dispatch({ type: "ADD_TO_DICTIONARY", payload: data });
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
     } catch (error) {
       console.log("failure");
       console.log(error);

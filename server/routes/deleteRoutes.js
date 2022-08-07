@@ -9,11 +9,11 @@ deleteRouter.put(`/:username/:word`, async (req, res) => {
     return term.word !== req.params.word;
   });
 
-  await User.findOneAndUpdate(
+  const updatedUser = await User.findOneAndUpdate(
     { username: req.params.username },
     { dictionary: newDictionary }
   );
-
+  res.json(newDictionary);
   return res.status(201);
 });
 
