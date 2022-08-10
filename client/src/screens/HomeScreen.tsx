@@ -1,11 +1,18 @@
-import React from "react";
-import HomescreenButtons from "../components/HomescreenButtons";
+import { Link } from "react-router-dom";
 
 const Homescreen = () => {
   const imageLocation = "https://miro.medium.com/max/300/0*6WFhG2qCe5dPH1Fz.";
   return (
-    <div>
+    <div className="homescreen-container">
       <h1 className="title">Hangman</h1>
+      <div>
+        <Link className="button-link" to="/playrandom">
+          <button className="grid-button">Quick Play</button>
+        </Link>
+        <Link className="button-link" to={"/categories"}>
+          <button className="grid-button">Categories</button>
+        </Link>
+      </div>
       <img
         className="homescreen-image"
         alt="A hangman drawing"
@@ -13,7 +20,7 @@ const Homescreen = () => {
         height={300}
         width={300}
       ></img>
-      <HomescreenButtons />
+
       <div>
         <p>
           I'm baby woke cloud bread trust fund next level craft beer flannel

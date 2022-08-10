@@ -26,7 +26,8 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.2",
-    "nodemon": "^2.0.18"
+    "nodemon": "^2.0.18",
+    "react-confetti": "^6.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.1"

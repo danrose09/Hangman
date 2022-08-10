@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../store";
@@ -7,11 +7,12 @@ const CategoryWord = () => {
   const params = useParams();
   const { name } = params;
   const { state, dispatch } = useContext(Store);
-  const { categoryWord } = state;
+  const { categoryWord, userInfo } = state;
+  const [wordHidden, setWordHidden] = useState(true);
 
   const fetchCategoryWord = async () => {
     const { data } = await axios.get(
-      `http://localhost:5000/api/categories/${name}`
+      `http://localhost:5000/api/category/${userInfo.username}/${name}`
     );
     const categoryWords = data.words;
     const newCategoryWord =
@@ -19,10 +20,25 @@ const CategoryWord = () => {
     dispatch({ type: "NEW_CATEGORY_WORD", payload: newCategoryWord });
   };
 
+  const toggleHidden = () => {
+    setWordHidden((prevValue) => {
+      return !prevValue;
+    });
+  };
+
   return (
     <div>
-      Category Word: {categoryWord}
-      <button onClick={fetchCategoryWord}>Start</button>
+      <div>
+        <button onClick={toggleHidden} className="grid-button">
+          Word
+        </button>
+        <button className="grid-button" onClick={fetchCategoryWord}>
+          Start
+        </button>
+      </div>
+      <div hidden={wordHidden}>
+        <p className="category-hidden-word">{categoryWord}</p>
+      </div>
     </div>
   );
 };

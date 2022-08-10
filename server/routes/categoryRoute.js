@@ -3,8 +3,9 @@ const User = require("../models/userModel");
 
 const categoryRouter = express.Router();
 
-categoryRouter.get("/:username", async (req, res) => {
+categoryRouter.get("/:username/", async (req, res) => {
   const user = await User.findOne({ username: req.params.username });
+
   res.json(user.categories);
 });
 

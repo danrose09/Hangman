@@ -1,9 +1,8 @@
-import { useEffect, useState, useContext, Fragment } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import CategoryWord from "../components/CategoryWord";
 import LetterBank from "../components/LetterBank";
-import GuessedLetters from "../components/GuessedLetters";
 import CategorySpaces from "../components/CategorySpaces";
 import { Store } from "../store";
 import Refresh from "../components/Refresh";
@@ -16,8 +15,6 @@ const CategoryScreen = () => {
   const [gameHasStarted, setGameHasStarted] = useState(false);
   const params = useParams();
   const { name } = params;
-
-  console.log(userInfo);
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -42,21 +39,23 @@ const CategoryScreen = () => {
   const allCategoryWords = String(categoryWords).split("");
 
   return (
-    <div>
+    <div className="category-screen">
       {!gameHasStarted ? (
         <div>
           <h1>{categoryName}</h1>
           <AddWord />
           <DeleteWord />
-          <button onClick={handleClick}>Start</button>
+          <button className="grid-button" onClick={handleClick}>
+            Start
+          </button>
           <p>{allCategoryWords}</p>
         </div>
       ) : (
         <div>
+          <h1>Hangman</h1>
           <CategoryWord />
           <CategorySpaces />
           <LetterBank />
-          <GuessedLetters />
           <Refresh />
         </div>
       )}

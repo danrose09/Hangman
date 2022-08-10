@@ -7,6 +7,7 @@ const AddToDictionary = (props: any) => {
   const { userInfo } = state;
   const { hasWon } = props;
   const [addToDictionary, setAddToDictionary] = useState(false);
+  const [buttonIsHidden, setButtonIsHidden] = useState(false);
   const [newWord, setNewWord] = useState("");
   const [partOfSpeech, setPartOfSpeech] = useState("");
   const [origin, setOrigin] = useState("");
@@ -36,11 +37,17 @@ const AddToDictionary = (props: any) => {
     setAddToDictionary((prevValue) => {
       return !prevValue;
     });
+    setButtonIsHidden(true);
+    dispatch({ type: "STOP_CONFETTI", payload: true });
   };
 
   return (
     <Fragment>
-      <button hidden={!hasWon} onClick={clickHandler}>
+      <button
+        className="grid-button"
+        hidden={!hasWon || buttonIsHidden}
+        onClick={clickHandler}
+      >
         Add to My Dictionary
       </button>
       <div hidden={!addToDictionary}>

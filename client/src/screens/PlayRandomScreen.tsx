@@ -1,15 +1,13 @@
-import React from "react";
 import RandomWord from "../components/RandomWord";
 import LetterBank from "../components/LetterBank";
-import GuessedLetters from "../components/GuessedLetters";
 import Refresh from "../components/Refresh";
 
 const PlayRandomScreen = () => {
   return (
-    <div>
+    <div className="play-random-screen">
+      <h1>Hangman</h1>
       <RandomWord />
       <LetterBank />
-      <GuessedLetters />
       <Refresh />
     </div>
   );

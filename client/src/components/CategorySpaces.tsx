@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
+import Confetti from "react-confetti";
 import { Store } from "../store";
 
 const CategorySpaces = () => {
@@ -38,8 +39,8 @@ const CategorySpaces = () => {
       isGuessed = true;
     }
     return (
-      <div key={index}>
-        <h3 hidden={!isGuessed}>{letter} </h3> <span hidden={isGuessed}>_</span>
+      <div className="underline" key={index}>
+        {isGuessed ? <h3>{letter}</h3> : <h3>_</h3>}
       </div>
     );
   });
@@ -47,7 +48,7 @@ const CategorySpaces = () => {
   return (
     <div className="underlined-letters">
       {underlinedLetters}
-      <h1 hidden={!hasWon}>You won!</h1>
+      <Confetti hidden={!hasWon} run />
     </div>
   );
 };

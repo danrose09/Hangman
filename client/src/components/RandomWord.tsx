@@ -1,15 +1,17 @@
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { Store } from "../store";
+import Confetti from "react-confetti";
 import AddToDictionary from "./AddToDictionary";
 
 const RandomWord = () => {
   const { state, dispatch } = useContext(Store);
-  const { randomWord, guessedLetters, hasWon } = state;
+  const { randomWord, guessedLetters, hasWon, stopConfetti } = state;
 
   const [word, setWord] = useState("");
   const [definition, setDefinition] = useState("");
   const [defIsVisible, setDefIsVisible] = useState(false);
+  const [wordHidden, setWordHidden] = useState(true);
 
   const letterArray = word.toLowerCase().split("");
 
@@ -75,30 +77,43 @@ const RandomWord = () => {
       isGuessed = true;
     }
     return (
-      <div>
-        <h3 hidden={!isGuessed} key={index}>
-          {letter}{" "}
-        </h3>{" "}
-        <span hidden={isGuessed}>_</span>
+      <div key={index} className="underline">
+        {isGuessed ? <h3>{letter}</h3> : <h3>_</h3>}
       </div>
     );
   });
 
+  const toggleHidden = () => {
+    setWordHidden((prevValue) => {
+      return !prevValue;
+    });
+  };
+
   return (
     <div>
-      Random Word: {word}
-      <button onClick={fetchRandomWord}>Get New Word</button>
-      <button onClick={showDefinition}>Definition</button>
+      <div className="random-word-buttons">
+        <button className="grid-button" onClick={fetchRandomWord}>
+          Get New Word
+        </button>
+        <button className="grid-button" onClick={toggleHidden}>
+          Show Word
+        </button>
+        <button className="grid-button" onClick={showDefinition}>
+          Definition
+        </button>
+      </div>
       <a
         rel="noreferrer"
         target="_blank"
         href={`https://www.merriam-webster.com/dictionary/${word}`}
       >
-        <button hidden={!hasWon}>Look Up</button>
+        <button className="grid-button" hidden={!hasWon}>
+          Look Up
+        </button>
       </a>
-      <br />
-      <div hidden={!defIsVisible ? true : false}>Definition: {definition}</div>
-      <h1 hidden={!hasWon}>You won!</h1>
+      <div hidden={wordHidden || hasWon}>{word}</div>
+      <div hidden={!defIsVisible ? true : false}>{definition}</div>
+      {hasWon && !stopConfetti && <Confetti />}
       <div className="underlined-letters">{underlinedLetters}</div>
       <AddToDictionary hasWon={hasWon} />
     </div>

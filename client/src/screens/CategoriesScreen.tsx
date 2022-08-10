@@ -30,21 +30,14 @@ const CategoriesScreen = () => {
     return (
       <div key={index}>
         <Link className="button-link" to={`/categories/${category.name}`}>
-          <button className="grid-button">
-            {category.name}
-
-            <i
-              style={{ height: "20px", width: "20px" }}
-              className={category.icon}
-            ></i>
-          </button>
+          <button className="grid-button">{category.name}</button>
         </Link>
       </div>
     );
   });
   return (
     <div>
-      CategoriesScreen
+      <h1>Categories</h1>
       {allCategories}
     </div>
   );

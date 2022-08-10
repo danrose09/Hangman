@@ -11,6 +11,7 @@ const initialState = {
   category: [],
   activeSince: "",
   myDefinition: {},
+  stopConfetti: false,
   randomWord: [
     {
       word: "",
@@ -156,6 +157,11 @@ const reducer = (state, action) => {
       };
     case "HAS_WON":
       return { ...state, hasWon: action.payload };
+    case "STOP_CONFETTI":
+      return {
+        ...state,
+        stopConfetti: action.payload,
+      };
     case "SIGN_IN":
       return { ...state, userInfo: action.payload };
     case "SIGN_OUT":

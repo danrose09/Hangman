@@ -10,12 +10,10 @@ $transition-speed: 600ms;
 }
 
 .title {
-  font-family: "Schoolbell", cursive;
   text-align: center;
   font-size: 3rem;
   margin: 0;
   padding: 0;
-  letter-spacing: 0.3ch;
 }
 
 body {
@@ -120,9 +118,17 @@ body::-webkit-scrollbar-thumb {
   color: #ff7eee;
 }
 
+//Home Screen
+.homescreen-container {
+  text-align: center;
+}
+
 .underlined-letters {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
 }
 
 .guessed-letters-button {
@@ -134,7 +140,7 @@ body::-webkit-scrollbar-thumb {
   text-decoration: none;
 }
 
-//Dictionary Page
+//Dictionary Screen
 
 .dictionary-grid {
   max-width: 50%;
@@ -158,14 +164,50 @@ body::-webkit-scrollbar-thumb {
   box-sizing: border-box;
   outline: none;
   cursor: pointer;
-  width: 5rem;
-  height: 2rem;
+  width: 8rem;
+  height: 2.5rem;
   margin: 1.2rem 1rem 0 1rem;
   background-color: #ff7eee;
   color: #ffffff;
+  transition: ease-in-out;
 }
 
+.grid-button:hover {
+  background-color: #141418;
+  color: #ff7eee;
+  transition-duration: 0.3s;
+}
+
+//Category Screen
+.category-screen {
+  text-align: center;
+}
+
+.category-hidden-word {
+  font-size: 1rem;
+}
 //Account Screen
+
+//Play Random
+.play-random-screen {
+  text-align: center;
+}
+
+.random-word-buttons {
+  margin-bottom: 10px;
+}
+
+.displayed-letters {
+  font-size: 4rem;
+}
+
+//Underline
+.underline {
+  font-size: 4rem;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 20vh;
+}
 
 /* Small Screens */
 @media only screen and (max-width: 600px) {
@@ -230,9 +272,19 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+.available-letters-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+// .letter-container {
+//   margin: 2px;
+// }
+
 .letter-button {
   background-color: #ff7eee;
-
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -248,9 +300,11 @@ body::-webkit-scrollbar-thumb {
   outline: none;
   text-align: center;
   text-decoration: none;
-  transition: color 100ms;
+  transition: ease-in-out;
 }
 
 .letter-button:hover {
-  background-color: #f082ac;
+  background-color: #141418;
+  color: #ff7eee;
+  transition-duration: 0.3s;
 }
