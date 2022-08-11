@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { Store } from "../store";
+import { Store } from "../react-store/store";
 
 const LoginScreen = () => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Store } from "../store";
+import { Store } from "../../react-store/store";
 
 const DeleteWord = () => {
   const params = useParams();

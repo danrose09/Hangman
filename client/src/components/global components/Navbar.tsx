@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Store } from "../../store";
+import { Store } from "../../react-store/store";
 
 const Header = () => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import RandomWord from "../components/RandomWord";
-import LetterBank from "../components/LetterBank";
-import { Store } from "../store";
+import RandomWord from "../components/play random components/RandomWord";
+import LetterBank from "../components/category&play-random-components/LetterBank";
+import { Store } from "../react-store/store";
 
 const PlayRandomScreen = () => {
   const { state } = useContext(Store);

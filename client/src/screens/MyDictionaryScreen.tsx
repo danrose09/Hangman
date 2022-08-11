@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Store } from "../store";
+import { Store } from "../react-store/store";
 
 const MyDictionaryScreen = () => {
   const navigate = useNavigate();
@@ -38,7 +38,6 @@ const MyDictionaryScreen = () => {
           `http://localhost:5000/api/delete/${userInfo.username}/${term.word}`
         );
         dispatch({ type: "REMOVE_FROM_DICTIONARY", payload: data });
-        console.log(userInfo);
       } catch (error) {
         console.log(error);
       }
@@ -54,7 +53,7 @@ const MyDictionaryScreen = () => {
               onClick={() =>
                 navigate(`/update/${userInfo.username}/${term.word}`)
               }
-              className="grid-button"
+              className="grid-button-start"
             >
               Update
             </button>
@@ -94,14 +93,14 @@ const MyDictionaryScreen = () => {
   });
 
   return (
-    <Fragment>
+    <div className="mydictionary-screen">
       <h1>My Dictionary</h1>
       {myDictionary.length === 0 ? (
         <h3>Your Dictionary is Empty</h3>
       ) : (
         <div>{allDefinitions}</div>
       )}
-    </Fragment>
+    </div>
   );
 };
 

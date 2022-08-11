@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Store } from "../store";
+import { Store } from "../react-store/store";
 
 const SignupScreen = () => {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 const express = require("express");
 const User = require("../models/userModel");
 
-const deleteRouter = express.Router();
+const deleteDictionaryTermRouter = express.Router();
 
-deleteRouter.put(`/:username/:word`, async (req, res) => {
+deleteDictionaryTermRouter.put(`/:username/:word`, async (req, res) => {
   const user = await User.findOne({ username: req.params.username });
   const newDictionary = user.dictionary.filter((term) => {
     return term.word !== req.params.word;
@@ -17,4 +17,4 @@ deleteRouter.put(`/:username/:word`, async (req, res) => {
   return res.status(201);
 });
 
-module.exports = deleteRouter;
+module.exports = deleteDictionaryTermRouter;

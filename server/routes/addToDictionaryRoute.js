@@ -1,18 +1,18 @@
 const express = require("express");
 const User = require("../models/userModel");
 
-const definitionRouter = express.Router();
+const addToDictionaryRouter = express.Router();
 
-definitionRouter.put("/addtomydictionary", async (req, res) => {
+addToDictionaryRouter.put("/addtomydictionary", async (req, res) => {
   const updateUserDictionary = await User.findOneAndUpdate(
     { username: req.body.username },
     {
       $push: {
         dictionary: {
-          word: req.body.word,
-          partOfSpeech: req.body.partOfSpeech,
+          word: req.body.word.toLowerCase(),
+          partOfSpeech: req.body.partOfSpeech.toLowerCase(),
           origin: req.body.origin,
-          definition: req.body.definition,
+          definition: req.body.definition.toLowerCase(),
         },
       },
     }
@@ -23,7 +23,7 @@ definitionRouter.put("/addtomydictionary", async (req, res) => {
   console.log(update);
 });
 
-definitionRouter.get("/:username/:word", async (req, res) => {
+addToDictionaryRouter.get("/:username/:word", async (req, res) => {
   const user = await User.findOne({ username: req.params.username });
   const word = user.dictionary.filter((term) => {
     return term.word === req.params.word;
@@ -32,4 +32,4 @@ definitionRouter.get("/:username/:word", async (req, res) => {
   res.send(word);
 });
 
-module.exports = definitionRouter;
+module.exports = addToDictionaryRouter;

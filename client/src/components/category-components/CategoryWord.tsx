@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Store } from "../store";
+import { Store } from "../../react-store/store";
 
 const CategoryWord = () => {
   const params = useParams();
   const { name } = params;
   const { state, dispatch } = useContext(Store);
-  const { categoryWord, userInfo } = state;
+  const { categoryWord, userInfo, hasWon } = state;
   const [wordHidden, setWordHidden] = useState(true);
 
   const fetchCategoryWord = async () => {
@@ -30,14 +30,14 @@ const CategoryWord = () => {
   return (
     <div>
       <div>
+        <button className="grid-button-start" onClick={fetchCategoryWord}>
+          Start
+        </button>
         <button onClick={toggleHidden} className="grid-button">
           Show Word
         </button>
-        <button className="grid-button" onClick={fetchCategoryWord}>
-          Start
-        </button>
       </div>
-      <div hidden={wordHidden}>
+      <div hidden={wordHidden || hasWon}>
         <p className="category-hidden-word">{categoryWord}</p>
       </div>
     </div>

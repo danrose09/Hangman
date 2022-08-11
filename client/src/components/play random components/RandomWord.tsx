@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { Store } from "../store";
+import { Store } from "../../react-store/store";
 import Confetti from "react-confetti";
 import AddToDictionary from "./AddToDictionary";
 

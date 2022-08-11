@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import { Store } from "../store";
+import { Store } from "../../react-store/store";
 
 const Refresh = () => {
   const { dispatch } = useContext(Store);

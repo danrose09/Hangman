@@ -1,6 +1,6 @@
 import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Store } from "../store";
+import { Store } from "../react-store/store";
 
 const AccountScreen = () => {
   const navigate = useNavigate();

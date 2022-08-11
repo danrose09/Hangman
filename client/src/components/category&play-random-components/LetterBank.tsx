@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Store } from "../store";
+import { Store } from "../../react-store/store";
 
 const LetterBank = (props: any) => {
   const { state, dispatch } = useContext(Store);
@@ -14,7 +14,7 @@ const LetterBank = (props: any) => {
 
   const availableLetters = letterBank.map((letter: String, index: number) => {
     return (
-      <div className="letter-container">
+      <div className="letter-container" hidden={hasWon}>
         <button
           key={index}
           className="letter-button"
@@ -25,11 +25,7 @@ const LetterBank = (props: any) => {
       </div>
     );
   });
-  return (
-    <div className="available-letters-container" hidden={hasWon}>
-      {availableLetters}
-    </div>
-  );
+  return <div className="available-letters-container">{availableLetters}</div>;
 };
 
 export default LetterBank;

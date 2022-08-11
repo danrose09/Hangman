@@ -1,13 +1,12 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import CategoryWord from "../components/CategoryWord";
-import LetterBank from "../components/LetterBank";
-import CategorySpaces from "../components/CategorySpaces";
-import { Store } from "../store";
-import AddWord from "../components/AddWord";
-import DeleteWord from "../components/DeleteWord";
-import Refresh from "../components/Refresh";
+import CategoryWord from "../components/category-components/CategoryWord";
+import LetterBank from "../components/category&play-random-components/LetterBank";
+import CategorySpaces from "../components/category-components/CategorySpaces";
+import { Store } from "../react-store/store";
+import AddWord from "../components/category-components/AddWord";
+import DeleteWord from "../components/category-components/DeleteWord";
 
 const CategoryScreen = () => {
   const { dispatch, state } = useContext(Store);
@@ -46,7 +45,7 @@ const CategoryScreen = () => {
           <AddWord />
           <DeleteWord />
           <button className="grid-button-start" onClick={handleClick}>
-            Start
+            Play
           </button>
           <p>{allCategoryWords}</p>
         </div>
@@ -56,7 +55,6 @@ const CategoryScreen = () => {
           <CategoryWord />
           <CategorySpaces />
           {gameHasStarted && <LetterBank />}
-          <Refresh />
         </div>
       )}
     </div>

@@ -146,6 +146,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 //Dictionary Screen
+.mydictionary-screen {
+  // text-align: center;
+  justify-content: center;
+}
 
 .dictionary-grid {
   max-width: 50%;
@@ -213,7 +217,7 @@ body::-webkit-scrollbar-thumb {
 }
 //Account Screen
 
-//Play Random
+//Play Random Screen
 .play-random-screen {
   text-align: center;
 }
@@ -300,12 +304,7 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 50px;
 }
-
-// .letter-container {
-//   margin: 2px;
-// }
 
 .letter-button {
   background-color: #ff7eee;

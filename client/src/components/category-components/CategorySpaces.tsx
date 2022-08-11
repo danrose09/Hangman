@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import Confetti from "react-confetti";
-import { Store } from "../store";
+import { Store } from "../../react-store/store";
 
 const CategorySpaces = () => {
   const { state, dispatch } = useContext(Store);

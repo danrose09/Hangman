@@ -1,6 +1,6 @@
 import { Fragment, useState, useContext } from "react";
 import axios from "axios";
-import { Store } from "../store";
+import { Store } from "../../react-store/store";
 
 const AddToDictionary = (props: any) => {
   const { dispatch, state } = useContext(Store);
@@ -29,8 +29,6 @@ const AddToDictionary = (props: any) => {
     }
   };
 
-  console.log(randomWord);
-
   const clickHandler = () => {
     setAddToDictionary((prevValue) => {
       return !prevValue;
@@ -53,6 +51,7 @@ const AddToDictionary = (props: any) => {
           <label>Word:</label>
           <input
             name="word"
+            readOnly
             value={word}
             type="text"
             placeholder="word..."
@@ -77,6 +76,7 @@ const AddToDictionary = (props: any) => {
           <label>Definition:</label>
           <input
             name="definition"
+            readOnly
             value={definition}
             type="text"
             placeholder="definition..."

@@ -1,18 +1,21 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Store } from "../react-store/store";
 
 const Homescreen = () => {
+  const { state } = useContext(Store);
+  const { userInfo } = state;
   const imageLocation = "https://miro.medium.com/max/300/0*6WFhG2qCe5dPH1Fz.";
   return (
     <div className="homescreen-container">
       <h1 className="title">Hangman</h1>
-      <div className="homescreen-buttons">
-        <Link className="button-link" to="/playrandom">
-          <button className="grid-button">Quick Play</button>
-        </Link>
-        <Link className="button-link" to={"/categories"}>
-          <button className="grid-button">Categories</button>
-        </Link>
-      </div>
+      {!userInfo && (
+        <div className="homescreen-buttons">
+          <Link className="button-link" to="/login">
+            <button className="grid-button">Login</button>
+          </Link>
+        </div>
+      )}
       <img
         className="homescreen-image"
         alt="A hangman drawing"

@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { Store } from "../store";
+import { Store } from "../react-store/store";
 
 const CategoriesScreen = () => {
   const navigate = useNavigate();

@@ -1,14 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const seedRouter = require("./routes/seedRoute.js");
-const categoryRouter = require("./routes/categoryRoute.js");
-const singleCategoryRouter = require("./routes/singleCategoryRoute");
+const fetchCategoriesRouter = require("./routes/fetchCategoriesRoute.js");
+const fetchCategoryRouter = require("./routes/fetchCategoryRoute");
 const vocabularyRouter = require("./routes/vocabulayRoutes.js");
-const dictionaryRouter = require("./routes/dictionaryRoutes.js");
-const definitionRouter = require("./routes/definitionRoutes.js");
-const updateRouter = require("./routes/updateRoutes.js");
+const fetchDictionaryRouter = require("./routes/fetchDictionaryRoute.js");
+const addToDictionaryRouter = require("./routes/addToDictionaryRoute.js");
+const updateDictionaryTermRouter = require("./routes/updateDictionaryTermRoute.js");
 const userRouter = require("./routes/userRoutes.js");
-const deleteRouter = require("./routes/deleteRoutes.js");
+const deleteDictionaryTermRouter = require("./routes/deleteDictionaryTermRoute.js");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
@@ -28,14 +28,14 @@ app.use(
   })
 );
 app.use("/api/seed", seedRouter);
-app.use("/api/categories", categoryRouter);
-app.use("/api/category", singleCategoryRouter);
+app.use("/api/categories", fetchCategoriesRouter);
+app.use("/api/category", fetchCategoryRouter);
 app.use("/api/vocabulary", vocabularyRouter);
-app.use("/api/mydictionary", dictionaryRouter);
-app.use("/api/definitions", definitionRouter);
-app.use("/api/update", updateRouter);
+app.use("/api/mydictionary", fetchDictionaryRouter);
+app.use("/api/definitions", addToDictionaryRouter);
+app.use("/api/update", updateDictionaryTermRouter);
 app.use("/api/users", userRouter);
-app.use("/api/delete", deleteRouter);
+app.use("/api/delete", deleteDictionaryTermRouter);
 
 app.listen(5000, (req, res) => {
   console.log("App is running on 5000!");

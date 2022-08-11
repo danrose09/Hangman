@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Store } from "../store";
+import { Store } from "../react-store/store";
 
 const UpdateDefinitionScreen = () => {
   const params = useParams();
-  let navigate = useNavigate();
   const { state, dispatch } = useContext(Store);
-  const { myDefinition, userInfo } = state;
+  const { myDefinition, userInfo, message } = state;
   const [definitionState, setDefinitionState] = useState({
     word: "",
     partOfSpeech: "",
@@ -15,7 +14,10 @@ const UpdateDefinitionScreen = () => {
     definition: "",
   });
 
+  console.log(definitionState);
+
   useEffect(() => {
+    dispatch({ type: "CLEAR_MESSAGE", payload: "" });
     const fetchMyDefinition = async () => {
       try {
         const { data } = await axios.get(
@@ -46,14 +48,15 @@ const UpdateDefinitionScreen = () => {
         definition: definitionState.definition,
         username: userInfo.username,
       })
-      .then(navigate(`/mydictionary/${userInfo.username}`));
+      .then(
+        dispatch({ type: "UPDATE_SUCCESSFUL", payload: "Update Successful" })
+      );
   };
 
   return (
     <div>
       <form onSubmit={(e) => submitHandler(e)}>
         <div className="dictionary-grid">
-          <button onClick={() => navigate("/mydictionary")}>Back</button>
           <div className="grid-item grid-item-1">
             <h2 className="dictionary-word">
               {`${myDefinition.word} `}
@@ -105,7 +108,11 @@ const UpdateDefinitionScreen = () => {
           width={120}
           alt=""
         ></img>
-        <button type="submit">Update</button>
+        <p style={{ color: "green" }}>{message ? message : null}</p>
+
+        <button className="grid-button-start" type="submit">
+          Update
+        </button>
       </form>
     </div>
   );

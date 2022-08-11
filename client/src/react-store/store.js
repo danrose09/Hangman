@@ -10,7 +10,12 @@ const initialState = {
   categories: [],
   category: [],
   activeSince: "",
-  myDefinition: {},
+  myDefinition: {
+    word: "",
+    partOfSpeech: "",
+    origin: "",
+    definition: "",
+  },
   stopConfetti: false,
   randomWord: [
     {
@@ -79,6 +84,8 @@ const initialState = {
   categoryWord: "",
   gameHasStarted: false,
   hasWon: false,
+  message: "",
+  updateSuccessful: false,
 };
 
 const reducer = (state, action) => {
@@ -101,16 +108,22 @@ const reducer = (state, action) => {
         guessedLetters: [],
         haswon: false,
       };
-    case "REFRESH":
-      return {
-        ...state,
-        gameHasStarted: false,
-        hasWon: false,
-        randomWord: "",
-        categoryWord: "",
-        guessedLetters: [],
-        letterBank: state.alphabet,
-      };
+    // case "REFRESH":
+    //   return {
+    //     ...state,
+    //     gameHasStarted: false,
+    //     hasWon: false,
+    //     randomWord: [
+    //       {
+    //         word: "",
+    //         definition: "",
+    //         pronunciation: "",
+    //       },
+    //     ],
+    //     categoryWord: "",
+    //     guessedLetters: [],
+    //     letterBank: state.alphabet,
+    //   };
     case "GUESS_LETTER":
       const guessedLetter = action.payload;
 
@@ -149,15 +162,26 @@ const reducer = (state, action) => {
       };
     case "FETCH_FAILURE":
       return { ...state, error: action.payload };
-    case "ADD_TO_DICTIONARY":
-      return {
-        ...state,
-        myDictionary: action.payload,
-      };
+    // case "ADD_TO_DICTIONARY":
+    //   return {
+    //     ...state,
+    //     myDictionary: action.payload,
+    //   };
     case "REMOVE_FROM_DICTIONARY":
       return {
         ...state,
         myDictionary: action.payload,
+      };
+    case "UPDATE_SUCCESSFUL":
+      return {
+        ...state,
+        message: action.payload,
+        updateSuccessful: true,
+      };
+    case "CLEAR_MESSAGE":
+      return {
+        ...state,
+        message: action.payload,
       };
     case "HAS_WON":
       return { ...state, hasWon: action.payload };

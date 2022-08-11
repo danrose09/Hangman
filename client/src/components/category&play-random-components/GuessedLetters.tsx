@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Store } from "../store";
+import { Store } from "../../react-store/store";
 
 const GuessedLetters = () => {
   const { state } = useContext(Store);
