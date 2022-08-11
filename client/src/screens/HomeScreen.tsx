@@ -5,7 +5,7 @@ const Homescreen = () => {
   return (
     <div className="homescreen-container">
       <h1 className="title">Hangman</h1>
-      <div>
+      <div className="homescreen-buttons">
         <Link className="button-link" to="/playrandom">
           <button className="grid-button">Quick Play</button>
         </Link>

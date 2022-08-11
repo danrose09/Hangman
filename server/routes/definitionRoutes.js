@@ -3,7 +3,7 @@ const User = require("../models/userModel");
 
 const definitionRouter = express.Router();
 
-definitionRouter.post("/addtomydictionary", async (req, res) => {
+definitionRouter.put("/addtomydictionary", async (req, res) => {
   const updateUserDictionary = await User.findOneAndUpdate(
     { username: req.body.username },
     {

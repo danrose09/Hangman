@@ -35,8 +35,8 @@ const AddWord = () => {
           value={newWord}
           onChange={(e) => setNewWord(e.target.value)}
         ></input>
-        <button type="submit" onClick={handleClick}>
-          Enter
+        <button className="grid-button" type="submit" onClick={handleClick}>
+          Add
         </button>
       </form>
     </div>

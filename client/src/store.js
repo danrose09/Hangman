@@ -77,11 +77,14 @@ const initialState = {
   ],
   guessedLetters: [],
   categoryWord: "",
+  gameHasStarted: false,
   hasWon: false,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "START_STOP_GAME":
+      return { ...state, gameHasStarted: action.payload };
     case "NEW_RANDOM_WORD":
       return {
         ...state,
@@ -101,6 +104,7 @@ const reducer = (state, action) => {
     case "REFRESH":
       return {
         ...state,
+        gameHasStarted: false,
         hasWon: false,
         randomWord: "",
         categoryWord: "",

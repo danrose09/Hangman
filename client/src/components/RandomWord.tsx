@@ -7,40 +7,22 @@ import AddToDictionary from "./AddToDictionary";
 const RandomWord = () => {
   const { state, dispatch } = useContext(Store);
   const { randomWord, guessedLetters, hasWon, stopConfetti } = state;
-
-  const [word, setWord] = useState("");
-  const [definition, setDefinition] = useState("");
+  const { word, definition } = randomWord[0];
   const [defIsVisible, setDefIsVisible] = useState(false);
   const [wordHidden, setWordHidden] = useState(true);
 
   const letterArray = word.toLowerCase().split("");
-
   const letterArrayLength = letterArray.length;
-
   const containsAll = letterArray.every((letter: String) => {
     return guessedLetters.includes(letter);
   });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get(
-        "https://random-words-api.vercel.app/word"
-      );
-      dispatch({ type: "NEW_RANDOM_WORD", payload: data });
-    };
-    fetchData();
-  }, [dispatch]);
 
   const fetchRandomWord = async () => {
     const { data } = await axios.get(
       "https://random-words-api.vercel.app/word"
     );
+    dispatch({ type: "START_STOP_GAME", payload: true });
     dispatch({ type: "NEW_RANDOM_WORD", payload: data });
-    setWord(randomWord[0].word.toLowerCase());
-    setDefinition(randomWord[0].definition.toLowerCase());
-    setDefIsVisible(false);
-
-    console.log(randomWord);
   };
 
   const showDefinition = () => {
@@ -49,14 +31,13 @@ const RandomWord = () => {
     });
   };
 
-  //Letter Spaces Section
-
   useEffect(() => {
     const checkIfWon = (containsall: boolean, letterarraylength: number) => {
       const won = () => {
         const audio = new Audio("/audio/unlock.wav");
         audio.play();
         dispatch({ type: "HAS_WON", payload: true });
+        dispatch({ type: "START_STOP_GAME", payload: false });
       };
       const hasNotWon = () => {
         dispatch({ type: "HAS_WON", payload: false });
@@ -92,8 +73,8 @@ const RandomWord = () => {
   return (
     <div>
       <div className="random-word-buttons">
-        <button className="grid-button" onClick={fetchRandomWord}>
-          Get New Word
+        <button className="grid-button-start" onClick={fetchRandomWord}>
+          Start
         </button>
         <button className="grid-button" onClick={toggleHidden}>
           Show Word
@@ -111,11 +92,12 @@ const RandomWord = () => {
           Look Up
         </button>
       </a>
-      <div hidden={wordHidden || hasWon}>{word}</div>
-      <div hidden={!defIsVisible ? true : false}>{definition}</div>
+
       {hasWon && !stopConfetti && <Confetti />}
       <div className="underlined-letters">{underlinedLetters}</div>
-      <AddToDictionary hasWon={hasWon} />
+      <div hidden={wordHidden || hasWon}>{word.toLowerCase()}</div>
+      <div hidden={!defIsVisible ? true : false}>{definition}</div>
+      <AddToDictionary hasWon={hasWon} randomWord={randomWord} />
     </div>
   );
 };

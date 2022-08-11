@@ -5,14 +5,14 @@ import CategoryWord from "../components/CategoryWord";
 import LetterBank from "../components/LetterBank";
 import CategorySpaces from "../components/CategorySpaces";
 import { Store } from "../store";
-import Refresh from "../components/Refresh";
 import AddWord from "../components/AddWord";
 import DeleteWord from "../components/DeleteWord";
+import Refresh from "../components/Refresh";
 
 const CategoryScreen = () => {
   const { dispatch, state } = useContext(Store);
-  const { userInfo, category } = state;
-  const [gameHasStarted, setGameHasStarted] = useState(false);
+  const { userInfo, category, gameHasStarted } = state;
+  const [isStarted, setIsStarted] = useState(false);
   const params = useParams();
   const { name } = params;
 
@@ -31,7 +31,7 @@ const CategoryScreen = () => {
   }, [name, dispatch, userInfo.username]);
 
   const handleClick = () => {
-    setGameHasStarted(true);
+    setIsStarted(true);
   };
 
   const categoryName = category.name;
@@ -40,12 +40,12 @@ const CategoryScreen = () => {
 
   return (
     <div className="category-screen">
-      {!gameHasStarted ? (
+      {!isStarted ? (
         <div>
           <h1>{categoryName}</h1>
           <AddWord />
           <DeleteWord />
-          <button className="grid-button" onClick={handleClick}>
+          <button className="grid-button-start" onClick={handleClick}>
             Start
           </button>
           <p>{allCategoryWords}</p>
@@ -55,7 +55,7 @@ const CategoryScreen = () => {
           <h1>Hangman</h1>
           <CategoryWord />
           <CategorySpaces />
-          <LetterBank />
+          {gameHasStarted && <LetterBank />}
           <Refresh />
         </div>
       )}

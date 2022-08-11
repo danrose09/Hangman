@@ -34,12 +34,11 @@ const userSchema = new mongoose.Schema(
         },
         origin: {
           type: String,
-          required: true,
           default: "unknown",
         },
         partOfSpeech: {
           type: String,
-          required: true,
+          default: "unknown",
         },
         definition: {
           type: String,

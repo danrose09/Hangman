@@ -1,37 +1,35 @@
-import React, { Fragment, useState, useContext } from "react";
+import { Fragment, useState, useContext } from "react";
 import axios from "axios";
 import { Store } from "../store";
 
 const AddToDictionary = (props: any) => {
   const { dispatch, state } = useContext(Store);
   const { userInfo } = state;
-  const { hasWon } = props;
+  const { hasWon, randomWord } = props;
+  const { word, definition } = randomWord[0];
   const [addToDictionary, setAddToDictionary] = useState(false);
   const [buttonIsHidden, setButtonIsHidden] = useState(false);
-  const [newWord, setNewWord] = useState("");
-  const [partOfSpeech, setPartOfSpeech] = useState("");
-  const [origin, setOrigin] = useState("");
-  const [newDefinition, setNewDefinition] = useState("");
+  const [newPartOfSpeech, setNewPartOfSpeech] = useState("");
+  const [newOrigin, setNewOrigin] = useState("");
 
   const submitHandler = async (e: any) => {
     try {
-      const { data } = await axios.post(
+      await axios.put(
         `http://localhost:5000/api/definitions/addtomydictionary`,
         {
-          word: newWord,
-          partOfSpeech: partOfSpeech,
-          origin: origin,
-          definition: newDefinition,
+          word,
+          partOfSpeech: newPartOfSpeech,
+          origin: newOrigin,
+          definition,
           username: userInfo.username,
         }
       );
-      dispatch({ type: "ADD_TO_DICTIONARY", payload: data });
-      localStorage.setItem("userInfo", JSON.stringify(userInfo));
     } catch (error) {
-      console.log("failure");
       console.log(error);
     }
   };
+
+  console.log(randomWord);
 
   const clickHandler = () => {
     setAddToDictionary((prevValue) => {
@@ -44,7 +42,7 @@ const AddToDictionary = (props: any) => {
   return (
     <Fragment>
       <button
-        className="grid-button"
+        className="grid-button-start"
         hidden={!hasWon || buttonIsHidden}
         onClick={clickHandler}
       >
@@ -55,35 +53,33 @@ const AddToDictionary = (props: any) => {
           <label>Word:</label>
           <input
             name="word"
-            value={newWord}
+            value={word}
             type="text"
             placeholder="word..."
-            onChange={(e) => setNewWord(e.target.value)}
           ></input>
           <label>Part of Speech:</label>
           <input
             name="partOfSpeech"
-            value={partOfSpeech}
+            value={newPartOfSpeech}
             type="text"
             placeholder="part of speech..."
-            onChange={(e) => setPartOfSpeech(e.target.value)}
+            onChange={(e) => setNewPartOfSpeech(e.target.value)}
           ></input>
           <br />
           <label>Origin:</label>
           <input
             name="origin"
-            value={origin}
+            value={newOrigin}
             type="text"
             placeholder="origin..."
-            onChange={(e) => setOrigin(e.target.value)}
+            onChange={(e) => setNewOrigin(e.target.value)}
           ></input>
           <label>Definition:</label>
           <input
             name="definition"
-            value={newDefinition}
+            value={definition}
             type="text"
-            placeholder="definition"
-            onChange={(e) => setNewDefinition(e.target.value)}
+            placeholder="definition..."
           ></input>
           <button className="grid-button" type="submit">
             Submit

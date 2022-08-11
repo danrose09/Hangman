@@ -18,6 +18,7 @@ const CategoryWord = () => {
     const newCategoryWord =
       categoryWords[Math.floor(Math.random() * categoryWords.length)];
     dispatch({ type: "NEW_CATEGORY_WORD", payload: newCategoryWord });
+    dispatch({ type: "START_STOP_GAME", payload: true });
   };
 
   const toggleHidden = () => {
@@ -30,7 +31,7 @@ const CategoryWord = () => {
     <div>
       <div>
         <button onClick={toggleHidden} className="grid-button">
-          Word
+          Show Word
         </button>
         <button className="grid-button" onClick={fetchCategoryWord}>
           Start
