@@ -60,7 +60,9 @@ const LoginScreen = () => {
           placeholder="password..."
           onChange={handleChange}
         ></input>
-        <button type="submit">Login</button>
+        <button className="grid-button" type="submit">
+          Login
+        </button>
       </form>
       {errorMessage.length > 1 ? (
         <p style={{ color: "red" }}>{errorMessage}</p>

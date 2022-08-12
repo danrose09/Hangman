@@ -26,6 +26,10 @@ const CategoriesScreen = () => {
     fetchCategories();
   }, [dispatch, navigate, userInfo]);
 
+  const clickHandler = () => {
+    navigate("/add-category");
+  };
+
   const allCategories = categories.map((category: any, index: number) => {
     return (
       <div key={index}>
@@ -35,9 +39,13 @@ const CategoriesScreen = () => {
       </div>
     );
   });
+
   return (
     <div>
       <h1>Categories</h1>
+      <button className="grid-button-start" onClick={clickHandler}>
+        Create Category
+      </button>
       {allCategories}
     </div>
   );

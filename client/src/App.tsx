@@ -3,6 +3,7 @@ import HomeScreen from "./screens/HomeScreen";
 import PlayRandomScreen from "./screens/PlayRandomScreen";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import CategoryScreen from "./screens/CategoryScreen";
+import AddCategoryScreen from "./screens/AddCategoryScreen";
 import MyDictionaryScreen from "./screens/MyDictionaryScreen";
 import Navbar from "./components/global components/Navbar";
 import UpdateDefinitionScreen from "./screens/UpdateDefinitionScreen";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/playrandom" element={<PlayRandomScreen />}></Route>
           <Route path="/categories" element={<CategoriesScreen />}></Route>
           <Route path="/categories/:name" element={<CategoryScreen />}></Route>
+          <Route path="/add-category" element={<AddCategoryScreen />}></Route>
           <Route
             path="/mydictionary/:username"
             element={<MyDictionaryScreen />}

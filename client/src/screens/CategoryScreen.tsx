@@ -10,10 +10,12 @@ import DeleteWord from "../components/category-components/DeleteWord";
 
 const CategoryScreen = () => {
   const { dispatch, state } = useContext(Store);
-  const { userInfo, category, gameHasStarted } = state;
+  const { userInfo, category, gameHasStarted, message } = state;
   const [isStarted, setIsStarted] = useState(false);
   const params = useParams();
   const { name } = params;
+
+  console.log(category.name);
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -30,7 +32,25 @@ const CategoryScreen = () => {
   }, [name, dispatch, userInfo.username]);
 
   const handleClick = () => {
-    setIsStarted(true);
+    if (category.words.length >= 1) {
+      setIsStarted(true);
+    } else {
+      dispatch({
+        type: "SET_MESSAGE",
+        payload: "Category must contain at least one word in order to play.",
+      });
+    }
+  };
+
+  const deleteCategory = async () => {
+    try {
+      await axios.put("http://localhost:5000/api/delete-category", {
+        username: userInfo.username,
+        category: category.name,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const categoryName = category.name;
@@ -44,9 +64,18 @@ const CategoryScreen = () => {
           <h1>{categoryName}</h1>
           <AddWord />
           <DeleteWord />
+          <button className="grid-button" onClick={deleteCategory}>
+            Delete Category
+          </button>
           <button className="grid-button-start" onClick={handleClick}>
             Play
           </button>
+          <p style={{ color: "red" }}>
+            {message ===
+            "Category must contain at least one word in order to play."
+              ? message
+              : null}
+          </p>
           <p>{allCategoryWords}</p>
         </div>
       ) : (
