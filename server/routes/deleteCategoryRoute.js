@@ -13,7 +13,6 @@ deleteCategoryRouter.put("/", async (req, res) => {
     { username: req.body.username },
     { categories: newCategories }
   );
-  console.log(updatedUser);
   res.json(newCategories);
   return res.status(201);
 });

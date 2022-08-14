@@ -3,10 +3,12 @@ import axios from "axios";
 import { Store } from "../../react-store/store";
 import Confetti from "react-confetti";
 import AddToDictionary from "./AddToDictionary";
+import Attempts from "../category&play-random-components/Attempts";
 
 const RandomWord = () => {
   const { state, dispatch } = useContext(Store);
-  const { randomWord, guessedLetters, hasWon, stopConfetti } = state;
+  const { randomWord, guessedLetters, hasWon, stopConfetti, gameHasStarted } =
+    state;
   const { word, definition } = randomWord[0];
   const [defIsVisible, setDefIsVisible] = useState(false);
   const [wordHidden, setWordHidden] = useState(true);
@@ -72,6 +74,7 @@ const RandomWord = () => {
 
   return (
     <div>
+      {gameHasStarted && <Attempts />}
       <div className="random-word-buttons">
         <button className="grid-button-start" onClick={fetchRandomWord}>
           Start

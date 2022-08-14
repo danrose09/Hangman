@@ -9,6 +9,9 @@ const initialState = {
   myDictionary: [],
   categories: [],
   category: [],
+  difficulty: "normal",
+  maxAttempts: 10,
+  remainingAttempts: 10,
   activeSince: "",
   myDefinition: {
     word: "",
@@ -84,6 +87,7 @@ const initialState = {
   categoryWord: "",
   gameHasStarted: false,
   hasWon: false,
+  hasLost: false,
   message: "",
   updateSuccessful: false,
 };
@@ -99,6 +103,7 @@ const reducer = (state, action) => {
         letterBank: state.alphabet,
         guessedLetters: [],
         hasWon: false,
+        hasLost: false,
       };
     case "NEW_CATEGORY_WORD":
       return {
@@ -107,23 +112,27 @@ const reducer = (state, action) => {
         letterBank: state.alphabet,
         guessedLetters: [],
         haswon: false,
+        hasLost: false,
       };
-    // case "REFRESH":
-    //   return {
-    //     ...state,
-    //     gameHasStarted: false,
-    //     hasWon: false,
-    //     randomWord: [
-    //       {
-    //         word: "",
-    //         definition: "",
-    //         pronunciation: "",
-    //       },
-    //     ],
-    //     categoryWord: "",
-    //     guessedLetters: [],
-    //     letterBank: state.alphabet,
-    //   };
+    case "REFRESH":
+      return {
+        ...state,
+        gameHasStarted: false,
+        hasWon: false,
+        hasLost: false,
+        maxAttemps: 10,
+        remainingAttempts: 10,
+        randomWord: [
+          {
+            word: "",
+            definition: "",
+            pronunciation: "",
+          },
+        ],
+        categoryWord: "",
+        guessedLetters: [],
+        letterBank: state.alphabet,
+      };
     case "GUESS_LETTER":
       const guessedLetter = action.payload;
 
@@ -188,8 +197,28 @@ const reducer = (state, action) => {
         ...state,
         message: action.payload,
       };
+    case "SET_DIFFICULTY":
+      return {
+        ...state,
+        difficulty: action.payload,
+      };
+    case "ATTEMPT_COUNTER":
+      return {
+        ...state,
+        remainingAttempts: action.payload,
+      };
+    case "SET_MAX_ATTEMPTS":
+      return {
+        ...state,
+        maxAttempts: action.payload,
+      };
     case "HAS_WON":
       return { ...state, hasWon: action.payload };
+    case "SET_HAS_LOST":
+      return {
+        ...state,
+        hasLost: true,
+      };
     case "STOP_CONFETTI":
       return {
         ...state,

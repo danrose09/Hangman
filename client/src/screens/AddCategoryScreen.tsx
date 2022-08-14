@@ -12,20 +12,21 @@ const AddCategoryScreen = () => {
     e.preventDefault();
     const createCategory = async () => {
       try {
-        const { data } = await axios.put(
-          "http://localhost:5000/api/add-category",
-          {
-            username: userInfo.username,
-            categoryName,
-          }
-        );
-        console.log(data);
+        await axios.put("http://localhost:5000/api/add-category", {
+          username: userInfo.username,
+          categoryName,
+        });
       } catch (error) {
         console.log(error);
       }
     };
     if (categoryName.length >= 1) {
       createCategory();
+      setCategoryName("");
+      dispatch({
+        type: "SET_MESSAGE",
+        payload: "Category successfully created!",
+      });
     } else {
       dispatch({
         type: "SET_MESSAGE",
@@ -58,6 +59,9 @@ const AddCategoryScreen = () => {
         "Category name must contain at least one number, letter or symbol."
           ? message
           : null}
+      </p>
+      <p style={{ color: "green" }}>
+        {message === "Category successfully created!" ? message : null}
       </p>
     </div>
   );
