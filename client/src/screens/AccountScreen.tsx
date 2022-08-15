@@ -13,7 +13,27 @@ const AccountScreen = () => {
     if (!userInfo) {
       navigate("/login");
     }
-  }, [userInfo, navigate]);
+
+    const authorizeAndFetch = async () => {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5000/api/mydictionary/${userInfo.username}`,
+          config
+        );
+        dispatch({ type: "FETCH_MY_DICTIONARY", payload: data });
+      } catch (error: any) {
+        console.log(error);
+      }
+    };
+    if (userInfo) {
+      authorizeAndFetch();
+    }
+  }, [userInfo, navigate, dispatch]);
 
   let recentlyAdded = myDictionary[myDictionary.length - 1];
 

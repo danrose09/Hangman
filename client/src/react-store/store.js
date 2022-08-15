@@ -225,6 +225,12 @@ const reducer = (state, action) => {
         ...state,
         stopConfetti: action.payload,
       };
+    case "UPDATE_ACCOUNT":
+      return {
+        ...state,
+        userInfo: action.payload,
+        message: "Account successfully updated.",
+      };
     case "SIGN_IN":
       return { ...state, userInfo: action.payload, message: "" };
     case "SIGN_OUT":

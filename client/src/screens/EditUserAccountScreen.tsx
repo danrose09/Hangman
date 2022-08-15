@@ -1,12 +1,10 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Store } from "../react-store/store";
 import axios from "axios";
 
 const EditUserAccountScreen = () => {
-  const navigate = useNavigate();
   const { dispatch, state } = useContext(Store);
-  const { userInfo } = state;
+  const { userInfo, message } = state;
   const { username, email } = userInfo;
   const [userState, setUserState] = useState({
     newUsername: "",
@@ -14,9 +12,14 @@ const EditUserAccountScreen = () => {
     password: "",
     confirmedPassword: "",
   });
-  const updateAccount = async () => {
+
+  console.log(userInfo);
+  console.log(message);
+
+  const updateAccount = async (e: any) => {
+    e.preventDefault();
     try {
-      const { data } = await axios.put(
+      const { data } = await axios.post(
         "http://localhost:5000/api/users/edit-account",
         {
           username: username,
@@ -26,11 +29,19 @@ const EditUserAccountScreen = () => {
           confirmedPassword: userState.confirmedPassword,
         }
       );
+
       dispatch({
-        type: "SET_MESSAGE",
-        payload: "Account successfully updated.",
+        type: "UPDATE_ACCOUNT",
+        payload: data,
       });
-      navigate("/account");
+
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setUserState({
+        newUsername: "",
+        newEmail: "",
+        password: "",
+        confirmedPassword: "",
+      });
     } catch (error) {
       console.log(error);
       dispatch({
@@ -76,6 +87,9 @@ const EditUserAccountScreen = () => {
           Confirm Changes
         </button>
       </form>
+      <p className="message-success">
+        {message === "Account successfully updated." && message}
+      </p>
       <h3>Confirm Password</h3>
     </div>
   );

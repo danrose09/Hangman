@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/userModel");
 const generateToken = require("../token.js");
+const protect = require("../middleware/authMiddleware.js");
 
 const userRouter = express.Router();
 
@@ -115,7 +116,7 @@ userRouter.post("/login", async (req, res) => {
 });
 
 //Get User Account
-userRouter.get("/account/:username", async (req, res) => {
+userRouter.get("/account/:username", protect, async (req, res) => {
   const user = await User.findOne({ username: req.params.username });
   const myDictionary = user.dictionary;
   const activeSince = user.createdAt;
@@ -127,16 +128,25 @@ userRouter.get("/account/:username", async (req, res) => {
 });
 
 //Edit User Account Details
-userRouter.put("/edit-account", async (req, res) => {
+userRouter.post("/edit-account", async (req, res) => {
   const user = await User.findOneAndUpdate(
     { username: req.body.username },
     {
       username: req.body.newUsername,
       email: req.body.newEmail,
+    },
+    {
+      new: true,
     }
   );
-  console.log(user);
-  res.json(user);
+  res.send({
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    username: user.username,
+    createdAt: user.createdAt,
+    token: generateToken(user),
+  });
 });
 
 userRouter.post("/delete-account", async (req, res) => {
