@@ -4,11 +4,15 @@ import { Store } from "../react-store/store";
 
 const Homescreen = () => {
   const { state } = useContext(Store);
-  const { userInfo } = state;
+  const { userInfo, message } = state;
   const imageLocation = "https://miro.medium.com/max/300/0*6WFhG2qCe5dPH1Fz.";
+  console.log(message);
   return (
     <div className="homescreen-container">
       <h1 className="title">Hangman</h1>
+      {message === "Account successfully deleted." && (
+        <p className="message-success">{message}</p>
+      )}
       {!userInfo && (
         <div className="homescreen-buttons">
           <Link className="button-link" to="/login">

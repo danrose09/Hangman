@@ -1,11 +1,12 @@
 import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../react-store/store";
+import axios from "axios";
 
 const AccountScreen = () => {
   const navigate = useNavigate();
-  const { state } = useContext(Store);
-  const { userInfo, myDictionary } = state;
+  const { dispatch, state } = useContext(Store);
+  const { userInfo, myDictionary, message } = state;
   const { username, email, createdAt } = userInfo;
 
   useEffect(() => {
@@ -16,13 +17,37 @@ const AccountScreen = () => {
 
   let recentlyAdded = myDictionary[myDictionary.length - 1];
 
+  const deleteAccount = async () => {
+    try {
+      await axios.post("http://localhost:5000/api/users/delete-account", {
+        username: userInfo.username,
+      });
+      dispatch({
+        type: "SET_MESSAGE",
+        payload: "Account successfully deleted.",
+      });
+      navigate("/");
+      dispatch({ type: "SIGN_OUT" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div className="account-user-info-container">
         <h1>My Account</h1>
-        <button className="grid-button-start">Edit</button>
-        <button className="grid-button">Delete Account</button>
+        <button
+          className="grid-button-start"
+          onClick={() => navigate("/edit-account")}
+        >
+          Edit
+        </button>
+        <button className="grid-button" onClick={deleteAccount}>
+          Delete Account
+        </button>
       </div>
+
       <div>
         <h3 className="account-subtitle">
           <u>Account Details</u>

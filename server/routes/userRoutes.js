@@ -114,6 +114,7 @@ userRouter.post("/login", async (req, res) => {
   }
 });
 
+//Get User Account
 userRouter.get("/account/:username", async (req, res) => {
   const user = await User.findOne({ username: req.params.username });
   const myDictionary = user.dictionary;
@@ -123,6 +124,25 @@ userRouter.get("/account/:username", async (req, res) => {
     myDictionary,
     activeSince,
   });
+});
+
+//Edit User Account Details
+userRouter.put("/edit-account", async (req, res) => {
+  const user = await User.findOneAndUpdate(
+    { username: req.body.username },
+    {
+      username: req.body.newUsername,
+      email: req.body.newEmail,
+    }
+  );
+  console.log(user);
+  res.json(user);
+});
+
+userRouter.post("/delete-account", async (req, res) => {
+  const user = await User.findOneAndDelete({ username: req.body.username });
+  const users = await User.find();
+  res.json(users);
 });
 
 module.exports = userRouter;

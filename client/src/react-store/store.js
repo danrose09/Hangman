@@ -226,7 +226,7 @@ const reducer = (state, action) => {
         stopConfetti: action.payload,
       };
     case "SIGN_IN":
-      return { ...state, userInfo: action.payload };
+      return { ...state, userInfo: action.payload, message: "" };
     case "SIGN_OUT":
       return { ...state, userInfo: null };
     default:
