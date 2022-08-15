@@ -120,6 +120,7 @@ const reducer = (state, action) => {
         gameHasStarted: false,
         hasWon: false,
         hasLost: false,
+        difficulty: "normal",
         maxAttemps: 10,
         remainingAttempts: 10,
         randomWord: [

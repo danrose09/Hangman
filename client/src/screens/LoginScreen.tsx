@@ -60,7 +60,7 @@ const LoginScreen = () => {
           placeholder="password..."
           onChange={handleChange}
         ></input>
-        <button className="grid-button" type="submit">
+        <button className="grid-button-start" type="submit">
           Login
         </button>
       </form>

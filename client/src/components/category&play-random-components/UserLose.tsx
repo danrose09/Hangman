@@ -12,8 +12,14 @@ const UserLose = () => {
     <div>
       <h1>Oh No. The word was:</h1>
       <h1 className="lost-word">
-        {randomWord[0].word.length >= 1 ? randomWord[0].word : categoryWord}
+        {randomWord[0].word.length >= 1
+          ? randomWord[0].word.toLowerCase()
+          : categoryWord}
       </h1>
+      <p>
+        {randomWord[0].word.length >= 1 &&
+          randomWord[0].definition.toLowerCase()}
+      </p>
       <button className="grid-button-start" onClick={playAgain}>
         Play Again?
       </button>

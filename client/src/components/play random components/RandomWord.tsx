@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Store } from "../../react-store/store";
 import Confetti from "react-confetti";
@@ -60,9 +60,13 @@ const RandomWord = () => {
       isGuessed = true;
     }
     return (
-      <div key={index} className="underline">
-        {isGuessed ? <h3>{letter}</h3> : <h3>_</h3>}
-      </div>
+      <Fragment>
+        {isGuessed ? (
+          <h3 className="underline-letter-space">{letter}</h3>
+        ) : (
+          <h3 className="underline-letter-space">_</h3>
+        )}
+      </Fragment>
     );
   });
 

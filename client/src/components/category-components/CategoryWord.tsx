@@ -31,7 +31,7 @@ const CategoryWord = () => {
     <div>
       <div>
         <button className="grid-button-start" onClick={fetchCategoryWord}>
-          Start
+          New Word
         </button>
         <button onClick={toggleHidden} className="grid-button">
           Show Word

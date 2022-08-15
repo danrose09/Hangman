@@ -9,36 +9,39 @@ const LetterBank = (props: any) => {
   const audio = new Audio("/audio/soft-click.wav");
   const audioLose = new Audio("/audio/lose.wav");
 
-  console.log(randomWord[0].word.toLowerCase().split(""));
-
   const submitLetterHandler = (letter: String) => {
     audio.play();
     dispatch({ type: "GUESS_LETTER", payload: letter });
-    if (
+    if (remainingAttempts === 1) {
+      audioLose.play();
+      dispatch({ type: "SET_HAS_LOST", payload: true });
+    } else if (
       remainingAttempts >= 1 &&
+      randomWord[0].word.length >= 1 &&
       randomWord[0].word.toLowerCase().split("").includes(letter) === false
     ) {
       dispatch({ type: "ATTEMPT_COUNTER", payload: remainingAttempts - 1 });
-    } else if (remainingAttempts === 0) {
-      audioLose.play();
-      dispatch({ type: "SET_HAS_LOST", payload: true });
+    } else if (
+      remainingAttempts >= 1 &&
+      categoryWord.length >= 1 &&
+      categoryWord.toLowerCase().split("").includes(letter) === false
+    ) {
+      dispatch({ type: "ATTEMPT_COUNTER", payload: remainingAttempts - 1 });
     }
   };
 
   const availableLetters = letterBank.map((letter: String, index: number) => {
     return (
-      <div className="letter-container" hidden={hasWon}>
-        <button
-          key={index}
-          className="letter-button"
-          onClick={() => submitLetterHandler(String(letter))}
-        >
-          {letter}
-        </button>
-      </div>
+      <button
+        key={index}
+        className="letter-button"
+        onClick={() => submitLetterHandler(String(letter))}
+      >
+        {letter}
+      </button>
     );
   });
-  return <div className="available-letters-container">{availableLetters}</div>;
+  return <div>{availableLetters}</div>;
 };
 
 export default LetterBank;

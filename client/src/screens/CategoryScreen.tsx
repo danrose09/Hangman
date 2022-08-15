@@ -20,6 +20,7 @@ const CategoryScreen = () => {
   const { name } = params;
 
   useEffect(() => {
+    dispatch({ type: "REFRESH" });
     const fetchCategory = async () => {
       try {
         const { data } = await axios.get(
@@ -66,7 +67,7 @@ const CategoryScreen = () => {
 
   return (
     <div className="category-screen">
-      {!gameHasStarted && <DifficultySettings />}
+      {!gameHasStarted && !isStarted && <DifficultySettings />}
       {!isStarted ? (
         <div>
           <h1>{categoryName}</h1>

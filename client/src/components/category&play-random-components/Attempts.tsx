@@ -5,10 +5,6 @@ const Attempts = () => {
   const { dispatch, state } = useContext(Store);
   const { maxAttempts, remainingAttempts, difficulty } = state;
 
-  //   console.log(`Max Attempts: ${maxAttempts}`);
-  //   console.log(`Remaining Attempts: ${remainingAttempts}`);
-  //   console.log(`Lost ? ${hasLost}`);
-
   useEffect(() => {
     if (difficulty === "easy") {
       dispatch({ type: "SET_MAX_ATTEMPTS", payload: 15 });

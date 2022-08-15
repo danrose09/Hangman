@@ -18,25 +18,58 @@ const AccountScreen = () => {
 
   return (
     <div>
-      <h1>My Account</h1>
-      <div>
-        <h3>Account Details</h3>
-        <p>Username: {username}</p>
-        <p>Email: {email}</p>
-        <p>Account Since: {createdAt}</p>
-        <button className="grid-button">Edit</button>
+      <div className="account-user-info-container">
+        <h1>My Account</h1>
+        <button className="grid-button-start">Edit</button>
+        <button className="grid-button">Delete Account</button>
       </div>
       <div>
-        <h3>Dictionary</h3>
-        <p>Number of words: {myDictionary.length}</p>
+        <h3 className="account-subtitle">
+          <u>Account Details</u>
+        </h3>
+        <div className="account-user-info-container">
+          <p className="account-bold">Username: </p>
+          <p>{username}</p>
+        </div>
+        <div className="account-user-info-container">
+          <p className="account-bold">Email: </p>
+          <p>{email}</p>
+        </div>
+        <div className="account-user-info-container">
+          <p className="account-bold">Account Since: </p>
+          <p>{createdAt.slice(0, 10)}</p>
+        </div>
+      </div>
+      <div>
+        <h3 className="account-subtitle">
+          <u>Dictionary</u>
+        </h3>
+        <div className="account-user-info-container">
+          <p className="account-bold">Number of Words: </p>
+          <p>{myDictionary.length}</p>
+        </div>
         <div className="recently-added">
-          <h2>Recently Added</h2>
+          <h3 className="account-subtitle">
+            <u>Recently Added</u>
+          </h3>
           {myDictionary.length >= 1 ? (
             <div>
-              <p>{recentlyAdded.word}</p>
-              <p>{recentlyAdded.origin}</p>
-              <p>{recentlyAdded.partOfSpeech}</p>
-              <p>{recentlyAdded.definition}</p>
+              <div className="account-user-info-container">
+                <p className="account-bold">Word: </p>
+                <p>{recentlyAdded.word}</p>
+              </div>
+              <div className="account-user-info-container">
+                <p className="account-bold">Part of Speech: </p>
+                <p>{recentlyAdded.partOfSpeech}</p>
+              </div>
+              <div className="account-user-info-container">
+                <p className="account-bold">Origin: </p>
+                <p>{recentlyAdded.origin}</p>
+              </div>
+              <div className="account-user-info-container">
+                <p className="account-bold">Definition: </p>
+                <p>{recentlyAdded.definition}</p>
+              </div>
             </div>
           ) : null}
         </div>

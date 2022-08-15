@@ -12,7 +12,7 @@ const Homescreen = () => {
       {!userInfo && (
         <div className="homescreen-buttons">
           <Link className="button-link" to="/login">
-            <button className="grid-button">Login</button>
+            <button className="grid-button-start">Login</button>
           </Link>
         </div>
       )}

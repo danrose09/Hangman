@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, Fragment } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../react-store/store";
@@ -32,11 +32,11 @@ const CategoriesScreen = () => {
 
   const allCategories = categories.map((category: any, index: number) => {
     return (
-      <div key={index}>
+      <Fragment key={index}>
         <Link className="button-link" to={`/categories/${category.name}`}>
           <button className="grid-button">{category.name}</button>
         </Link>
-      </div>
+      </Fragment>
     );
   });
 
@@ -46,7 +46,7 @@ const CategoriesScreen = () => {
       <button className="grid-button-start" onClick={clickHandler}>
         Create Category
       </button>
-      {allCategories}
+      <div className="all-categories-container">{allCategories}</div>
     </div>
   );
 };
