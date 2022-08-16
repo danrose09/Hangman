@@ -62,6 +62,10 @@ body::-webkit-scrollbar-thumb {
   transform: rotateX(360deg);
 }
 
+.navbar:hover .logo-icon {
+  transform: rotateX(360deg);
+}
+
 .navbar:hover .logo-png {
   transform: rotateX(360deg);
 }
@@ -82,12 +86,22 @@ body::-webkit-scrollbar-thumb {
   color: #ff7eee;
 }
 
+.logo-icon {
+  color: #ff7eee;
+}
+
 .nav-link:hover {
   background: $bg-secondary;
   color: $text-secondary;
 }
 
 .nav-link i {
+  width: 2rem;
+  min-width: 2rem;
+  margin: 0 1.5rem;
+}
+
+.logo-icon {
   width: 2rem;
   min-width: 2rem;
   margin: 0 1.5rem;
@@ -154,9 +168,43 @@ body::-webkit-scrollbar-thumb {
 }
 
 //Dictionary Screen
-.mydictionary-screen {
-  // text-align: center;
-  justify-content: center;
+// .mydictionary-container {
+//   text-align: center;
+//   justify-content: center;
+// }
+
+.magnifying-glass {
+  color: $text-pink;
+  border-radius: 4px;
+  height: 1.2rem;
+  margin-left: 1rem;
+}
+
+.mydictionary-container-dark {
+  background-color: $bg-primary;
+  color: $text-primary;
+}
+
+.mydictionary-dark-subtitle {
+  color: $text-pink;
+}
+
+.dictionary-title-and-search {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.search-box {
+  width: 50%;
+  height: 2rem;
+  padding: 12px 20px;
+  margin-left: 1rem;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
 }
 
 .dictionary-grid {
@@ -362,4 +410,53 @@ body::-webkit-scrollbar-thumb {
   background-color: $bg-primary;
   color: #ff7eee;
   transition-duration: 0.3s;
+}
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: $bg-primary;
+  color: #f44336;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.success {
+  padding: 20px;
+  background-color: $bg-primary;
+  color: green;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+.input-box {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.add-to-dictionary-container {
+  text-align: left;
 }

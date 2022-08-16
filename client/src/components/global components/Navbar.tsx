@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookOpenReader } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../../react-store/store";
 
@@ -17,9 +19,12 @@ const Header = () => {
     <div className="header">
       <nav className="navbar">
         <ul className="navbar-nav">
-          <li className="logo nav-item">
+          <li className="nav-item logo">
             <Link className="nav-link" to="/">
-              <i className="fa-brands fa-drupal"></i>
+              <FontAwesomeIcon
+                className="logo-icon fa-2x"
+                icon={faBookOpenReader}
+              />
               <span className="link-text logo-text">HANGMAN</span>
             </Link>
           </li>

@@ -15,6 +15,7 @@ const CategoryScreen = () => {
   const navigate = useNavigate();
   const { dispatch, state } = useContext(Store);
   const { userInfo, category, gameHasStarted, message, hasLost } = state;
+  const [messageIsHidden, setMessageIsHidden] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
   const params = useParams();
   const { name } = params;
@@ -41,24 +42,29 @@ const CategoryScreen = () => {
     } else {
       dispatch({
         type: "SET_MESSAGE",
-        payload: "Category must contain at least one word in order to play.",
+        payload: "Category must contain at least one word in order to play",
       });
     }
   };
 
   const deleteCategory = async () => {
+    setMessageIsHidden(false);
     try {
-      dispatch({
-        type: "SET_MESSAGE",
-        payload: "Category successfully deleted!",
-      });
       await axios.put("http://localhost:5000/api/delete-category", {
         username: userInfo.username,
         category: category.name,
       });
+      dispatch({
+        type: "SET_MESSAGE",
+        payload: "Category successfully deleted",
+      });
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const toggleHidden = (e: any) => {
+    setMessageIsHidden(true);
   };
 
   const categoryName = category.name;
@@ -67,35 +73,35 @@ const CategoryScreen = () => {
 
   return (
     <div className="category-screen">
+      {message ===
+        "Category must contain at least one word in order to play" && (
+        <div hidden={messageIsHidden} className="alert">
+          <span onClick={toggleHidden} className="closebtn">
+            &times;
+          </span>
+          {message}
+        </div>
+      )}
+      {message === "Category successfully deleted" && (
+        <div hidden={messageIsHidden} className="success">
+          <span onClick={toggleHidden} className="closebtn">
+            &times;
+          </span>
+          {message}
+        </div>
+      )}
       {!gameHasStarted && !isStarted && <DifficultySettings />}
       {!isStarted ? (
         <div>
           <h1>{categoryName}</h1>
           <AddWord />
           <DeleteWord />
-          <button className="grid-button" onClick={deleteCategory}>
-            Delete Category
-          </button>
           <button className="grid-button-start" onClick={handleClick}>
             Play
           </button>
-          <p style={{ color: "red" }}>
-            {message ===
-            "Category must contain at least one word in order to play."
-              ? message
-              : null}
-          </p>
-          {message === "Category successfully deleted!" ? (
-            <div>
-              <p style={{ color: "green" }}>{message}</p>
-              <button
-                className="grid-button"
-                onClick={() => navigate("/categories")}
-              >
-                Categories
-              </button>
-            </div>
-          ) : null}
+          <button className="grid-button" onClick={deleteCategory}>
+            Delete Category
+          </button>
           <p>{allCategoryWords}</p>
         </div>
       ) : !hasLost ? (

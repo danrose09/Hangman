@@ -30,7 +30,11 @@ const DeleteWord = () => {
   return (
     <div>
       <form onSubmit={submitHandler}>
-        <input onChange={handleChange} placeholder="remove a word..."></input>
+        <input
+          onChange={handleChange}
+          placeholder="remove a word..."
+          className="input-box"
+        ></input>
         <button className="grid-button" type="submit">
           Remove
         </button>

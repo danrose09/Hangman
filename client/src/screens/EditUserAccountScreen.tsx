@@ -6,6 +6,7 @@ const EditUserAccountScreen = () => {
   const { dispatch, state } = useContext(Store);
   const { userInfo, message } = state;
   const { username, email } = userInfo;
+  const [messageIsHidden, setMessageIsHidden] = useState(false);
   const [userState, setUserState] = useState({
     newUsername: "",
     newEmail: "",
@@ -18,6 +19,7 @@ const EditUserAccountScreen = () => {
 
   const updateAccount = async (e: any) => {
     e.preventDefault();
+    setMessageIsHidden(false);
     try {
       const { data } = await axios.post(
         "http://localhost:5000/api/users/edit-account",
@@ -51,14 +53,31 @@ const EditUserAccountScreen = () => {
     }
   };
 
+  const toggleHidden = (e: any) => {
+    setMessageIsHidden(true);
+  };
+
   return (
     <div>
+      {message === "Account successfully updated." && (
+        <div hidden={messageIsHidden} className="success">
+          <span onClick={toggleHidden} className="closebtn">
+            &times;
+          </span>
+          {message}
+        </div>
+      )}
       <h1>Edit Account</h1>
       <form onSubmit={updateAccount}>
         <label>
           <b>Current Username: </b>
         </label>
-        <input type="text" value={username} readOnly></input>
+        <input
+          type="text"
+          value={username}
+          readOnly
+          className="input-box"
+        ></input>
         <label>
           <b>New Username: </b>
         </label>
@@ -68,17 +87,19 @@ const EditUserAccountScreen = () => {
           onChange={(e: any) =>
             setUserState({ ...userState, newUsername: e.target.value })
           }
+          className="input-box"
         ></input>
         <label>
           <b>Current Email: </b>
         </label>
-        <input type="text" value={email} readOnly></input>
+        <input type="text" value={email} readOnly className="input-box"></input>
         <label>
           <b>New Email: </b>
         </label>
         <input
           type="text"
           value={userState.newEmail}
+          className="input-box"
           onChange={(e: any) =>
             setUserState({ ...userState, newEmail: e.target.value })
           }
@@ -87,9 +108,6 @@ const EditUserAccountScreen = () => {
           Confirm Changes
         </button>
       </form>
-      <p className="message-success">
-        {message === "Account successfully updated." && message}
-      </p>
       <h3>Confirm Password</h3>
     </div>
   );

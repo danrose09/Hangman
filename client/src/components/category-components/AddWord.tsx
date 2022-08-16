@@ -33,6 +33,7 @@ const AddWord = () => {
           type="text"
           placeholder="add a word..."
           value={newWord}
+          className="input-box"
           onChange={(e) => setNewWord(e.target.value)}
         ></input>
         <button className="grid-button" type="submit" onClick={handleClick}>

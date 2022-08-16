@@ -48,40 +48,46 @@ const AddToDictionary = (props: any) => {
       </button>
       <div hidden={!addToDictionary}>
         <form onSubmit={(e) => submitHandler(e)}>
-          <label>Word:</label>
-          <input
-            name="word"
-            readOnly
-            value={word}
-            type="text"
-            placeholder="word..."
-          ></input>
-          <label>Part of Speech:</label>
-          <input
-            name="partOfSpeech"
-            value={newPartOfSpeech}
-            type="text"
-            placeholder="part of speech..."
-            onChange={(e) => setNewPartOfSpeech(e.target.value)}
-          ></input>
-          <br />
-          <label>Origin:</label>
-          <input
-            name="origin"
-            value={newOrigin}
-            type="text"
-            placeholder="origin..."
-            onChange={(e) => setNewOrigin(e.target.value)}
-          ></input>
-          <label>Definition:</label>
-          <input
-            name="definition"
-            readOnly
-            value={definition}
-            type="text"
-            placeholder="definition..."
-          ></input>
-          <button className="grid-button" type="submit">
+          <div className="add-to-dictionary-container">
+            <label>Word:</label>
+            <input
+              name="word"
+              readOnly
+              value={word}
+              type="text"
+              className="input-box"
+              placeholder="word..."
+            ></input>
+            <label>Part of Speech:</label>
+            <input
+              name="partOfSpeech"
+              value={newPartOfSpeech}
+              type="text"
+              placeholder="part of speech..."
+              className="input-box"
+              onChange={(e) => setNewPartOfSpeech(e.target.value)}
+            ></input>
+            <br />
+            <label>Origin:</label>
+            <input
+              name="origin"
+              value={newOrigin}
+              type="text"
+              placeholder="origin..."
+              className="input-box"
+              onChange={(e) => setNewOrigin(e.target.value)}
+            ></input>
+            <label>Definition:</label>
+            <input
+              name="definition"
+              readOnly
+              value={definition}
+              type="text"
+              className="input-box"
+              placeholder="definition..."
+            ></input>
+          </div>
+          <button className="grid-button-start" type="submit">
             Submit
           </button>
         </form>

@@ -7,6 +7,7 @@ const UpdateDefinitionScreen = () => {
   const params = useParams();
   const { state, dispatch } = useContext(Store);
   const { myDefinition, userInfo, message } = state;
+  const [messageIsHidden, setMessageIsHidden] = useState(false);
   const [definitionState, setDefinitionState] = useState({
     word: "",
     partOfSpeech: "",
@@ -40,6 +41,7 @@ const UpdateDefinitionScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setMessageIsHidden(false);
     await axios
       .put(`http://localhost:5000/api/update/${params.word}`, {
         word: definitionState.word,
@@ -53,8 +55,20 @@ const UpdateDefinitionScreen = () => {
       );
   };
 
+  const toggleHidden = (e) => {
+    setMessageIsHidden(true);
+  };
+
   return (
     <div>
+      {message === "Update Successful" && (
+        <div hidden={messageIsHidden} className="success">
+          <span onClick={toggleHidden} className="closebtn">
+            &times;
+          </span>
+          {message}
+        </div>
+      )}
       <form onSubmit={(e) => submitHandler(e)}>
         <div className="dictionary-grid">
           <div className="grid-item grid-item-1">
@@ -65,6 +79,7 @@ const UpdateDefinitionScreen = () => {
                 id="word"
                 placeholder={myDefinition.word}
                 required
+                className="input-box"
                 onChange={(e) => handleChange(e)}
               ></input>
             </h2>
@@ -76,6 +91,7 @@ const UpdateDefinitionScreen = () => {
               id="partOfSpeech"
               required
               placeholder={myDefinition.partOfSpeech}
+              className="input-box"
               onChange={(e) => handleChange(e)}
             ></input>
           </p>
@@ -86,6 +102,7 @@ const UpdateDefinitionScreen = () => {
               type="text"
               id="origin"
               placeholder={myDefinition.origin}
+              className="input-box"
               onChange={(e) => handleChange(e)}
             ></input>
           </p>
@@ -97,6 +114,7 @@ const UpdateDefinitionScreen = () => {
               id="definition"
               required
               placeholder={myDefinition.definition}
+              className="input-box"
               onChange={(e) => handleChange(e)}
             ></input>
           </p>
@@ -108,8 +126,6 @@ const UpdateDefinitionScreen = () => {
           width={120}
           alt=""
         ></img>
-        <p style={{ color: "green" }}>{message ? message : null}</p>
-
         <button className="grid-button-start" type="submit">
           Update
         </button>
