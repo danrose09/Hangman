@@ -50,7 +50,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <div>
+    <div className="signin-screen">
       {message === "Login unsuccessful" && (
         <div hidden={messageIsHidden} className="alert">
           <span onClick={toggleHidden} className="closebtn">
@@ -59,32 +59,38 @@ const LoginScreen = () => {
           {message}
         </div>
       )}
-      <h1>Login</h1>
-      <form onSubmit={loginHandler}>
-        <label>Username: </label>
-        <input
-          name="username"
-          type="text"
-          placeholder="name..."
-          className="input-box"
-          onChange={handleChange}
-        ></input>
-        <label>Password: </label>
-        <input
-          name="password"
-          type="password"
-          placeholder="password..."
-          className="input-box"
-          onChange={handleChange}
-        ></input>
-        <button className="grid-button-start" type="submit">
-          Login
-        </button>
-      </form>
 
-      <p>
-        Don't have an account? <Link to="/signup">Create Account</Link>
-      </p>
+      <div className="signin-form">
+        <h2 style={{ textAlign: "center" }}>Sign In</h2>
+        <form onSubmit={loginHandler}>
+          <label style={{ color: "#ff7eee" }}>Username:</label>
+          <input
+            name="username"
+            type="text"
+            placeholder="name..."
+            className="input-box"
+            onChange={handleChange}
+          ></input>
+          <label style={{ color: "#ff7eee" }}>Password:</label>
+          <input
+            name="password"
+            type="password"
+            placeholder="password..."
+            className="input-box"
+            onChange={handleChange}
+          ></input>
+          <button
+            style={{ width: "100%", margin: "1rem 0" }}
+            className="grid-button-start"
+            type="submit"
+          >
+            Sign In
+          </button>
+        </form>
+        <p style={{ textAlign: "center" }}>
+          Don't have an account? <Link to="/signup">Create Account</Link>
+        </p>
+      </div>
     </div>
   );
 };

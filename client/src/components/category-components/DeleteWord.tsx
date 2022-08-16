@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../../react-store/store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 
 const DeleteWord = () => {
   const params = useParams();
@@ -36,6 +38,10 @@ const DeleteWord = () => {
           className="input-box"
         ></input>
         <button className="grid-button" type="submit">
+          <FontAwesomeIcon
+            style={{ paddingRight: "0.5rem" }}
+            icon={faCircleMinus}
+          />
           Remove
         </button>
       </form>

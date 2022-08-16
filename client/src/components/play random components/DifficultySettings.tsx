@@ -10,7 +10,7 @@ const DifficultySettings = () => {
 
   return (
     <div>
-      <label htmlFor="difficulty">Choose a Difficulty: </label>
+      <label htmlFor="difficulty">Difficulty: </label>
       <select
         defaultValue="normal"
         id="difficulty"

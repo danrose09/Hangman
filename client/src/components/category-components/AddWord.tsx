@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../../react-store/store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 const AddWord = () => {
   const params = useParams();
@@ -37,6 +39,10 @@ const AddWord = () => {
           onChange={(e) => setNewWord(e.target.value)}
         ></input>
         <button className="grid-button" type="submit" onClick={handleClick}>
+          <FontAwesomeIcon
+            style={{ paddingRight: "0.5rem" }}
+            icon={faPlusCircle}
+          />
           Add
         </button>
       </form>

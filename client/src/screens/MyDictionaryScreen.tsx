@@ -4,6 +4,9 @@ import axios from "axios";
 import { Store } from "../react-store/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
 
 const MyDictionaryScreen = () => {
   const navigate = useNavigate();
@@ -56,7 +59,7 @@ const MyDictionaryScreen = () => {
       };
 
       return (
-        <div className="mydictionary-container" key={index}>
+        <div key={index}>
           <div className="dictionary-grid">
             <div className="grid-item grid-item-1">
               <h2 className="dictionary-word">{`${index + 1}. ${
@@ -68,9 +71,21 @@ const MyDictionaryScreen = () => {
                 }
                 className="grid-button-start"
               >
+                <span>
+                  <FontAwesomeIcon
+                    className="dictionary-button-icon"
+                    icon={faPencil}
+                  />
+                </span>
                 Update
               </button>
               <button className="grid-button" onClick={deleteFromDictionary}>
+                <span>
+                  <FontAwesomeIcon
+                    className="dictionary-button-icon"
+                    icon={faTrashCan}
+                  />
+                </span>
                 Delete
               </button>
               <a
@@ -78,7 +93,15 @@ const MyDictionaryScreen = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <button className="grid-button">Look Up</button>
+                <button className="grid-button">
+                  <span>
+                    <FontAwesomeIcon
+                      className="dictionary-button-icon"
+                      icon={faBookOpen}
+                    />
+                  </span>
+                  Look Up
+                </button>
               </a>
             </div>
             <p className="grid-item grid-item-2">

@@ -2,6 +2,7 @@ import { useEffect, useContext, Fragment } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../react-store/store";
+import Category from "../components/category-components/Category";
 
 const CategoriesScreen = () => {
   const navigate = useNavigate();
@@ -33,9 +34,10 @@ const CategoriesScreen = () => {
   const allCategories = categories.map((category: any, index: number) => {
     return (
       <Fragment key={index}>
-        <Link className="button-link" to={`/categories/${category.name}`}>
+        <Category category={category} />
+        {/* <Link className="button-link" to={`/categories/${category.name}`}>
           <button className="grid-button">{category.name}</button>
-        </Link>
+        </Link> */}
       </Fragment>
     );
   });

@@ -5,29 +5,31 @@ import { Store } from "../react-store/store";
 const Homescreen = () => {
   const { state } = useContext(Store);
   const { userInfo, message } = state;
-  const imageLocation = "https://miro.medium.com/max/300/0*6WFhG2qCe5dPH1Fz.";
+  // const imageLocation = "https://miro.medium.com/max/300/0*6WFhG2qCe5dPH1Fz.";
+  const imageLocation = "/images/hangman.png";
   console.log(message);
   return (
     <div className="homescreen-container">
-      <h1 className="title">Hangman</h1>
+      <h1 className="title">HANGMAN</h1>
       {message === "Account successfully deleted." && (
         <p className="message-success">{message}</p>
       )}
-      {!userInfo && (
-        <div className="homescreen-buttons">
-          <Link className="button-link" to="/login">
-            <button className="grid-button-start">Login</button>
-          </Link>
-        </div>
-      )}
+
       <img
         className="homescreen-image"
         alt="A hangman drawing"
         src={imageLocation}
-        height={300}
-        width={300}
+        height={200}
+        width={200}
+        style={{ color: "#23232e" }}
       ></img>
-
+      {!userInfo && (
+        <div className="homescreen-buttons">
+          <Link className="button-link" to="/login">
+            <button className="grid-button-start">Sign In</button>
+          </Link>
+        </div>
+      )}
       <div>
         <p>
           I'm baby woke cloud bread trust fund next level craft beer flannel

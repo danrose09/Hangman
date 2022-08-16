@@ -15,8 +15,10 @@ $transition-speed: 600ms;
   text-align: center;
   font-size: 3rem;
   margin: 0;
+  margin-bottom: 25px;
   padding: 0;
   color: $bg-primary;
+  letter-spacing: 0.3ch;
 }
 
 body {
@@ -168,16 +170,26 @@ body::-webkit-scrollbar-thumb {
 }
 
 //Dictionary Screen
-// .mydictionary-container {
-//   text-align: center;
+// .mydictionary-screen {
 //   justify-content: center;
 // }
 
 .magnifying-glass {
   color: $text-pink;
-  border-radius: 4px;
   height: 1.2rem;
   margin-left: 1rem;
+}
+
+.dictionary-icon-container {
+  background-color: $bg-primary;
+}
+
+.dictionary-button-icon {
+  padding-right: 0.5rem;
+}
+
+.update-icon {
+  color: $text-pink;
 }
 
 .mydictionary-container-dark {
@@ -198,7 +210,7 @@ body::-webkit-scrollbar-thumb {
 .search-box {
   width: 50%;
   height: 2rem;
-  padding: 12px 20px;
+  padding: 10px;
   margin-left: 1rem;
   display: inline-block;
   border: 1px solid #ccc;
@@ -269,10 +281,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .all-categories-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  max-width: 75vw;
+  width: 50%;
 }
 
 .category-hidden-word {
@@ -308,6 +317,19 @@ body::-webkit-scrollbar-thumb {
 
 .lost-word {
   color: $text-pink;
+}
+
+//Sign In Screen
+.signin-screen {
+  padding-top: 60px;
+}
+.signin-form {
+  position: relative;
+  margin: auto;
+  border: 1.5px solid $bg-primary;
+  border-radius: 4px;
+  padding: 2rem;
+  max-width: 50%;
 }
 
 //Underline
@@ -356,6 +378,10 @@ body::-webkit-scrollbar-thumb {
 
   .dictionary-grid {
     max-width: 100%;
+  }
+
+  .signin-screen {
+    padding-top: 8px;
   }
 }
 
