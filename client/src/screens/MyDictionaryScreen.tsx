@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../react-store/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -43,8 +43,9 @@ const MyDictionaryScreen = () => {
         return term;
       } else if (term.word.toLowerCase().includes(searchTerm)) {
         return term;
+      } else {
+        return null;
       }
-      return;
     })
     .map((term: any, index: number) => {
       const deleteFromDictionary = async () => {
@@ -65,11 +66,22 @@ const MyDictionaryScreen = () => {
               <h2 className="dictionary-word">{`${index + 1}. ${
                 term.word
               }`}</h2>
+              <Link to={`/mydictionary/term/${term.word}`}>
+                <button className="grid-button-start">
+                  <span>
+                    <FontAwesomeIcon
+                      className="dictionary-button-icon"
+                      icon={faBookOpen}
+                    />
+                  </span>
+                  Look Up
+                </button>
+              </Link>
               <button
                 onClick={() =>
                   navigate(`/update/${userInfo.username}/${term.word}`)
                 }
-                className="grid-button-start"
+                className="grid-button"
               >
                 <span>
                   <FontAwesomeIcon
@@ -88,21 +100,6 @@ const MyDictionaryScreen = () => {
                 </span>
                 Delete
               </button>
-              <a
-                href={`https://www.merriam-webster.com/dictionary/${term.word}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <button className="grid-button">
-                  <span>
-                    <FontAwesomeIcon
-                      className="dictionary-button-icon"
-                      icon={faBookOpen}
-                    />
-                  </span>
-                  Look Up
-                </button>
-              </a>
             </div>
             <p className="grid-item grid-item-2">
               <strong>Part of speech:</strong> {`${term.partOfSpeech}`}
@@ -114,13 +111,6 @@ const MyDictionaryScreen = () => {
               <strong>Definition:</strong> {`${term.definition}`}
             </p>
           </div>
-
-          {/* <img
-          alt="line break"
-          // src="https://i.etsystatic.com/13221305/r/il/294079/1501754794/il_570xN.1501754794_8hlr.jpg"
-          height={70}
-          width={120}
-        ></img> */}
         </div>
       );
     });

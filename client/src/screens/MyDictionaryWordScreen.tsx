@@ -1,14 +1,15 @@
 import axios from "axios";
 import { useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import MerriamWebsterTerm from "../components/dictionary-components/MerriamWebsterTerm";
 import { Store } from "../react-store/store";
 
 const MyDictionaryWordScreen = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const { word } = params;
   const { dispatch, state } = useContext(Store);
-  const { merriamWebsterData } = state;
+  const { merriamWebsterData, userInfo } = state;
 
   const apiKey = "140eecdf-bd1e-4b4c-8477-0f78ec151b06";
 
@@ -32,9 +33,21 @@ const MyDictionaryWordScreen = () => {
 
   return (
     <div>
-      {merriamWebsterData ? (
+      {merriamWebsterData && typeof merriamWebsterData === "object" ? (
         <MerriamWebsterTerm merriamWebsterData={merriamWebsterData} />
-      ) : null}
+      ) : (
+        <div>
+          <h4>
+            Sorry... There is no extra information available about this word.
+          </h4>
+          <button
+            className="grid-button-start"
+            onClick={() => navigate(`/mydictionary/${userInfo.username}`)}
+          >
+            Back
+          </button>
+        </div>
+      )}
     </div>
   );
 };

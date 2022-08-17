@@ -143,6 +143,7 @@ body::-webkit-scrollbar-thumb {
   color: red;
 }
 
+///////////////////////////////////////////////////////////
 //Home Screen
 .homescreen-container {
   text-align: center;
@@ -169,10 +170,8 @@ body::-webkit-scrollbar-thumb {
   text-decoration: none;
 }
 
+///////////////////////////////////////////////////////////
 //Dictionary Screen
-// .mydictionary-screen {
-//   justify-content: center;
-// }
 
 .magnifying-glass {
   color: $text-pink;
@@ -275,7 +274,12 @@ body::-webkit-scrollbar-thumb {
   transition-duration: 0.3s;
 }
 
+///////////////////////////////////////////////////////////
 //MerriamWebsterTerm Screen
+
+.mwt-screen {
+  max-width: 75%;
+}
 
 .term-and-pos-container {
   display: flex;
@@ -288,6 +292,7 @@ body::-webkit-scrollbar-thumb {
   flex-direction: row;
 }
 
+///////////////////////////////////////////////////////////
 //Category Screen
 .category-screen {
   text-align: center;
@@ -300,6 +305,8 @@ body::-webkit-scrollbar-thumb {
 .category-hidden-word {
   font-size: 1rem;
 }
+
+///////////////////////////////////////////////////////////
 //Account Screen
 
 .account-subtitle {
@@ -315,6 +322,7 @@ body::-webkit-scrollbar-thumb {
   padding-right: 5px;
 }
 
+///////////////////////////////////////////////////////////
 //Play Random Screen
 .play-random-screen {
   text-align: center;
@@ -332,6 +340,7 @@ body::-webkit-scrollbar-thumb {
   color: $text-pink;
 }
 
+///////////////////////////////////////////////////////////
 //Sign In Screen
 .signin-screen {
   padding-top: 60px;
@@ -345,6 +354,7 @@ body::-webkit-scrollbar-thumb {
   max-width: 50%;
 }
 
+///////////////////////////////////////////////////////////
 //Underline
 .underline-letter-space {
   font-size: 3rem;
@@ -352,6 +362,7 @@ body::-webkit-scrollbar-thumb {
   padding-right: 5px;
 }
 
+///////////////////////////////////////////////////////////
 /* Small Screens */
 @media only screen and (max-width: 600px) {
   .navbar {
@@ -396,8 +407,13 @@ body::-webkit-scrollbar-thumb {
   .signin-screen {
     padding-top: 8px;
   }
+
+  .mwt-screen {
+    max-width: 100%;
+  }
 }
 
+///////////////////////////////////////////////////////////
 /* Large Screens */
 @media only screen and (min-width: 600px) {
   .navbar {
