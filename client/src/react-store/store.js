@@ -90,6 +90,7 @@ const initialState = {
   hasLost: false,
   message: "",
   updateSuccessful: false,
+  merriamWebsterData: null,
 };
 
 const reducer = (state, action) => {
@@ -235,6 +236,11 @@ const reducer = (state, action) => {
       return { ...state, userInfo: action.payload, message: "" };
     case "SIGN_OUT":
       return { ...state, userInfo: null };
+    case "SET_MERRIAM_WEBSTER_DATA":
+      return {
+        ...state,
+        merriamWebsterData: action.payload,
+      };
     default:
       return state;
   }

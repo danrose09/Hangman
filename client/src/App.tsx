@@ -12,6 +12,7 @@ import SignupScreen from "./screens/SignupScreen";
 import AccountScreen from "./screens/AccountScreen";
 import ErrorScreen from "./screens/ErrorScreen";
 import EditUserAccountScreen from "./screens/EditUserAccountScreen";
+import MyDictionaryWordScreen from "./screens/MyDictionaryWordScreen";
 
 function App() {
   return (
@@ -27,6 +28,10 @@ function App() {
           <Route
             path="/mydictionary/:username"
             element={<MyDictionaryScreen />}
+          ></Route>
+          <Route
+            path="/mydictionary/term/:word"
+            element={<MyDictionaryWordScreen />}
           ></Route>
           <Route
             path="/update/:username/:word"

@@ -275,6 +275,19 @@ body::-webkit-scrollbar-thumb {
   transition-duration: 0.3s;
 }
 
+//MerriamWebsterTerm Screen
+
+.term-and-pos-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.conjugations-container {
+  display: flex;
+  flex-direction: row;
+}
+
 //Category Screen
 .category-screen {
   text-align: center;
