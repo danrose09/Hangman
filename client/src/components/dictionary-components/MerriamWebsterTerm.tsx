@@ -21,8 +21,9 @@ const MerriamWebsterTerm = (props: any) => {
   const firstKnownUse = merriamWebsterData.date
     ? merriamWebsterData.date
     : null;
-  const etymology = merriamWebsterData.et[0] ? merriamWebsterData.et[0] : null;
-  const note = merriamWebsterData.et[1] ? merriamWebsterData.et[1] : null;
+
+  const etymology = merriamWebsterData.et ? merriamWebsterData.et[0] : null;
+  const note = merriamWebsterData.et ? merriamWebsterData.et[1] : null;
 
   return (
     <div className="mwt-screen">
@@ -30,7 +31,14 @@ const MerriamWebsterTerm = (props: any) => {
         <h1 style={{ paddingRight: "10px", marginBottom: "0" }}>
           {term && term}
         </h1>
-        <p style={{ paddingTop: "10px", marginBottom: "0" }}>
+        <p
+          style={{
+            paddingTop: "10px",
+            marginBottom: "0",
+            marginTop: "22.5px",
+            color: "#3FA796",
+          }}
+        >
           <i>{partOfSpeech && partOfSpeech}</i>
         </p>
       </div>

@@ -15,6 +15,7 @@ const DifficultySettings = () => {
         defaultValue="normal"
         id="difficulty"
         name="difficulty"
+        className="input-box"
         onChange={selectDifficulty}
       >
         <option value="easy">Easy</option>

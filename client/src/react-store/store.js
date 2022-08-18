@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import uniqueCommonWords from "../commonWords";
 
 export const Store = createContext();
 
@@ -91,6 +92,8 @@ const initialState = {
   message: "",
   updateSuccessful: false,
   merriamWebsterData: null,
+  thesaurusData: null,
+  commonWords: uniqueCommonWords,
 };
 
 const reducer = (state, action) => {
@@ -240,6 +243,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         merriamWebsterData: action.payload,
+      };
+    case "SET_THESAURUS_DATA":
+      return {
+        ...state,
+        thesaurusData: action.payload,
       };
     default:
       return state;

@@ -275,10 +275,18 @@ body::-webkit-scrollbar-thumb {
 }
 
 ///////////////////////////////////////////////////////////
+//MyDictionaryWord Screen
+
+.mwt-thesaurus-container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+///////////////////////////////////////////////////////////
 //MerriamWebsterTerm Screen
 
 .mwt-screen {
-  max-width: 75%;
+  width: 100%;
 }
 
 .term-and-pos-container {
@@ -290,6 +298,34 @@ body::-webkit-scrollbar-thumb {
 .conjugations-container {
   display: flex;
   flex-direction: row;
+}
+
+///////////////////////////////////////////////////////////
+//Thesaurus Screen
+.thesaurus-container {
+  border-radius: 4px;
+  padding: 0.4rem;
+  padding-left: 1rem;
+  width: 40%;
+  min-width: 8rem;
+  background-color: $text-primary;
+  color: $bg-secondary;
+  margin-top: 2rem;
+}
+
+.thesaurus-title {
+  margin: 0;
+  color: $bg-secondary;
+}
+
+.synonyms-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.synonym {
+  font-size: 0.8rem;
+  margin: 0;
 }
 
 ///////////////////////////////////////////////////////////
@@ -411,6 +447,15 @@ body::-webkit-scrollbar-thumb {
   .mwt-screen {
     max-width: 100%;
   }
+
+  .thesaurus-container {
+    border-radius: 4px;
+    padding: 0.4rem;
+    padding-left: 1rem;
+    width: 7rem;
+    margin-left: auto;
+    margin-top: 2rem;
+  }
 }
 
 ///////////////////////////////////////////////////////////
@@ -432,6 +477,10 @@ body::-webkit-scrollbar-thumb {
 
   .dictionary-word {
     width: 10rem;
+  }
+
+  .mwt-screen {
+    width: 80%;
   }
 }
 

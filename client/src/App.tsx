@@ -1,6 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import PlayRandomScreen from "./screens/PlayRandomScreen";
+import PlayRandomSettingsScreen from "./screens/PlayRandomSettingsScreen";
+import GeniusSettingsScreen from "./screens/GeniusSettingsScreen";
+import CommonSettingsScreen from "./screens/CommonSettingsScreen";
+import PlayGeniusScreen from "./screens/PlayGeniusScreen";
+import PlayCommonScreen from "./screens/PlayCommonScreen";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import CategoryScreen from "./screens/CategoryScreen";
 import AddCategoryScreen from "./screens/AddCategoryScreen";
@@ -21,6 +26,26 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomeScreen />}></Route>
+          <Route
+            path="/settings/playrandom"
+            element={<PlayRandomSettingsScreen />}
+          ></Route>
+          <Route
+            path="/settings/genius"
+            element={<GeniusSettingsScreen />}
+          ></Route>
+          <Route
+            path="/settings/common"
+            element={<CommonSettingsScreen />}
+          ></Route>
+          <Route
+            path="/playrandom/genius"
+            element={<PlayGeniusScreen />}
+          ></Route>
+          <Route
+            path="/playrandom/common"
+            element={<PlayCommonScreen />}
+          ></Route>
           <Route path="/playrandom" element={<PlayRandomScreen />}></Route>
           <Route path="/categories" element={<CategoriesScreen />}></Route>
           <Route path="/categories/:name" element={<CategoryScreen />}></Route>
