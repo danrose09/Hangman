@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+
 const Thesaurus = (props: any) => {
   const { thesaurusData } = props;
 
@@ -12,7 +15,7 @@ const Thesaurus = (props: any) => {
     });
 
   return (
-    <div>
+    <div className="thesaurus-column">
       <div className="thesaurus-container">
         <h3 className="thesaurus-title">Thesaurus</h3>
         <div className="synonyms-container">{allSynonyms}</div>

@@ -42,11 +42,21 @@ const userSchema = new mongoose.Schema(
         },
         definition: {
           type: String,
-          required: true,
         },
       },
     ],
     categories: [categorySchema],
+
+    winsAndLosses: {
+      wins: {
+        type: Number,
+        default: 0,
+      },
+      losses: {
+        type: Number,
+        default: 0,
+      },
+    },
   },
 
   {

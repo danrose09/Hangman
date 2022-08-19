@@ -14,6 +14,7 @@ const initialState = {
   maxAttempts: 10,
   remainingAttempts: 10,
   activeSince: "",
+  mwDefinition: null,
   myDefinition: {
     word: "",
     partOfSpeech: "",
@@ -21,13 +22,14 @@ const initialState = {
     definition: "",
   },
   stopConfetti: false,
-  randomWord: [
-    {
-      word: "",
-      definition: "",
-      pronunciation: "",
-    },
-  ],
+  randomWord: ["random"],
+  // randomWord: [
+  //   {
+  //     word: "random",
+  //     definition: "",
+  //     pronunciation: "",
+  //   },
+  // ],
   alphabet: [
     "a",
     "b",
@@ -94,6 +96,17 @@ const initialState = {
   merriamWebsterData: null,
   thesaurusData: null,
   commonWords: uniqueCommonWords,
+  // winsAndLosses: localStorage.getItem("winsAndLosses")
+  //   ? JSON.parse(localStorage.getItem("winsAndLosses"))
+  //   : {
+  //       wins: 0,
+  //       losses: 0,
+  //     },
+  winsAndLosses: {
+    wins: 0,
+    losses: 0,
+  },
+  winPercentage: 0,
 };
 
 const reducer = (state, action) => {
@@ -127,13 +140,7 @@ const reducer = (state, action) => {
         difficulty: "normal",
         maxAttemps: 10,
         remainingAttempts: 10,
-        randomWord: [
-          {
-            word: "",
-            definition: "",
-            pronunciation: "",
-          },
-        ],
+        randomWord: ["random"],
         categoryWord: "",
         guessedLetters: [],
         letterBank: state.alphabet,
@@ -174,13 +181,15 @@ const reducer = (state, action) => {
         ...state,
         myDefinition: action.payload,
       };
+    case "FETCH_MW_DEFINITION":
+      return {
+        ...state,
+        mwDefinition: action.payload,
+      };
+    case "CLEAR_MW_DEFINITION":
+      return { ...state, mwDefinition: null };
     case "FETCH_FAILURE":
       return { ...state, error: action.payload };
-    // case "ADD_TO_DICTIONARY":
-    //   return {
-    //     ...state,
-    //     myDictionary: action.payload,
-    //   };
     case "REMOVE_FROM_DICTIONARY":
       return {
         ...state,
@@ -248,6 +257,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         thesaurusData: action.payload,
+      };
+    case "FETCH_WINS_LOSSES":
+      return {
+        ...state,
+        winsAndLosses: action.payload,
+      };
+    case "WIN_LOSE_COUNTER":
+      return {
+        ...state,
+        winsAndLosses: action.payload,
       };
     default:
       return state;

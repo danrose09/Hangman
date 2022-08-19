@@ -3,8 +3,7 @@ import { Store } from "../../react-store/store";
 
 const LetterBank = (props: any) => {
   const { state, dispatch } = useContext(Store);
-  const { letterBank, hasWon, remainingAttempts, randomWord, categoryWord } =
-    state;
+  const { letterBank, remainingAttempts, randomWord, categoryWord } = state;
 
   const audio = new Audio("/audio/soft-click.wav");
   const audioLose = new Audio("/audio/lose.wav");
@@ -17,8 +16,8 @@ const LetterBank = (props: any) => {
       dispatch({ type: "SET_HAS_LOST", payload: true });
     } else if (
       remainingAttempts >= 1 &&
-      randomWord[0].word.length >= 1 &&
-      randomWord[0].word.toLowerCase().split("").includes(letter) === false
+      randomWord[0].length >= 1 &&
+      randomWord[0].toLowerCase().split("").includes(letter) === false
     ) {
       dispatch({ type: "ATTEMPT_COUNTER", payload: remainingAttempts - 1 });
     } else if (

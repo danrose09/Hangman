@@ -72,6 +72,10 @@ const users = [
         icon: "fa-solid fa-elephant",
       },
     ],
+    winsAndLosses: {
+      wins: 10,
+      losses: 5,
+    },
   },
   {
     name: "Bob Dole",

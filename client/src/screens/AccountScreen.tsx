@@ -6,13 +6,34 @@ import axios from "axios";
 const AccountScreen = () => {
   const navigate = useNavigate();
   const { dispatch, state } = useContext(Store);
-  const { userInfo, myDictionary, message } = state;
+  const { userInfo, myDictionary, winsAndLosses } = state;
   const { username, email, createdAt } = userInfo;
+  const { wins, losses } = winsAndLosses;
+
+  const totalGames = wins + losses;
+  console.log(winsAndLosses);
 
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     }
+
+    const fetchWinsAndLosses = async () => {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5000/api/statistics/wins-losses/${userInfo.username}`,
+          config
+        );
+        dispatch({ type: "FETCH_WINS_LOSSES", payload: data });
+      } catch (error: any) {
+        console.log(error);
+      }
+    };
 
     const authorizeAndFetch = async () => {
       const config = {
@@ -32,6 +53,7 @@ const AccountScreen = () => {
     };
     if (userInfo) {
       authorizeAndFetch();
+      fetchWinsAndLosses();
     }
   }, [userInfo, navigate, dispatch]);
 
@@ -57,6 +79,12 @@ const AccountScreen = () => {
     <div>
       <div className="account-user-info-container">
         <h1>My Account</h1>
+        <div>
+          <p>Total Games: {wins + losses}</p>
+          <p hidden={wins === 0 && true}>
+            Win Percentage: {((wins / totalGames) * 100).toFixed(0)}%
+          </p>
+        </div>
         <button
           className="grid-button-start"
           onClick={() => navigate("/edit-account")}

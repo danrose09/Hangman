@@ -11,6 +11,7 @@ const addToDictionaryRouter = require("./routes/addToDictionaryRoute.js");
 const updateDictionaryTermRouter = require("./routes/updateDictionaryTermRoute.js");
 const userRouter = require("./routes/userRoutes.js");
 const deleteDictionaryTermRouter = require("./routes/deleteDictionaryTermRoute.js");
+const winsAndLossesRouter = require("./routes/winsAndLossesRoutes.js");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
@@ -40,6 +41,7 @@ app.use("/api/definitions", addToDictionaryRouter);
 app.use("/api/update", updateDictionaryTermRouter);
 app.use("/api/users", userRouter);
 app.use("/api/delete", deleteDictionaryTermRouter);
+app.use("/api/statistics", winsAndLossesRouter);
 
 app.listen(5000, (req, res) => {
   console.log("App is running on 5000!");

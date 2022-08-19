@@ -7,9 +7,18 @@ import Attempts from "../category&play-random-components/Attempts";
 
 const RandomWord = () => {
   const { state, dispatch } = useContext(Store);
-  const { randomWord, guessedLetters, hasWon, stopConfetti, gameHasStarted } =
-    state;
-  const { word, definition } = randomWord[0];
+  const {
+    randomWord,
+    guessedLetters,
+    hasWon,
+    stopConfetti,
+    gameHasStarted,
+    userInfo,
+    winsAndLosses,
+  } = state;
+  const word = randomWord[0];
+  let { wins, losses } = winsAndLosses;
+  const definition = "this is the definition";
   const [defIsVisible, setDefIsVisible] = useState(false);
   const [wordHidden, setWordHidden] = useState(true);
 
@@ -19,12 +28,22 @@ const RandomWord = () => {
     return guessedLetters.includes(letter);
   });
 
+  console.log(winsAndLosses);
+
   const fetchRandomWord = async () => {
+    const fetchWinsLosses = async () => {
+      const { data } = await axios.get(
+        `http://localhost:5000/api/statistics/wins-losses/${userInfo.username}`
+      );
+      dispatch({ type: "FETCH_WINS_LOSSES", payload: data });
+    };
     const { data } = await axios.get(
-      "https://random-words-api.vercel.app/word"
+      "https://random-word-api.herokuapp.com/word"
     );
+    console.log(data);
     dispatch({ type: "START_STOP_GAME", payload: true });
     dispatch({ type: "NEW_RANDOM_WORD", payload: data });
+    fetchWinsLosses();
   };
 
   const showDefinition = () => {
@@ -35,9 +54,20 @@ const RandomWord = () => {
 
   useEffect(() => {
     const checkIfWon = (containsall: boolean, letterarraylength: number) => {
+      const updateWinsAndLosses = async () => {
+        try {
+          await axios.put("http://localhost:5000/api/statistics/wins-losses", {
+            username: userInfo.username,
+            winsAndLosses: { ...winsAndLosses, wins: (wins += 1) },
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      };
       const won = () => {
         const audio = new Audio("/audio/unlock.wav");
         audio.play();
+        updateWinsAndLosses();
         dispatch({ type: "HAS_WON", payload: true });
         dispatch({ type: "START_STOP_GAME", payload: false });
       };
@@ -60,13 +90,13 @@ const RandomWord = () => {
       isGuessed = true;
     }
     return (
-      <Fragment>
+      <div hidden={!gameHasStarted}>
         {isGuessed ? (
           <h3 className="underline-letter-space">{letter}</h3>
         ) : (
           <h3 className="underline-letter-space">_</h3>
         )}
-      </Fragment>
+      </div>
     );
   });
 

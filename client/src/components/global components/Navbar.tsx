@@ -35,7 +35,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/settings/playrandom">
+            <Link className="nav-link" to="/playrandom/game-mode">
               <i className="fa-solid fa-play"></i>
               <span className="link-text">Play</span>
             </Link>

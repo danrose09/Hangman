@@ -4,13 +4,22 @@ import { Store } from "../../react-store/store";
 
 const AddToDictionary = (props: any) => {
   const { dispatch, state } = useContext(Store);
-  const { userInfo } = state;
+  const { userInfo, mwDefinition } = state;
   const { hasWon, randomWord } = props;
-  const { word, definition } = randomWord[0];
+  const word = randomWord[0];
+
   const [addToDictionary, setAddToDictionary] = useState(false);
   const [buttonIsHidden, setButtonIsHidden] = useState(false);
   const [newPartOfSpeech, setNewPartOfSpeech] = useState("");
   const [newOrigin, setNewOrigin] = useState("");
+  const [userDefinition, setUserDefinition] = useState("");
+
+  const apiKey = "140eecdf-bd1e-4b4c-8477-0f78ec151b06";
+
+  const merriamWebsterDefinition =
+    mwDefinition && mwDefinition[0].shortdef
+      ? mwDefinition[0].shortdef[0]
+      : null;
 
   const submitHandler = async (e: any) => {
     try {
@@ -20,7 +29,9 @@ const AddToDictionary = (props: any) => {
           word,
           partOfSpeech: newPartOfSpeech,
           origin: newOrigin,
-          definition,
+          definition: merriamWebsterDefinition
+            ? merriamWebsterDefinition
+            : userDefinition,
           username: userInfo.username,
         }
       );
@@ -29,12 +40,26 @@ const AddToDictionary = (props: any) => {
     }
   };
 
-  const clickHandler = () => {
+  const addToDictionaryHandler = () => {
     setAddToDictionary((prevValue) => {
       return !prevValue;
     });
     setButtonIsHidden(true);
     dispatch({ type: "STOP_CONFETTI", payload: true });
+    dispatch({ type: "CLEAR_MW_DEFINITION" });
+    const fetchDefintion = async () => {
+      try {
+        const { data } = await axios.get(
+          `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${apiKey}`
+        );
+        console.log(data);
+
+        dispatch({ type: "FETCH_MW_DEFINITION", payload: data });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchDefintion();
   };
 
   return (
@@ -42,7 +67,7 @@ const AddToDictionary = (props: any) => {
       <button
         className="grid-button-start"
         hidden={!hasWon || buttonIsHidden}
-        onClick={clickHandler}
+        onClick={addToDictionaryHandler}
       >
         Add to My Dictionary
       </button>
@@ -80,8 +105,12 @@ const AddToDictionary = (props: any) => {
             <label>Definition:</label>
             <input
               name="definition"
-              readOnly
-              value={definition}
+              value={
+                merriamWebsterDefinition
+                  ? merriamWebsterDefinition
+                  : userDefinition
+              }
+              onChange={(e) => setUserDefinition(e.target.value)}
               type="text"
               className="input-box"
               placeholder="definition..."
