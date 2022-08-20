@@ -45,20 +45,6 @@ const MyDictionaryWordScreen = () => {
 
   console.log(merriamWebsterData);
 
-  // useEffect(() => {
-  //   const fetchThesaurus = async () => {
-  //     try {
-  //       const { data } = await axios.get(
-  //         `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${word}?key=${apiKey}`
-  //       );
-  //       dispatch({ type: "SET_THESAURUS_DATA", payload: data[0] });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchThesaurus();
-  // }, [word, dispatch]);
-
   console.log(thesaurusData);
 
   return (

@@ -344,6 +344,17 @@ body::-webkit-scrollbar-thumb {
   font-size: 1rem;
 }
 
+// .category-title-and-buttons {
+//   display: grid;
+//   grid-template-columns: 50% 50%;
+// }
+
+.category-buttons {
+  color: $text-pink;
+  justify-content: space-between;
+  padding: 5px;
+}
+
 ///////////////////////////////////////////////////////////
 //Account Screen
 

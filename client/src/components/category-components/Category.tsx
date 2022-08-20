@@ -1,7 +1,15 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../../react-store/store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlay,
+  faEye,
+  faEyeLowVision,
+  faPencil,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import AddWord from "./AddWord";
 import DeleteWord from "./DeleteWord";
 
@@ -31,7 +39,18 @@ const Category = (props: any) => {
     setMessageIsHidden(true);
   };
 
-  const allCategoryWords = String(category.words).split("");
+  const allCategoryWords =
+    category.name === "animals"
+      ? String(category.words).replaceAll(",", " ").toLowerCase().split("")
+      : category.name === "countries"
+      ? String(category.words).replaceAll(",", " ").toLowerCase().split("")
+      : category.name === "fruits"
+      ? String(category.words).replaceAll(",", " ").toLowerCase().split("")
+      : category.name === "sports"
+      ? String(category.words).replaceAll(",", " ").toLowerCase().split("")
+      : category.name === "capitals"
+      ? String(category.words).replaceAll(",", " ").toLowerCase().split("")
+      : String(category.words).replaceAll(",", " ").split("");
 
   return (
     <div className="category-container">
@@ -54,6 +73,39 @@ const Category = (props: any) => {
       )}
 
       <div>
+        <Link to="/categories" style={{ textDecoration: "none" }}>
+          <div className="game-mode-card">
+            <img className="card-image" src={`/images/${category.name}.jpg`} />
+            <div className="game-mode-container">
+              <div className="category-title-and-buttons">
+                <div>
+                  <h2
+                    className="game-mode-card-title-categories"
+                    style={{ color: "#ff7eee" }}
+                  >
+                    <b>{category.name}</b>
+                  </h2>
+                </div>
+                <div style={{ width: "100%" }}>
+                  <FontAwesomeIcon className="category-buttons" icon={faPlay} />
+                  <FontAwesomeIcon className="category-buttons" icon={faEye} />
+                  <FontAwesomeIcon
+                    className="category-buttons"
+                    icon={faPencil}
+                  />
+                  <FontAwesomeIcon
+                    className="category-buttons"
+                    icon={faTrash}
+                  />
+                </div>
+              </div>
+              <p className="game-mode-card-description">
+                Play hangman using words from several existing categories, or
+                create your own category.
+              </p>
+            </div>
+          </div>
+        </Link>
         <h1>{category.name}</h1>
         <AddWord />
         <DeleteWord />

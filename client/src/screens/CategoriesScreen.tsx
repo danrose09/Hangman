@@ -35,9 +35,6 @@ const CategoriesScreen = () => {
     return (
       <Fragment key={index}>
         <Category category={category} />
-        {/* <Link className="button-link" to={`/categories/${category.name}`}>
-          <button className="grid-button">{category.name}</button>
-        </Link> */}
       </Fragment>
     );
   });
@@ -48,7 +45,7 @@ const CategoriesScreen = () => {
       <button className="grid-button-start" onClick={clickHandler}>
         Create Category
       </button>
-      <div className="all-categories-container">{allCategories}</div>
+      <div className="game-mode-cards-container">{allCategories}</div>
     </div>
   );
 };

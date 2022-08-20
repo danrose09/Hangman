@@ -20,6 +20,8 @@ const MerriamWebsterTerm = (props: any) => {
   });
   const firstKnownUse = merriamWebsterData.date
     ? merriamWebsterData.date
+        .replaceAll("{ds|t|1||}", "")
+        .replaceAll("{ds||2|b|}", "")
     : null;
 
   const etymology = merriamWebsterData.et ? merriamWebsterData.et[0] : null;
@@ -75,7 +77,11 @@ const MerriamWebsterTerm = (props: any) => {
               if (sentence !== "text") {
                 const newSentence = sentence
                   .replaceAll("{it}", " ")
-                  .replaceAll("{/it}", " ");
+                  .replaceAll("{/it}", " ")
+                  .replaceAll("{ma}", " ")
+                  .replaceAll("{/ma}", " ")
+                  .replaceAll("{mat|", " ")
+                  .replaceAll("|}", " ");
                 return newSentence;
               } else {
                 return null;
