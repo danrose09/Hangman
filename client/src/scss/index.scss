@@ -349,10 +349,18 @@ body::-webkit-scrollbar-thumb {
 //   grid-template-columns: 50% 50%;
 // }
 
+.category-card {
+  margin-bottom: 3rem;
+}
+
 .category-buttons {
   color: $text-pink;
   justify-content: space-between;
   padding: 5px;
+}
+
+.category-description {
+  margin: 0;
 }
 
 ///////////////////////////////////////////////////////////

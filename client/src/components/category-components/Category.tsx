@@ -52,6 +52,25 @@ const Category = (props: any) => {
       ? String(category.words).replaceAll(",", " ").toLowerCase().split("")
       : String(category.words).replaceAll(",", " ").split("");
 
+  const randomCategoryWords = (
+    sourceArray: string[],
+    neededElements: number
+  ) => {
+    var result = [];
+    for (var i = 0; i < neededElements; i++) {
+      result.push(sourceArray[Math.floor(Math.random() * sourceArray.length)]);
+    }
+    return result.map((word) => {
+      return (
+        <p>
+          {category.name === "animals" || category.name === "sports"
+            ? word.toLowerCase()
+            : word}
+        </p>
+      );
+    });
+  };
+
   return (
     <div className="category-container">
       {message ===
@@ -72,7 +91,7 @@ const Category = (props: any) => {
         </div>
       )}
 
-      <div>
+      <div className="category-card">
         <Link to="/categories" style={{ textDecoration: "none" }}>
           <div className="game-mode-card">
             <img className="card-image" src={`/images/${category.name}.jpg`} />
@@ -99,21 +118,20 @@ const Category = (props: any) => {
                   />
                 </div>
               </div>
-              <p className="game-mode-card-description">
-                Play hangman using words from several existing categories, or
-                create your own category.
+              <p className="game-mode-card-description category-description">
+                {randomCategoryWords(category.words, 5)}
               </p>
             </div>
           </div>
         </Link>
-        <h1>{category.name}</h1>
-        <AddWord />
+
+        {/* <AddWord />
         <DeleteWord />
         <button className="grid-button-start">Play</button>
         <button className="grid-button" onClick={deleteCategory}>
           Delete Category
         </button>
-        <p>{allCategoryWords}</p>
+        <p>{allCategoryWords}</p> */}
       </div>
     </div>
   );
