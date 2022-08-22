@@ -10,6 +10,7 @@ const CategoriesScreen = () => {
   const { userInfo, categories } = state;
 
   useEffect(() => {
+    dispatch({ type: "REFRESH" });
     if (!userInfo) {
       navigate("/login");
     }

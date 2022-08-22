@@ -21,7 +21,6 @@ const initialState = {
     origin: "",
     definition: "",
   },
-  stopConfetti: false,
   randomWord: ["random"],
   shortDef: "",
   alphabet: [
@@ -263,16 +262,14 @@ const reducer = (state, action) => {
         maxAttempts: action.payload,
       };
     case "HAS_WON":
-      return { ...state, hasWon: action.payload };
+      return {
+        ...state,
+        hasWon: action.payload,
+      };
     case "SET_HAS_LOST":
       return {
         ...state,
         hasLost: true,
-      };
-    case "STOP_CONFETTI":
-      return {
-        ...state,
-        stopConfetti: action.payload,
       };
     case "UPDATE_ACCOUNT":
       return {

@@ -18,6 +18,8 @@ const CategoryWord = () => {
   let { wins } = winsAndLosses;
   const [wordHidden, setWordHidden] = useState(true);
 
+  console.log(wins);
+
   const letterArray = categoryWord.toLowerCase().split("");
   const letterArrayLength = letterArray.length;
   const containsAll = letterArray
@@ -57,7 +59,7 @@ const CategoryWord = () => {
         try {
           await axios.put("http://localhost:5000/api/statistics/wins-losses", {
             username: userInfo.username,
-            winsAndLosses: { ...winsAndLosses, wins: (wins += 1) },
+            winsAndLosses: { ...winsAndLosses, wins: wins + 1 },
           });
         } catch (error) {
           console.log(error);

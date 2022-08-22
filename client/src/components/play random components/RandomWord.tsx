@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { Store } from "../../react-store/store";
 import AddToDictionary from "./AddToDictionary";
@@ -17,10 +17,6 @@ const RandomWord = () => {
   const word = randomWord[0];
 
   let { wins } = winsAndLosses;
-  const myWins = useRef(0);
-
-  console.log(wins);
-  console.log(myWins.current);
 
   const [defIsVisible, setDefIsVisible] = useState(false);
   const [wordHidden, setWordHidden] = useState(true);
@@ -31,6 +27,10 @@ const RandomWord = () => {
   const containsAll = letterArray.every((letter: String) => {
     return guessedLetters.includes(letter);
   });
+
+  console.log(hasWon);
+  console.log(wins);
+  console.log(word);
 
   const fetchRandomWord = async () => {
     const fetchWinsLosses = async () => {
@@ -67,13 +67,11 @@ const RandomWord = () => {
   useEffect(() => {
     const checkIfWon = (containsall: boolean, letterarraylength: number) => {
       const updateWinsAndLosses = async () => {
-        myWins.current = 1;
         try {
           await axios.put("http://localhost:5000/api/statistics/wins-losses", {
             username: userInfo.username,
-            winsAndLosses: { ...winsAndLosses, wins: wins + myWins.current },
+            winsAndLosses: { ...winsAndLosses, wins: wins + 1 },
           });
-          myWins.current = 0;
         } catch (error) {
           console.log(error);
         }
@@ -104,6 +102,7 @@ const RandomWord = () => {
     userInfo.username,
     wins,
     winsAndLosses,
+    word,
   ]);
 
   const underlinedLetters = letterArray.map((letter: String, index: number) => {

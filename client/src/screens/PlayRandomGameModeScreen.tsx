@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Store } from "../react-store/store";
 
 const PlayRandomGameModeScreen = () => {
+  const { dispatch } = useContext(Store);
+  useEffect(() => {
+    dispatch({ type: "REFRESH" });
+  }, [dispatch]);
+
   return (
     <div>
       <h1>Game Mode</h1>
