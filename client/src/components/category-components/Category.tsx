@@ -92,7 +92,10 @@ const Category = (props: any) => {
       )}
 
       <div className="category-card">
-        <Link to="/categories" style={{ textDecoration: "none" }}>
+        <Link
+          to={`/play-category/${category.name}`}
+          style={{ textDecoration: "none" }}
+        >
           <div className="game-mode-card">
             <img className="card-image" src={`/images/${category.name}.jpg`} />
             <div className="game-mode-container">
@@ -105,8 +108,13 @@ const Category = (props: any) => {
                     <b>{category.name}</b>
                   </h2>
                 </div>
-                <div style={{ width: "100%" }}>
-                  <FontAwesomeIcon className="category-buttons" icon={faPlay} />
+                <div className="card-icons">
+                  <Link to={`/play-category/${category.name}`}>
+                    <FontAwesomeIcon
+                      className="category-buttons"
+                      icon={faPlay}
+                    />
+                  </Link>
                   <FontAwesomeIcon className="category-buttons" icon={faEye} />
                   <FontAwesomeIcon
                     className="category-buttons"

@@ -396,6 +396,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 4px;
   width: 80%;
   margin: auto;
+  background-color: $text-pink;
 }
 
 .game-mode-card-title {
@@ -415,7 +416,6 @@ body::-webkit-scrollbar-thumb {
 
 .game-mode-card-description {
   color: $bg-primary;
-  margin-top: 5px;
 }
 
 .card-image {

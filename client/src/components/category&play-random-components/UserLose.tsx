@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { Store } from "../../react-store/store";
 
-const UserLose = () => {
+const UserLose = (props: any) => {
   const { dispatch, state } = useContext(Store);
-  const { randomWord, categoryWord } = state;
+  const { categoryWord } = state;
+  const { randomWord } = props;
+
+  console.log(randomWord);
 
   const playAgain = () => {
     dispatch({ type: "REFRESH" });
@@ -12,14 +15,11 @@ const UserLose = () => {
     <div>
       <h1>Oh No. The word was:</h1>
       <h1 className="lost-word">
-        {randomWord[0].word.length >= 1
-          ? randomWord[0].word.toLowerCase()
+        {randomWord
+          ? randomWord[0].length >= 1 && randomWord[0].toLowerCase()
           : categoryWord}
       </h1>
-      <p>
-        {randomWord[0].word.length >= 1 &&
-          randomWord[0].definition.toLowerCase()}
-      </p>
+
       <button className="grid-button-start" onClick={playAgain}>
         Play Again?
       </button>

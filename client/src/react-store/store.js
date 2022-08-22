@@ -23,13 +23,7 @@ const initialState = {
   },
   stopConfetti: false,
   randomWord: ["random"],
-  // randomWord: [
-  //   {
-  //     word: "random",
-  //     definition: "",
-  //     pronunciation: "",
-  //   },
-  // ],
+  shortDef: "",
   alphabet: [
     "a",
     "b",
@@ -96,12 +90,7 @@ const initialState = {
   merriamWebsterData: null,
   thesaurusData: null,
   commonWords: uniqueCommonWords,
-  // winsAndLosses: localStorage.getItem("winsAndLosses")
-  //   ? JSON.parse(localStorage.getItem("winsAndLosses"))
-  //   : {
-  //       wins: 0,
-  //       losses: 0,
-  //     },
+
   winsAndLosses: {
     wins: 0,
     losses: 0,
@@ -119,6 +108,26 @@ const reducer = (state, action) => {
         randomWord: action.payload,
         letterBank: state.alphabet,
         guessedLetters: [],
+        maxAttempts:
+          state.difficulty === "easy"
+            ? 15
+            : state.difficulty === "normal"
+            ? 10
+            : state.difficulty === "hard"
+            ? 7
+            : state.difficulty === "genius"
+            ? 5
+            : 10,
+        remainingAttempts:
+          state.difficulty === "easy"
+            ? 15
+            : state.difficulty === "normal"
+            ? 10
+            : state.difficulty === "hard"
+            ? 7
+            : state.difficulty === "genius"
+            ? 5
+            : 10,
         hasWon: false,
         hasLost: false,
       };
@@ -128,8 +137,33 @@ const reducer = (state, action) => {
         categoryWord: action.payload,
         letterBank: state.alphabet,
         guessedLetters: [],
+        maxAttempts:
+          state.difficulty === "easy"
+            ? 15
+            : state.difficulty === "normal"
+            ? 10
+            : state.difficulty === "hard"
+            ? 7
+            : state.difficulty === "genius"
+            ? 5
+            : 10,
+        remainingAttempts:
+          state.difficulty === "easy"
+            ? 15
+            : state.difficulty === "normal"
+            ? 10
+            : state.difficulty === "hard"
+            ? 7
+            : state.difficulty === "genius"
+            ? 5
+            : 10,
         haswon: false,
         hasLost: false,
+      };
+    case "SET_SHORTDEF":
+      return {
+        ...state,
+        shortDef: action.payload,
       };
     case "REFRESH":
       return {
@@ -138,9 +172,11 @@ const reducer = (state, action) => {
         hasWon: false,
         hasLost: false,
         difficulty: "normal",
-        maxAttemps: 10,
-        remainingAttempts: 10,
         randomWord: ["random"],
+        winsAndLosses: {
+          wins: 0,
+          losses: 0,
+        },
         categoryWord: "",
         guessedLetters: [],
         letterBank: state.alphabet,

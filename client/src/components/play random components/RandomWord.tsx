@@ -1,9 +1,7 @@
-import { useContext, useState, useEffect, Fragment } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Store } from "../../react-store/store";
-import Confetti from "react-confetti";
 import AddToDictionary from "./AddToDictionary";
-import Attempts from "../category&play-random-components/Attempts";
 
 const RandomWord = () => {
   const { state, dispatch } = useContext(Store);
@@ -11,24 +9,28 @@ const RandomWord = () => {
     randomWord,
     guessedLetters,
     hasWon,
-    stopConfetti,
     gameHasStarted,
     userInfo,
     winsAndLosses,
+    shortDef,
   } = state;
   const word = randomWord[0];
-  let { wins, losses } = winsAndLosses;
-  const definition = "this is the definition";
+
+  let { wins } = winsAndLosses;
+  const myWins = useRef(0);
+
+  console.log(wins);
+  console.log(myWins.current);
+
   const [defIsVisible, setDefIsVisible] = useState(false);
   const [wordHidden, setWordHidden] = useState(true);
+  const apiKey = "140eecdf-bd1e-4b4c-8477-0f78ec151b06";
 
   const letterArray = word.toLowerCase().split("");
   const letterArrayLength = letterArray.length;
   const containsAll = letterArray.every((letter: String) => {
     return guessedLetters.includes(letter);
   });
-
-  console.log(winsAndLosses);
 
   const fetchRandomWord = async () => {
     const fetchWinsLosses = async () => {
@@ -43,23 +45,35 @@ const RandomWord = () => {
     console.log(data);
     dispatch({ type: "START_STOP_GAME", payload: true });
     dispatch({ type: "NEW_RANDOM_WORD", payload: data });
+
     fetchWinsLosses();
   };
 
-  const showDefinition = () => {
+  const showDefinition = async () => {
     setDefIsVisible((prevValue) => {
       return !prevValue;
+    });
+    const { data } = await axios.get(
+      `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${apiKey}`
+    );
+    dispatch({
+      type: "SET_SHORTDEF",
+      payload: data[0].shortdef[0]
+        ? data[0].shortdef[0]
+        : "definition unavailable",
     });
   };
 
   useEffect(() => {
     const checkIfWon = (containsall: boolean, letterarraylength: number) => {
       const updateWinsAndLosses = async () => {
+        myWins.current = 1;
         try {
           await axios.put("http://localhost:5000/api/statistics/wins-losses", {
             username: userInfo.username,
-            winsAndLosses: { ...winsAndLosses, wins: (wins += 1) },
+            winsAndLosses: { ...winsAndLosses, wins: wins + myWins.current },
           });
+          myWins.current = 0;
         } catch (error) {
           console.log(error);
         }
@@ -82,7 +96,15 @@ const RandomWord = () => {
       }
     };
     checkIfWon(containsAll, letterArrayLength);
-  }, [guessedLetters, dispatch, containsAll, letterArrayLength]);
+  }, [
+    guessedLetters,
+    dispatch,
+    containsAll,
+    letterArrayLength,
+    userInfo.username,
+    wins,
+    winsAndLosses,
+  ]);
 
   const underlinedLetters = letterArray.map((letter: String, index: number) => {
     let isGuessed = false;
@@ -108,7 +130,6 @@ const RandomWord = () => {
 
   return (
     <div>
-      {gameHasStarted && <Attempts />}
       <div className="random-word-buttons">
         <button className="grid-button-start" onClick={fetchRandomWord}>
           Start
@@ -130,10 +151,10 @@ const RandomWord = () => {
         </button>
       </a>
 
-      {hasWon && !stopConfetti && <Confetti />}
       <div className="underlined-letters">{underlinedLetters}</div>
       <div hidden={wordHidden || hasWon}>{word.toLowerCase()}</div>
-      <div hidden={!defIsVisible ? true : false}>{definition}</div>
+      <div hidden={!defIsVisible ? true : false}>{shortDef}</div>
+      {hasWon && <h2>{word}</h2>}
       <AddToDictionary hasWon={hasWon} randomWord={randomWord} />
     </div>
   );

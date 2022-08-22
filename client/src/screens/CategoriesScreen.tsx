@@ -42,10 +42,10 @@ const CategoriesScreen = () => {
   return (
     <div>
       <h1>Categories</h1>
+      <div className="game-mode-cards-container">{allCategories}</div>
       <button className="grid-button-start" onClick={clickHandler}>
         Create Category
       </button>
-      <div className="game-mode-cards-container">{allCategories}</div>
     </div>
   );
 };

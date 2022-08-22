@@ -16,6 +16,7 @@ import AccountScreen from "./screens/AccountScreen";
 import ErrorScreen from "./screens/ErrorScreen";
 import EditUserAccountScreen from "./screens/EditUserAccountScreen";
 import MyDictionaryWordScreen from "./screens/MyDictionaryWordScreen";
+import PlayCategoryScreen from "./screens/PlayCategoryScreen";
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
           ></Route>
           <Route path="/playrandom" element={<PlayRandomScreen />}></Route>
           <Route path="/categories" element={<CategoriesScreen />}></Route>
+          <Route
+            path="/play-category/:name"
+            element={<PlayCategoryScreen />}
+          ></Route>
           <Route path="/categories/:name" element={<CategoryScreen />}></Route>
           <Route path="/add-category" element={<AddCategoryScreen />}></Route>
           <Route
