@@ -9,7 +9,10 @@ const initialState = {
     : null,
   myDictionary: [],
   categories: [],
-  category: [],
+  category: {
+    name: "",
+    words: [],
+  },
   difficulty: "normal",
   maxAttempts: 10,
   remainingAttempts: 10,
@@ -90,6 +93,8 @@ const initialState = {
   thesaurusData: null,
   showThesaurus: false,
   commonWords: uniqueCommonWords,
+  fetchSuccess: false,
+  fetchFailure: false,
 
   winsAndLosses: {
     wins: 0,
@@ -224,6 +229,11 @@ const reducer = (state, action) => {
       };
     case "CLEAR_MW_DEFINITION":
       return { ...state, mwDefinition: null };
+    case "FETCH_SUCCESS":
+      return {
+        ...state,
+        fetchSuccess: true,
+      };
     case "FETCH_FAILURE":
       return { ...state, error: action.payload };
     case "REMOVE_FROM_DICTIONARY":

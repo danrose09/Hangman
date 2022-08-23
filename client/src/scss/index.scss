@@ -391,11 +391,6 @@ body::-webkit-scrollbar-thumb {
   font-size: 1rem;
 }
 
-// .category-title-and-buttons {
-//   display: grid;
-//   grid-template-columns: 50% 50%;
-// }
-
 .category-card {
   margin-bottom: 3rem;
 }
@@ -406,6 +401,9 @@ body::-webkit-scrollbar-thumb {
   padding: 5px;
 }
 
+.category-buttons:hover {
+  cursor: pointer;
+}
 .category-description {
   margin: 0;
 }
@@ -478,8 +476,7 @@ body::-webkit-scrollbar-thumb {
 /* Add some padding inside the card container */
 .game-mode-container {
   padding: 2px 16px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-radius: 4px;
   background-color: $bg-primary;
 }
 
@@ -684,7 +681,7 @@ body::-webkit-scrollbar-thumb {
 .success {
   padding: 20px;
   background-color: $bg-primary;
-  color: green;
+  color: $text-green;
   margin-bottom: 15px;
   text-align: left;
 }

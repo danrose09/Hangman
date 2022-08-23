@@ -1,13 +1,14 @@
-import { useEffect, useContext, Fragment } from "react";
+import { useEffect, useContext, useState, Fragment } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Store } from "../react-store/store";
 import Category from "../components/category-components/Category";
 
 const CategoriesScreen = () => {
   const navigate = useNavigate();
   const { dispatch, state } = useContext(Store);
-  const { userInfo, categories } = state;
+  const { userInfo, categories, message } = state;
+  const [messageIsHidden, setMessageIsHidden] = useState(false);
 
   useEffect(() => {
     dispatch({ type: "REFRESH" });
@@ -32,6 +33,10 @@ const CategoriesScreen = () => {
     navigate("/add-category");
   };
 
+  const toggleHidden = (e: any) => {
+    setMessageIsHidden(true);
+  };
+
   const allCategories = categories.map((category: any, index: number) => {
     return (
       <Fragment key={index}>
@@ -42,6 +47,24 @@ const CategoriesScreen = () => {
 
   return (
     <div>
+      {message ===
+        "Category must contain at least one word in order to play" && (
+        <div hidden={messageIsHidden} className="alert">
+          <span onClick={toggleHidden} className="closebtn">
+            &times;
+          </span>
+          {message}
+        </div>
+      )}
+      {message === "Category successfully deleted" && (
+        <div hidden={messageIsHidden} className="success">
+          <span onClick={toggleHidden} className="closebtn">
+            &times;
+          </span>
+          {message}
+        </div>
+      )}
+
       <h1>Categories</h1>
       <div className="game-mode-cards-container">{allCategories}</div>
       <button className="grid-button-start" onClick={clickHandler}>

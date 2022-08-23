@@ -7,6 +7,8 @@ import PlayCommonScreen from "./screens/PlayCommonScreen";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import CategoryScreen from "./screens/CategoryScreen";
 import AddCategoryScreen from "./screens/AddCategoryScreen";
+import AllWordsCategoryScreen from "./screens/AllWordsCategoryScreen";
+import UpdateCategoryScreen from "./screens/UpdateCategoryScreen";
 import MyDictionaryScreen from "./screens/MyDictionaryScreen";
 import Navbar from "./components/global components/Navbar";
 import UpdateDefinitionScreen from "./screens/UpdateDefinitionScreen";
@@ -45,6 +47,14 @@ function App() {
           ></Route>
           <Route path="/categories/:name" element={<CategoryScreen />}></Route>
           <Route path="/add-category" element={<AddCategoryScreen />}></Route>
+          <Route
+            path="/all-words/:categoryname"
+            element={<AllWordsCategoryScreen />}
+          ></Route>
+          <Route
+            path="/update-category/:categoryname"
+            element={<UpdateCategoryScreen />}
+          ></Route>
           <Route
             path="/mydictionary/:username"
             element={<MyDictionaryScreen />}
