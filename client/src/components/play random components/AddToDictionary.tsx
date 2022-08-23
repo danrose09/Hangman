@@ -5,11 +5,10 @@ import { Store } from "../../react-store/store";
 const AddToDictionary = (props: any) => {
   const { dispatch, state } = useContext(Store);
   const { userInfo, mwDefinition } = state;
-  const { hasWon, randomWord } = props;
+  const { hasWon, hasLost, randomWord } = props;
   const word = randomWord[0];
 
   const [addToDictionary, setAddToDictionary] = useState(false);
-  const [buttonIsHidden, setButtonIsHidden] = useState(false);
   const [newPartOfSpeech, setNewPartOfSpeech] = useState("");
   const [newOrigin, setNewOrigin] = useState("");
   const [userDefinition, setUserDefinition] = useState("");
@@ -44,8 +43,6 @@ const AddToDictionary = (props: any) => {
     setAddToDictionary((prevValue) => {
       return !prevValue;
     });
-    setButtonIsHidden(true);
-    dispatch({ type: "STOP_CONFETTI", payload: true });
     dispatch({ type: "CLEAR_MW_DEFINITION" });
     const fetchDefintion = async () => {
       try {
@@ -66,7 +63,7 @@ const AddToDictionary = (props: any) => {
     <Fragment>
       <button
         className="grid-button-start"
-        hidden={!hasWon || buttonIsHidden}
+        hidden={!hasWon && !hasLost}
         onClick={addToDictionaryHandler}
       >
         Add to My Dictionary

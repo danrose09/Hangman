@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Store } from "../../react-store/store";
+import AddToDictionary from "../play random components/AddToDictionary";
 
 const UserLose = (props: any) => {
   const { dispatch, state } = useContext(Store);

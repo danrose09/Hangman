@@ -61,55 +61,59 @@ const MyDictionaryScreen = () => {
 
       return (
         <div key={index}>
-          <div className="dictionary-grid">
-            <div className="grid-item grid-item-1">
+          <div>
+            <div className="mydictionary-word-pos-container">
               <h2 className="dictionary-word">{`${index + 1}. ${
                 term.word
               }`}</h2>
-              <Link to={`/mydictionary/term/${term.word}`}>
-                <button className="grid-button-start">
-                  <span>
-                    <FontAwesomeIcon
-                      className="dictionary-button-icon"
-                      icon={faBookOpen}
-                    />
-                  </span>
-                  Look Up
-                </button>
-              </Link>
-              <button
-                onClick={() =>
-                  navigate(`/update/${userInfo.username}/${term.word}`)
-                }
-                className="grid-button"
-              >
-                <span>
-                  <FontAwesomeIcon
-                    className="dictionary-button-icon"
-                    icon={faPencil}
-                  />
-                </span>
-                Update
-              </button>
-              <button className="grid-button" onClick={deleteFromDictionary}>
-                <span>
-                  <FontAwesomeIcon
-                    className="dictionary-button-icon"
-                    icon={faTrashCan}
-                  />
-                </span>
-                Delete
-              </button>
+              <p className="mydictionary-pos">
+                <i>{term.partOfSpeech}</i>
+              </p>
             </div>
-            <p className="grid-item grid-item-2">
-              <strong>Part of speech:</strong> {`${term.partOfSpeech}`}
-            </p>
+
             <p className="grid-item grid-item-3">
               <strong>Origin:</strong> {`${term.origin}`}
             </p>
             <p className="grid-item grid-item-4">
               <strong>Definition:</strong> {`${term.definition}`}
             </p>
+            <Link to={`/mydictionary/term/${term.word}`}>
+              <button className="dictionary-button-start">
+                <span>
+                  <FontAwesomeIcon
+                    className="dictionary-button-icon"
+                    icon={faBookOpen}
+                  />
+                </span>
+                Look Up
+              </button>
+            </Link>
+            <button
+              onClick={() =>
+                navigate(`/update/${userInfo.username}/${term.word}`)
+              }
+              className="dictionary-button"
+            >
+              <span>
+                <FontAwesomeIcon
+                  className="dictionary-button-icon"
+                  icon={faPencil}
+                />
+              </span>
+              Update
+            </button>
+            <button
+              className="dictionary-button"
+              onClick={deleteFromDictionary}
+            >
+              <span>
+                <FontAwesomeIcon
+                  className="dictionary-button-icon"
+                  icon={faTrashCan}
+                />
+              </span>
+              Delete
+            </button>
           </div>
         </div>
       );

@@ -1,5 +1,12 @@
+import { useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeLowVision } from "@fortawesome/free-solid-svg-icons";
+import { Store } from "../../react-store/store";
+
 const MerriamWebsterTerm = (props: any) => {
-  const { merriamWebsterData } = props;
+  const { merriamWebsterData, thesaurusData } = props;
+  const { dispatch, state } = useContext(Store);
+  const { showThesaurus } = state;
 
   const term = merriamWebsterData.meta.id
     ? merriamWebsterData.meta.id.replace(":1", "")
@@ -27,6 +34,10 @@ const MerriamWebsterTerm = (props: any) => {
   const etymology = merriamWebsterData.et ? merriamWebsterData.et[0] : null;
   const note = merriamWebsterData.et ? merriamWebsterData.et[1] : null;
 
+  const handleShowThesaurus = () => {
+    dispatch({ type: "SHOW_THESAURUS", payload: !showThesaurus });
+  };
+
   return (
     <div className="mwt-screen">
       <div className="term-and-pos-container">
@@ -43,6 +54,13 @@ const MerriamWebsterTerm = (props: any) => {
         >
           <i>{partOfSpeech && partOfSpeech}</i>
         </p>
+        {thesaurusData && typeof thesaurusData === "object" ? (
+          <FontAwesomeIcon
+            className="thesaurus-eye-icon"
+            icon={showThesaurus ? faEye : faEyeLowVision}
+            onClick={handleShowThesaurus}
+          />
+        ) : null}
       </div>
       <p>
         \ {pronunciation}, <i>{pAlternate && pAlternate}</i>,{" "}

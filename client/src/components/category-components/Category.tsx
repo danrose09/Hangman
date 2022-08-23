@@ -103,9 +103,9 @@ const Category = (props: any) => {
                 <div>
                   <h2
                     className="game-mode-card-title-categories"
-                    style={{ color: "#ff7eee" }}
+                    style={{ color: "#ff7eee", letterSpacing: "0.2ch" }}
                   >
-                    <b>{category.name}</b>
+                    <b>{category.name.toUpperCase()}</b>
                   </h2>
                 </div>
                 <div className="card-icons">

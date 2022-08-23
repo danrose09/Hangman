@@ -1,8 +1,10 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { Store } from "../../react-store/store";
 
 const Thesaurus = (props: any) => {
   const { thesaurusData } = props;
+  const { state } = useContext(Store);
+  const { showThesaurus } = state;
 
   const synonyms = thesaurusData.meta.syns[0]
     ? thesaurusData.meta.syns[0]
@@ -16,7 +18,7 @@ const Thesaurus = (props: any) => {
 
   return (
     <div className="thesaurus-column">
-      <div className="thesaurus-container">
+      <div hidden={!showThesaurus} className="thesaurus-container">
         <h3 className="thesaurus-title">Thesaurus</h3>
         <div className="synonyms-container">{allSynonyms}</div>
       </div>

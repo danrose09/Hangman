@@ -84,7 +84,15 @@ const CategoryWord = () => {
       }
     };
     checkIfWon(containsAll, letterArrayLength);
-  }, [guessedLetters, dispatch, containsAll, letterArrayLength]);
+  }, [
+    guessedLetters,
+    dispatch,
+    containsAll,
+    letterArrayLength,
+    userInfo.username,
+    wins,
+    winsAndLosses,
+  ]);
 
   const underlinedLetters = letterArray.map((letter: String, index: number) => {
     let isGuessed = false;
@@ -115,7 +123,7 @@ const CategoryWord = () => {
         <button className="grid-button-start" onClick={fetchCategoryWord}>
           Start
         </button>
-        <button onClick={toggleHidden} className="grid-button">
+        <button hidden={hasWon} onClick={toggleHidden} className="grid-button">
           Show Word
         </button>
       </div>

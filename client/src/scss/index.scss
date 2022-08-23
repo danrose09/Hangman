@@ -144,6 +144,46 @@ body::-webkit-scrollbar-thumb {
   color: red;
 }
 
+.grid-button {
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  outline: none;
+  cursor: pointer;
+  width: 8rem;
+  height: 2.5rem;
+  margin: 1.2rem 1rem 0 1rem;
+  background-color: $text-pink;
+  color: #ffffff;
+  transition: ease-in-out;
+}
+
+.grid-button:hover {
+  background-color: $bg-primary;
+  color: $text-pink;
+  transition-duration: 0.3s;
+}
+
+.grid-button-start {
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  outline: none;
+  cursor: pointer;
+  width: 8rem;
+  height: 2.5rem;
+  margin: 1.2rem 1rem 0 1rem;
+  background-color: $bg-start;
+  color: $text-pink;
+  transition: ease-in-out;
+}
+
+.grid-button-start:hover {
+  background-color: $bg-secondary;
+  color: $text-secondary;
+  transition-duration: 0.3s;
+}
+
 ///////////////////////////////////////////////////////////
 //Home Screen
 .homescreen-container {
@@ -219,23 +259,19 @@ body::-webkit-scrollbar-thumb {
   font-size: 1rem;
 }
 
-.dictionary-grid {
-  max-width: 50%;
-  display: grid;
-  grid-template-columns: 1;
-}
-
-.grid-item {
-  align-self: center;
-}
-
-.grid-item-1 {
+.mydictionary-word-pos-container {
   display: flex;
-  grid-column-start: 1;
-  grid-column-end: -1;
+  flex-direction: row;
+  margin-bottom: 0;
 }
 
-.grid-button {
+.mydictionary-pos {
+  color: $text-green;
+  margin-top: 27px;
+  margin-left: 10px;
+}
+
+.dictionary-button {
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -243,19 +279,19 @@ body::-webkit-scrollbar-thumb {
   cursor: pointer;
   width: 8rem;
   height: 2.5rem;
-  margin: 1.2rem 1rem 0 1rem;
+  margin: 1rem 1rem 1rem 0;
   background-color: $text-pink;
   color: #ffffff;
   transition: ease-in-out;
 }
 
-.grid-button:hover {
+.dictionary-button:hover {
   background-color: $bg-primary;
   color: $text-pink;
   transition-duration: 0.3s;
 }
 
-.grid-button-start {
+.dictionary-button-start {
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -263,13 +299,13 @@ body::-webkit-scrollbar-thumb {
   cursor: pointer;
   width: 8rem;
   height: 2.5rem;
-  margin: 1.2rem 1rem 0 1rem;
+  margin: 1rem 1rem 1rem 0;
   background-color: $bg-start;
   color: $text-pink;
   transition: ease-in-out;
 }
 
-.grid-button-start:hover {
+.dictionary-button-start:hover {
   background-color: $bg-secondary;
   color: $text-secondary;
   transition-duration: 0.3s;
@@ -301,6 +337,16 @@ body::-webkit-scrollbar-thumb {
   flex-direction: row;
 }
 
+.thesaurus-eye-icon {
+  margin-left: auto;
+  margin-top: 30px;
+  color: $bg-primary;
+}
+
+.thesaurus-eye-icon:hover {
+  cursor: pointer;
+}
+
 ///////////////////////////////////////////////////////////
 //Thesaurus Screen
 .thesaurus-container {
@@ -313,6 +359,7 @@ body::-webkit-scrollbar-thumb {
   background-color: $bg-primary;
   color: $text-primary;
   margin-top: 2rem;
+  margin-left: 1rem;
 }
 
 .thesaurus-title {
@@ -573,10 +620,6 @@ body::-webkit-scrollbar-thumb {
 
   .navbar:hover .link-text {
     display: inline;
-  }
-
-  .dictionary-word {
-    width: 10rem;
   }
 
   .mwt-screen {

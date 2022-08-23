@@ -51,7 +51,10 @@ const MyDictionaryWordScreen = () => {
     <div>
       {merriamWebsterData && typeof merriamWebsterData === "object" ? (
         <div className="mwt-thesaurus-container">
-          <MerriamWebsterTerm merriamWebsterData={merriamWebsterData} />
+          <MerriamWebsterTerm
+            merriamWebsterData={merriamWebsterData}
+            thesaurusData={thesaurusData}
+          />
           {thesaurusData && typeof thesaurusData === "object" ? (
             <Thesaurus thesaurusData={thesaurusData} />
           ) : null}

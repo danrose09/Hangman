@@ -88,6 +88,7 @@ const initialState = {
   updateSuccessful: false,
   merriamWebsterData: null,
   thesaurusData: null,
+  showThesaurus: false,
   commonWords: uniqueCommonWords,
 
   winsAndLosses: {
@@ -290,6 +291,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         thesaurusData: action.payload,
+      };
+    case "SHOW_THESAURUS":
+      return {
+        ...state,
+        showThesaurus: action.payload,
       };
     case "FETCH_WINS_LOSSES":
       return {
