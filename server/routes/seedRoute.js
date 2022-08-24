@@ -1,5 +1,4 @@
 const express = require("express");
-const Word = require("../models/wordModel");
 const User = require("../models/userModel");
 const users = require("../data/users");
 
@@ -8,9 +7,6 @@ const seedRouter = express.Router();
 seedRouter.get("/", async (req, res) => {
   await User.deleteMany({});
   const createdUsers = await User.insertMany(users);
-
-  // await Word.deleteMany({});
-  // const createdWords = await Word.insertMany(vocabulary);
 
   res.json(createdUsers);
 });
