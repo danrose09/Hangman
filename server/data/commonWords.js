@@ -3002,4 +3002,4 @@ const commonWords = [
 ];
 
 const uniqueCommonWords = [...new Set(commonWords)];
-export default uniqueCommonWords;
+module.exports = uniqueCommonWords;

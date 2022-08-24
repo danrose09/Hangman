@@ -1,5 +1,4 @@
 import { createContext, useReducer } from "react";
-import uniqueCommonWords from "../commonWords";
 
 export const Store = createContext();
 
@@ -25,6 +24,7 @@ const initialState = {
     definition: "",
   },
   randomWord: ["random"],
+  commonWord: "",
   shortDef: "",
   alphabet: [
     "a",
@@ -92,7 +92,6 @@ const initialState = {
   merriamWebsterData: null,
   thesaurusData: null,
   showThesaurus: false,
-  commonWords: uniqueCommonWords,
   fetchSuccess: false,
   fetchFailure: false,
 
@@ -111,6 +110,35 @@ const reducer = (state, action) => {
       return {
         ...state,
         randomWord: action.payload,
+        letterBank: state.alphabet,
+        guessedLetters: [],
+        maxAttempts:
+          state.difficulty === "easy"
+            ? 15
+            : state.difficulty === "normal"
+            ? 10
+            : state.difficulty === "hard"
+            ? 7
+            : state.difficulty === "genius"
+            ? 5
+            : 10,
+        remainingAttempts:
+          state.difficulty === "easy"
+            ? 15
+            : state.difficulty === "normal"
+            ? 10
+            : state.difficulty === "hard"
+            ? 7
+            : state.difficulty === "genius"
+            ? 5
+            : 10,
+        hasWon: false,
+        hasLost: false,
+      };
+    case "NEW_COMMON_WORD":
+      return {
+        ...state,
+        commonWord: action.payload,
         letterBank: state.alphabet,
         guessedLetters: [],
         maxAttempts:

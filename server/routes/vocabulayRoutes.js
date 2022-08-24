@@ -11,8 +11,8 @@ vocabularyRouter.post("/new", async (req, res) => {
     return category.name === categoryName;
   });
 
-  const updatedCategory = category[0].words.push(newWord);
-
+  category[0].words.push(newWord);
+  const updatedCategory = category;
   const userCategories = user.categories;
   const index = userCategories.indexOf(category[0].name);
 

@@ -61,18 +61,6 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
 }
 
-.navbar:hover .logo i {
-  transform: rotateX(360deg);
-}
-
-.navbar:hover .logo-icon {
-  transform: rotateX(360deg);
-}
-
-.navbar:hover .logo-png {
-  transform: rotateX(360deg);
-}
-
 .nav-item {
   width: 100%;
 }
@@ -155,13 +143,12 @@ body::-webkit-scrollbar-thumb {
   margin: 1.2rem 1rem 0 1rem;
   background-color: $text-pink;
   color: #ffffff;
-  transition: ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .grid-button:hover {
   background-color: $bg-primary;
   color: $text-pink;
-  transition-duration: 0.3s;
 }
 
 .grid-button-start {
@@ -175,13 +162,12 @@ body::-webkit-scrollbar-thumb {
   margin: 1.2rem 1rem 0 1rem;
   background-color: $bg-start;
   color: $text-pink;
-  transition: ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .grid-button-start:hover {
   background-color: $bg-secondary;
   color: $text-secondary;
-  transition-duration: 0.3s;
 }
 
 ///////////////////////////////////////////////////////////
@@ -399,10 +385,12 @@ body::-webkit-scrollbar-thumb {
   color: $text-pink;
   justify-content: space-between;
   padding: 5px;
+  transition: all 0.2s ease-in-out;
 }
 
 .category-buttons:hover {
   cursor: pointer;
+  color: $text-secondary;
 }
 .category-description {
   margin: 0;

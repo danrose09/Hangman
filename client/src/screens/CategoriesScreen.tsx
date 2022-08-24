@@ -67,9 +67,15 @@ const CategoriesScreen = () => {
 
       <h1>Categories</h1>
       <div className="game-mode-cards-container">{allCategories}</div>
-      <button className="grid-button-start" onClick={clickHandler}>
-        Create Category
-      </button>
+      <div style={{ textAlign: "center" }}>
+        <button
+          className="grid-button"
+          style={{ width: "50%" }}
+          onClick={clickHandler}
+        >
+          Create Category
+        </button>
+      </div>
     </div>
   );
 };

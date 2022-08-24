@@ -1,23 +1,21 @@
 import { useState, useContext } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../../react-store/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
-const AddWord = () => {
-  const params = useParams();
-  const { name } = params;
+const AddWord = (props: any) => {
+  const { categoryname } = props;
   const [newWord, setNewWord] = useState("");
-  const { state } = useContext(Store);
+  const { dispatch, state } = useContext(Store);
   const { userInfo } = state;
 
   const handleClick = async () => {
     if (newWord.length > 1) {
       try {
         await axios.post("http://localhost:5000/api/vocabulary/new", {
-          newWord,
-          categoryName: name,
+          newWord: newWord,
+          categoryName: categoryname,
           username: userInfo.username,
         });
 
@@ -25,6 +23,11 @@ const AddWord = () => {
       } catch (error) {
         console.log(error);
       }
+    } else {
+      dispatch({
+        type: "SET_MESSAGE",
+        payload: "word must contain at least one character",
+      });
     }
   };
   return (

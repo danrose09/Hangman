@@ -1,13 +1,11 @@
 import { useState, useContext } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../../react-store/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 
-const DeleteWord = () => {
-  const params = useParams();
-  const { name } = params;
+const DeleteWord = (props: any) => {
+  const { categoryname } = props;
   const [word, setWord] = useState("");
   const { state } = useContext(Store);
   const { userInfo } = state;
@@ -21,11 +19,11 @@ const DeleteWord = () => {
       await axios.put(`http://localhost:5000/api/vocabulary/remove/${word}`, {
         removedWord: word,
         username: userInfo.username,
-        categoryName: name,
+        categoryName: categoryname,
       });
       setWord("");
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
 

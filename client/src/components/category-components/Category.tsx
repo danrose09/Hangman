@@ -30,19 +30,6 @@ const Category = (props: any) => {
     }
   };
 
-  // const allCategoryWords =
-  //   category.name === "animals"
-  //     ? String(category.words).replaceAll(",", " ").toLowerCase().split("")
-  //     : category.name === "countries"
-  //     ? String(category.words).replaceAll(",", " ").toLowerCase().split("")
-  //     : category.name === "fruits"
-  //     ? String(category.words).replaceAll(",", " ").toLowerCase().split("")
-  //     : category.name === "sports"
-  //     ? String(category.words).replaceAll(",", " ").toLowerCase().split("")
-  //     : category.name === "capitals"
-  //     ? String(category.words).replaceAll(",", " ").toLowerCase().split("")
-  //     : String(category.words).replaceAll(",", " ").split("");
-
   const randomCategoryWords = (
     sourceArray: string[],
     neededElements: number
@@ -52,13 +39,7 @@ const Category = (props: any) => {
       result.push(sourceArray[Math.floor(Math.random() * sourceArray.length)]);
     }
     return result.map((word) => {
-      return (
-        <p>
-          {category.name === "animals" || category.name === "sports"
-            ? word.toLowerCase()
-            : word}
-        </p>
-      );
+      return <p>{word}</p>;
     });
   };
 
@@ -79,7 +60,11 @@ const Category = (props: any) => {
               </div>
               <div className="card-icons">
                 <Link to={`/play-category/${category.name}`}>
-                  <FontAwesomeIcon className="category-buttons" icon={faPlay} />
+                  <FontAwesomeIcon
+                    className="category-buttons"
+                    style={{ paddingLeft: "2px" }}
+                    icon={faPlay}
+                  />
                 </Link>
                 <Link to={`/all-words/${category.name}`}>
                   <FontAwesomeIcon className="category-buttons" icon={faEye} />
@@ -98,7 +83,11 @@ const Category = (props: any) => {
               </div>
             </div>
             <p className="game-mode-card-description category-description">
-              {randomCategoryWords(category.words, 5)}
+              {category.words.length > 5
+                ? randomCategoryWords(category.words, 5)
+                : category.words.map((word: string) => {
+                    return <p>{word}</p>;
+                  })}
             </p>
           </div>
         </div>
