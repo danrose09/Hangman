@@ -3,7 +3,13 @@ import { Store } from "../../react-store/store";
 
 const LetterBank = (props: any) => {
   const { state, dispatch } = useContext(Store);
-  const { letterBank, remainingAttempts, randomWord, categoryWord } = state;
+  const {
+    letterBank,
+    remainingAttempts,
+    randomWord,
+    categoryWord,
+    commonWord,
+  } = state;
 
   const audio = new Audio("/audio/soft-click.wav");
 
@@ -18,6 +24,10 @@ const LetterBank = (props: any) => {
         ? remainingAttempts >= 1 &&
           categoryWord.length >= 1 &&
           categoryWord.toLowerCase().split("").includes(letter) === false
+        : commonWord
+        ? remainingAttempts >= 1 &&
+          commonWord.length >= 1 &&
+          commonWord.toLowerCase().split("").includes(letter) === false
         : remainingAttempts >= 1 &&
           randomWord[0].length >= 1 &&
           randomWord[0].toLowerCase().split("").includes(letter) === false

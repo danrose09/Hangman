@@ -1,13 +1,10 @@
 import { useContext } from "react";
 import { Store } from "../../react-store/store";
-import AddToDictionary from "../play random components/AddToDictionary";
 
 const UserLose = (props: any) => {
   const { dispatch, state } = useContext(Store);
   const { categoryWord } = state;
-  const { randomWord } = props;
-
-  console.log(randomWord);
+  const { randomWord, commonWord } = props;
 
   const playAgain = () => {
     dispatch({ type: "REFRESH" });
@@ -18,7 +15,9 @@ const UserLose = (props: any) => {
       <h1 className="lost-word">
         {randomWord
           ? randomWord[0].length >= 1 && randomWord[0].toLowerCase()
-          : categoryWord}
+          : categoryWord
+          ? categoryWord
+          : commonWord}
       </h1>
 
       <button className="grid-button-start" onClick={playAgain}>

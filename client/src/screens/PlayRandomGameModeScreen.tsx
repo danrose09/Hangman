@@ -14,7 +14,11 @@ const PlayRandomGameModeScreen = () => {
       <div className="game-mode-cards-container">
         <Link to="/playrandom/common" style={{ textDecoration: "none" }}>
           <div className="game-mode-card">
-            <img className="card-image" src="/images/hangmanClassic.jpg" />
+            <img
+              className="card-image"
+              src="/images/hangmanClassic.jpg"
+              alt="classic"
+            />
             <div className="game-mode-container">
               <h2 className="game-mode-card-title">
                 <b>Classic</b>
@@ -28,7 +32,11 @@ const PlayRandomGameModeScreen = () => {
         </Link>
         <Link to="/playrandom/genius" style={{ textDecoration: "none" }}>
           <div className="game-mode-card">
-            <img className="card-image" src="/images/hangmanClassic.jpg" />
+            <img
+              className="card-image"
+              src="/images/hangmanClassic.jpg"
+              alt="genius"
+            />
             <div className="game-mode-container">
               <h2 className="game-mode-card-title-genius">
                 <b>Genius</b>
@@ -41,7 +49,11 @@ const PlayRandomGameModeScreen = () => {
         </Link>
         <Link to="/categories" style={{ textDecoration: "none" }}>
           <div className="game-mode-card">
-            <img className="card-image" src="/images/hangmanClassic.jpg" />
+            <img
+              className="card-image"
+              src="/images/hangmanClassic.jpg"
+              alt="categories"
+            />
             <div className="game-mode-container">
               <h2 className="game-mode-card-title-categories">
                 <b>Categories</b>

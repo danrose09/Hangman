@@ -28,11 +28,6 @@ const PlayCommonScreen = () => {
       ) : (
         <Fragment>
           <UserLose commonWord={commonWord} />{" "}
-          <AddToDictionary
-            hasWon={hasWon}
-            hasLost={hasLost}
-            commonWord={commonWord}
-          />
         </Fragment>
       )}
       {gameHasStarted && !hasWon && !hasLost && <LetterBank />}

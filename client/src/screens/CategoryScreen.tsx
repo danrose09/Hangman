@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import CategoryWord from "../components/category-components/CategoryWord";
 import LetterBank from "../components/category&play-random-components/LetterBank";
@@ -12,7 +12,6 @@ import Attempts from "../components/category&play-random-components/Attempts";
 import UserLose from "../components/category&play-random-components/UserLose";
 
 const CategoryScreen = () => {
-  const navigate = useNavigate();
   const { dispatch, state } = useContext(Store);
   const { userInfo, category, gameHasStarted, message, hasLost } = state;
   const [messageIsHidden, setMessageIsHidden] = useState(false);
