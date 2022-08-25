@@ -10,7 +10,7 @@ const PlayRandomGameModeScreen = () => {
 
   return (
     <div>
-      <h1>Game Mode</h1>
+      <h1>Game Modes</h1>
       <div className="game-mode-cards-container">
         <Link to="/playrandom/common" style={{ textDecoration: "none" }}>
           <div className="game-mode-card">
@@ -31,7 +31,10 @@ const PlayRandomGameModeScreen = () => {
           </div>
         </Link>
         <Link to="/playrandom/genius" style={{ textDecoration: "none" }}>
-          <div className="game-mode-card">
+          <div
+            className="game-mode-card"
+            style={{ backgroundColor: "#3fa796" }}
+          >
             <img
               className="card-image"
               src="/images/hangmanClassic.jpg"
@@ -42,13 +45,17 @@ const PlayRandomGameModeScreen = () => {
                 <b>Genius</b>
               </h2>
               <p className="game-mode-card-description">
-                These words will push your lexicon to the next level.
+                A truly random experience chock full of scientific and obscure
+                vocabulary.
               </p>
             </div>
           </div>
         </Link>
         <Link to="/categories" style={{ textDecoration: "none" }}>
-          <div className="game-mode-card">
+          <div
+            className="game-mode-card"
+            style={{ backgroundColor: "#2666cf" }}
+          >
             <img
               className="card-image"
               src="/images/hangmanClassic.jpg"
@@ -59,8 +66,8 @@ const PlayRandomGameModeScreen = () => {
                 <b>Categories</b>
               </h2>
               <p className="game-mode-card-description">
-                Play hangman using words from several existing categories, or
-                create your own category.
+                Play from one of six existing categories or create your own
+                category.
               </p>
             </div>
           </div>

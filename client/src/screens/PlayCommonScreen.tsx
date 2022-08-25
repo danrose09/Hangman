@@ -1,15 +1,16 @@
 import { Fragment, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import DifficultySettings from "../components/play random components/DifficultySettings";
 import LetterBank from "../components/category&play-random-components/LetterBank";
 import { Store } from "../react-store/store";
 import UserLose from "../components/category&play-random-components/UserLose";
 import Attempts from "../components/category&play-random-components/Attempts";
-import AddToDictionary from "../components/play random components/AddToDictionary";
 import CommonWord from "../components/play common components/CommonWord";
 
 const PlayCommonScreen = () => {
+  const navigate = useNavigate();
   const { dispatch, state } = useContext(Store);
-  const { gameHasStarted, hasLost, hasWon, commonWord } = state;
+  const { gameHasStarted, hasLost, hasWon, commonWord, userInfo } = state;
 
   console.log(`won: ${hasWon}`);
   console.log(`lost: ${hasLost}`);
@@ -19,18 +20,32 @@ const PlayCommonScreen = () => {
   }, [dispatch]);
 
   return (
-    <div className="play-random-screen">
-      <h1>Hangman</h1>
-      {!gameHasStarted && <DifficultySettings />}
-      {gameHasStarted && <Attempts />}
-      {!hasLost ? (
-        <CommonWord />
+    <div>
+      {!userInfo ? (
+        <div style={{ textAlign: "center" }}>
+          <h1>Sign In Required</h1>
+          <button
+            className="grid-button-start"
+            onClick={() => navigate("/login")}
+          >
+            Sign In
+          </button>
+        </div>
       ) : (
-        <Fragment>
-          <UserLose commonWord={commonWord} />{" "}
-        </Fragment>
+        <div className="play-random-screen">
+          <h1>Hangman</h1>
+          {!gameHasStarted && <DifficultySettings />}
+          {gameHasStarted && <Attempts />}
+          {!hasLost ? (
+            <CommonWord />
+          ) : (
+            <Fragment>
+              <UserLose commonWord={commonWord} />{" "}
+            </Fragment>
+          )}
+          {gameHasStarted && !hasWon && !hasLost && <LetterBank />}
+        </div>
       )}
-      {gameHasStarted && !hasWon && !hasLost && <LetterBank />}
     </div>
   );
 };
