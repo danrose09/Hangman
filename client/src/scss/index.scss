@@ -137,6 +137,10 @@ body::-webkit-scrollbar-thumb {
   color: red;
 }
 
+.all-play-screens-title {
+  letter-spacing: 0.2ch;
+}
+
 .grid-button {
   border-radius: 8px;
   border-style: none;
@@ -470,8 +474,8 @@ body::-webkit-scrollbar-thumb {
 /* Add some padding inside the card container */
 .game-mode-container {
   padding: 2px 16px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  margin-bottom: 50px;
+  border-radius: 4px;
   background-color: $bg-primary;
 }
 
@@ -497,6 +501,10 @@ body::-webkit-scrollbar-thumb {
   color: $text-pink;
 }
 
+.add-to-dictionary-icon:hover {
+  cursor: pointer;
+}
+
 ///////////////////////////////////////////////////////////
 //Sign In Screen
 .signin-screen {
@@ -514,14 +522,14 @@ body::-webkit-scrollbar-thumb {
 ///////////////////////////////////////////////////////////
 //Underline
 .underline-letter-space {
-  font-size: 3rem;
+  font-size: 2.5rem;
   padding-left: 5px;
   padding-right: 5px;
 }
 
 ///////////////////////////////////////////////////////////
 //Medium Screens
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 815px) {
   .game-mode-cards-container {
     display: grid;
     grid-template-columns: 50% 50%;

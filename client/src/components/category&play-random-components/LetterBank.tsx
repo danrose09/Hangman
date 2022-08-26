@@ -57,7 +57,7 @@ const LetterBank = (props: any) => {
       </button>
     );
   });
-  return <div>{availableLetters}</div>;
+  return <div style={{ marginTop: "25px" }}>{availableLetters}</div>;
 };
 
 export default LetterBank;

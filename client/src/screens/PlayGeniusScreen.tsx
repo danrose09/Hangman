@@ -13,9 +13,6 @@ const PlayGeniusScreen = () => {
   const { dispatch, state } = useContext(Store);
   const { gameHasStarted, hasLost, hasWon, randomWord, userInfo } = state;
 
-  console.log(`won: ${hasWon}`);
-  console.log(`lost: ${hasLost}`);
-
   useEffect(() => {
     dispatch({ type: "REFRESH" });
   }, [dispatch]);
@@ -34,7 +31,7 @@ const PlayGeniusScreen = () => {
         </div>
       ) : (
         <div className="play-random-screen">
-          <h1>Hangman</h1>
+          <h1 className="all-play-screens-title">HANGMAN</h1>
           {!gameHasStarted && <DifficultySettings />}
           {gameHasStarted && <Attempts />}
           {!hasLost ? (

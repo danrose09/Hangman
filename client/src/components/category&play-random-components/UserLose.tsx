@@ -19,6 +19,14 @@ const UserLose = (props: any) => {
           ? categoryWord
           : commonWord}
       </h1>
+      <div>
+        <img
+          src="/images/sadstickfigure.jpg"
+          alt="a sad stick man"
+          height={200}
+          width={200}
+        />
+      </div>
 
       <button className="grid-button-start" onClick={playAgain}>
         Play Again?

@@ -1,7 +1,10 @@
-import React from "react";
-
 const ErrorScreen = () => {
-  return <div>ErrorScreen</div>;
+  return (
+    <div style={{ textAlign: "center" }}>
+      <h1>Page not found!</h1>
+      <img src="/images/alone.jpg" alt="a sad stick figure" />
+    </div>
+  );
 };
 
 export default ErrorScreen;

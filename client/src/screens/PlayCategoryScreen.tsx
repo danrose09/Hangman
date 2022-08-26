@@ -16,7 +16,7 @@ const PlayCategoryScreen = () => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>Hangman</h1>
+      <h1 className="all-play-screens-title">HANGMAN</h1>
       {!gameHasStarted && <DifficultySettings />}
       {gameHasStarted && <Attempts />}
       {!hasLost ? <CategoryWord /> : <UserLose categoryWord={categoryWord} />}

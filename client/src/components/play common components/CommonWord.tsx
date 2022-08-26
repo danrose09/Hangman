@@ -27,10 +27,6 @@ const CommonWord = () => {
     return guessedLetters.includes(letter);
   });
 
-  console.log(hasWon);
-  console.log(wins);
-  console.log(word);
-
   const fetchCommonWord = async () => {
     const fetchWinsLosses = async () => {
       const { data } = await axios.get(
@@ -39,7 +35,7 @@ const CommonWord = () => {
       dispatch({ type: "FETCH_WINS_LOSSES", payload: data });
     };
     const { data } = await axios.get("http://localhost:5000/api/common-word");
-    console.log(data);
+
     dispatch({ type: "START_STOP_GAME", payload: true });
     dispatch({ type: "NEW_COMMON_WORD", payload: data });
     setDefIsVisible(false);
@@ -130,31 +126,30 @@ const CommonWord = () => {
 
   return (
     <div>
+      <button className="grid-button-start" onClick={fetchCommonWord}>
+        Start
+      </button>
+      {hasWon && <h2 style={{ fontSize: "3rem" }}>{word}</h2>}
       <div className="random-word-buttons">
-        <button className="grid-button-start" onClick={fetchCommonWord}>
-          Start
-        </button>
-        <button className="grid-button" onClick={toggleHidden}>
+        <button
+          className="grid-button"
+          hidden={!gameHasStarted}
+          onClick={toggleHidden}
+        >
           Show Word
         </button>
-        <button className="grid-button" onClick={showDefinition}>
+        <button
+          className="grid-button"
+          hidden={!gameHasStarted}
+          onClick={showDefinition}
+        >
           Definition
         </button>
       </div>
-      <a
-        rel="noreferrer"
-        target="_blank"
-        href={`https://www.merriam-webster.com/dictionary/${word}`}
-      >
-        <button className="grid-button" hidden={!hasWon}>
-          Look Up
-        </button>
-      </a>
 
       <div className="underlined-letters">{underlinedLetters}</div>
       <div hidden={wordHidden || hasWon}>{word.toLowerCase()}</div>
       <div hidden={!defIsVisible ? true : false}>{shortDef}</div>
-      {hasWon && <h2>{word}</h2>}
     </div>
   );
 };

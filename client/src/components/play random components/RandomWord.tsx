@@ -28,10 +28,6 @@ const RandomWord = () => {
     return guessedLetters.includes(letter);
   });
 
-  console.log(hasWon);
-  console.log(wins);
-  console.log(word);
-
   const fetchRandomWord = async () => {
     const fetchWinsLosses = async () => {
       const { data } = await axios.get(
@@ -80,6 +76,7 @@ const RandomWord = () => {
         const audio = new Audio("/audio/unlock.wav");
         audio.play();
         updateWinsAndLosses();
+        setDefIsVisible(false);
         dispatch({ type: "HAS_WON", payload: true });
         dispatch({ type: "START_STOP_GAME", payload: false });
       };
@@ -129,32 +126,30 @@ const RandomWord = () => {
 
   return (
     <div>
+      <button className="grid-button-start" onClick={fetchRandomWord}>
+        Start
+      </button>
       <div className="random-word-buttons">
-        <button className="grid-button-start" onClick={fetchRandomWord}>
-          Start
-        </button>
-        <button className="grid-button" onClick={toggleHidden}>
+        <button
+          className="grid-button"
+          hidden={!gameHasStarted}
+          onClick={toggleHidden}
+        >
           Show Word
         </button>
-        <button className="grid-button" onClick={showDefinition}>
+        <button
+          className="grid-button"
+          hidden={!gameHasStarted}
+          onClick={showDefinition}
+        >
           Definition
         </button>
       </div>
-      <a
-        rel="noreferrer"
-        target="_blank"
-        href={`https://www.merriam-webster.com/dictionary/${word}`}
-      >
-        <button className="grid-button" hidden={!hasWon}>
-          Look Up
-        </button>
-      </a>
-
-      <div className="underlined-letters">{underlinedLetters}</div>
-      <div hidden={wordHidden || hasWon}>{word.toLowerCase()}</div>
-      <div hidden={!defIsVisible ? true : false}>{shortDef}</div>
-      {hasWon && <h2>{word}</h2>}
+      {hasWon && <h1 style={{ fontSize: "3rem" }}>{word}</h1>}
       <AddToDictionary hasWon={hasWon} randomWord={randomWord} />
+      <div className="underlined-letters">{underlinedLetters}</div>
+      <div hidden={hasWon || wordHidden}>{word.toLowerCase()}</div>
+      <div hidden={!defIsVisible ? true : false}>{shortDef}</div>
     </div>
   );
 };

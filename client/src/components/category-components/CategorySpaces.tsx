@@ -20,7 +20,11 @@ const CategorySpaces = () => {
         {isGuessed && letter === " " ? (
           <div style={{ marginLeft: "5px", marginRight: "5px" }}></div>
         ) : isGuessed ? (
-          <h2>{letter}</h2>
+          <h2>
+            {letter.toUpperCase() === letter
+              ? letter.toUpperCase()
+              : letter.toLowerCase()}
+          </h2>
         ) : (
           <h2>_</h2>
         )}

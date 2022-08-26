@@ -47,7 +47,6 @@ const Category = (props: any) => {
     <div className="category-container">
       <div className="category-card">
         <div className="game-mode-card">
-          {/* <img className="card-image" src={`/images/${category.name}.jpg`} /> */}
           <div className="game-mode-container" style={{ borderRadius: "4px" }}>
             <div className="category-title-and-buttons">
               <div>

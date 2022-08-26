@@ -91,7 +91,7 @@ const initialState = {
   updateSuccessful: false,
   merriamWebsterData: null,
   thesaurusData: null,
-  showThesaurus: false,
+  showThesaurus: true,
   fetchSuccess: false,
   fetchFailure: false,
 
@@ -110,6 +110,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         randomWord: action.payload,
+        categoryWord: "",
+        commonWord: "",
         letterBank: state.alphabet,
         guessedLetters: [],
         maxAttempts:
@@ -139,6 +141,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         commonWord: action.payload,
+        randomWord: ["random"],
+        categoryWord: "",
         letterBank: state.alphabet,
         guessedLetters: [],
         maxAttempts:
@@ -168,6 +172,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         categoryWord: action.payload,
+        randomWord: ["random"],
+        commonWord: "",
         letterBank: state.alphabet,
         guessedLetters: [],
         maxAttempts:

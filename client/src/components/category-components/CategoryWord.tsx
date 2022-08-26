@@ -20,7 +20,7 @@ const CategoryWord = () => {
 
   console.log(wins);
 
-  const letterArray = categoryWord.toLowerCase().split("");
+  const letterArray = categoryWord.split("");
   const letterArrayLength = letterArray.length;
   const containsAll = letterArray
     .filter((letter: string) => {
@@ -123,15 +123,15 @@ const CategoryWord = () => {
         <button className="grid-button-start" onClick={fetchCategoryWord}>
           Start
         </button>
-        <button hidden={hasWon} onClick={toggleHidden} className="grid-button">
+        {hasWon && <h2 style={{ fontSize: "3rem" }}>{categoryWord}</h2>}
+        {/* <button hidden={hasWon} onClick={toggleHidden} className="grid-button">
           Show Word
-        </button>
+        </button> */}
       </div>
       <div hidden={wordHidden || hasWon}>
         <p className="category-hidden-word">{categoryWord}</p>
       </div>
       <div className="underlined-letters">{underlinedLetters}</div>
-      {hasWon && <h2>{categoryWord}</h2>}
     </div>
   );
 };

@@ -1,6 +1,8 @@
-import { Fragment, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { Store } from "../../react-store/store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
 
 const AddToDictionary = (props: any) => {
   const { dispatch, state } = useContext(Store);
@@ -60,14 +62,16 @@ const AddToDictionary = (props: any) => {
   };
 
   return (
-    <Fragment>
-      <button
-        className="grid-button-start"
-        hidden={!hasWon && !hasLost}
-        onClick={addToDictionaryHandler}
-      >
-        Add to My Dictionary
-      </button>
+    <div>
+      <div hidden={!hasWon && !hasLost}>
+        <FontAwesomeIcon
+          className="add-to-dictionary-icon"
+          icon={faBookOpen}
+          style={{ height: "50px", width: "50px", color: "#ff7eee" }}
+          onClick={addToDictionaryHandler}
+        />
+        <h3 style={{ color: "#ff7eee" }}>Add to My Dictionary</h3>
+      </div>
       <div hidden={!addToDictionary}>
         <form onSubmit={(e) => submitHandler(e)}>
           <div className="add-to-dictionary-container">
@@ -118,7 +122,7 @@ const AddToDictionary = (props: any) => {
           </button>
         </form>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

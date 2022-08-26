@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
-import PlayRandomScreen from "./screens/PlayRandomScreen";
 import PlayRandomGameModeScreen from "./screens/PlayRandomGameModeScreen";
 import PlayGeniusScreen from "./screens/PlayGeniusScreen";
 import PlayCommonScreen from "./screens/PlayCommonScreen";
@@ -39,7 +38,6 @@ function App() {
             path="/playrandom/common"
             element={<PlayCommonScreen />}
           ></Route>
-          <Route path="/playrandom" element={<PlayRandomScreen />}></Route>
           <Route path="/categories" element={<CategoriesScreen />}></Route>
           <Route
             path="/play-category/:name"

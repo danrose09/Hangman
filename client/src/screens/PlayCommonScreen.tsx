@@ -12,9 +12,6 @@ const PlayCommonScreen = () => {
   const { dispatch, state } = useContext(Store);
   const { gameHasStarted, hasLost, hasWon, commonWord, userInfo } = state;
 
-  console.log(`won: ${hasWon}`);
-  console.log(`lost: ${hasLost}`);
-
   useEffect(() => {
     dispatch({ type: "REFRESH" });
   }, [dispatch]);
@@ -33,7 +30,7 @@ const PlayCommonScreen = () => {
         </div>
       ) : (
         <div className="play-random-screen">
-          <h1>Hangman</h1>
+          <h1 className="all-play-screens-title">HANGMAN</h1>
           {!gameHasStarted && <DifficultySettings />}
           {gameHasStarted && <Attempts />}
           {!hasLost ? (
