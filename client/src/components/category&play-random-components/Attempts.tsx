@@ -3,7 +3,7 @@ import { Store } from "../../react-store/store";
 
 const Attempts = () => {
   const { dispatch, state } = useContext(Store);
-  const { maxAttempts, remainingAttempts, difficulty } = state;
+  const { maxAttempts, remainingAttempts, difficulty, hasLost } = state;
 
   useEffect(() => {
     if (difficulty === "easy") {
@@ -23,7 +23,9 @@ const Attempts = () => {
 
   return (
     <div>
-      <p>Remaining Attemps: {`${remainingAttempts}/${maxAttempts}`}</p>
+      <p hidden={hasLost}>
+        Remaining Attemps: {`${remainingAttempts}/${maxAttempts}`}
+      </p>
     </div>
   );
 };

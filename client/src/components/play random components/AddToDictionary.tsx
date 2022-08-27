@@ -70,7 +70,9 @@ const AddToDictionary = (props: any) => {
           style={{ height: "50px", width: "50px", color: "#ff7eee" }}
           onClick={addToDictionaryHandler}
         />
-        <h3 style={{ color: "#ff7eee" }}>Add to My Dictionary</h3>
+        <h3 style={{ color: "#ff7eee", marginTop: "0" }}>
+          Add to My Dictionary
+        </h3>
       </div>
       <div hidden={!addToDictionary}>
         <form onSubmit={(e) => submitHandler(e)}>

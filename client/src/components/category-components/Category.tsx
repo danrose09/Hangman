@@ -47,7 +47,10 @@ const Category = (props: any) => {
     <div className="category-container">
       <div className="category-card">
         <div className="game-mode-card">
-          <div className="game-mode-container" style={{ borderRadius: "4px" }}>
+          <div
+            className="category-card-container"
+            style={{ borderRadius: "4px" }}
+          >
             <div className="category-title-and-buttons">
               <div>
                 <h2

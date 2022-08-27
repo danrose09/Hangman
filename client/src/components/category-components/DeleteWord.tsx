@@ -29,13 +29,17 @@ const DeleteWord = (props: any) => {
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
+      <form style={{ textAlign: "center" }} onSubmit={submitHandler}>
         <input
           onChange={handleChange}
           placeholder="remove a word..."
           className="input-box"
         ></input>
-        <button className="grid-button" type="submit">
+        <button
+          className="grid-button"
+          style={{ margin: "0", width: "50%" }}
+          type="submit"
+        >
           <FontAwesomeIcon
             style={{ paddingRight: "0.5rem" }}
             icon={faCircleMinus}

@@ -10,7 +10,7 @@ const users = [
       {
         word: "shrive",
         partOfSpeech: "verb",
-        origin: "English",
+        origin: "Old English",
         definition: "to free from guilt",
       },
       {

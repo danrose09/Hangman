@@ -61,39 +61,56 @@ const SignupScreen = () => {
   };
 
   return (
-    <div>
+    <div className="signin-form">
+      <h2 style={{ textAlign: "center" }}>Sign Up</h2>
       <form onSubmit={submitHandler}>
-        <label>Name: </label>
-        <input name="name" required type="text" onChange={handleChange}></input>
-        <label>Username: </label>
+        <label style={{ color: "#ff7eee" }}>Name: </label>
+        <input
+          name="name"
+          required
+          type="text"
+          className="input-box"
+          onChange={handleChange}
+        ></input>
+        <label style={{ color: "#ff7eee" }}>Username: </label>
         <input
           name="username"
           required
           type="text"
+          className="input-box"
           onChange={handleChange}
         ></input>
-        <label>Email: </label>
+        <label style={{ color: "#ff7eee" }}>Email: </label>
         <input
           name="email"
           required
           type="email"
+          className="input-box"
           onChange={handleChange}
         ></input>
-        <label>Password: </label>
+        <label style={{ color: "#ff7eee" }}>Password: </label>
         <input
           name="password"
           required
           type="password"
+          className="input-box"
           onChange={handleChange}
         ></input>
-        <label>Confirm Password: </label>
+        <label style={{ color: "#ff7eee" }}>Confirm Password: </label>
         <input
           name="confirmedPassword"
           required
           type="password"
+          className="input-box"
           onChange={handleChange}
         ></input>
-        <button type="submit">Sign Up</button>
+        <button
+          type="submit"
+          className="grid-button-start"
+          style={{ width: "100%", margin: "1rem 0" }}
+        >
+          Sign Up
+        </button>
       </form>
 
       {!passMatch ? (

@@ -1,23 +1,48 @@
 import { useContext, useEffect } from "react";
 import { Store } from "../../react-store/store";
+import axios from "axios";
 
 const LetterBank = (props: any) => {
   const { state, dispatch } = useContext(Store);
   const {
     letterBank,
+    userInfo,
     remainingAttempts,
     randomWord,
     categoryWord,
     commonWord,
+    winsAndLosses,
   } = state;
+  const { wins, losses } = winsAndLosses;
+
+  console.log(wins);
+  console.log(losses);
 
   const audio = new Audio("/audio/soft-click.wav");
 
   useEffect(() => {
+    const fetchWinsLosses = async () => {
+      const { data } = await axios.get(
+        `http://localhost:5000/api/statistics/wins-losses/${userInfo.username}`
+      );
+      dispatch({ type: "FETCH_WINS_LOSSES", payload: data });
+    };
+    const updateWinsAndLosses = async () => {
+      try {
+        await axios.put("http://localhost:5000/api/statistics/wins-losses", {
+          username: userInfo.username,
+          winsAndLosses: { ...winsAndLosses, losses: losses + 1 },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
     if (remainingAttempts === 0) {
       dispatch({ type: "SET_HAS_LOST", payload: true });
+      fetchWinsLosses();
+      updateWinsAndLosses();
     }
-  }, [dispatch, remainingAttempts]);
+  }, [dispatch, remainingAttempts, losses, winsAndLosses, userInfo.username]);
 
   const submitLetterHandler = (letter: String) => {
     audio.play();

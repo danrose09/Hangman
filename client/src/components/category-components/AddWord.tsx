@@ -32,7 +32,7 @@ const AddWord = (props: any) => {
   };
   return (
     <div>
-      <form>
+      <form style={{ textAlign: "center" }}>
         <input
           name="newWord"
           type="text"
@@ -41,7 +41,12 @@ const AddWord = (props: any) => {
           className="input-box"
           onChange={(e) => setNewWord(e.target.value)}
         ></input>
-        <button className="grid-button" type="submit" onClick={handleClick}>
+        <button
+          className="grid-button-start"
+          style={{ margin: "0", width: "50%" }}
+          type="submit"
+          onClick={handleClick}
+        >
           <FontAwesomeIcon
             style={{ paddingRight: "0.5rem" }}
             icon={faPlusCircle}

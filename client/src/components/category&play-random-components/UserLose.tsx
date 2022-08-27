@@ -28,7 +28,11 @@ const UserLose = (props: any) => {
         />
       </div>
 
-      <button className="grid-button-start" onClick={playAgain}>
+      <button
+        style={{ marginBottom: "10px" }}
+        className="grid-button-start"
+        onClick={playAgain}
+      >
         Play Again?
       </button>
     </div>

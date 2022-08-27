@@ -32,7 +32,7 @@ const Homescreen = () => {
           </Link>
         </div>
       )}
-      <div>
+      <div hidden={!userInfo}>
         <button
           className="grid-button-start"
           onClick={() => navigate("/playrandom/game-mode")}

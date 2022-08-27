@@ -8,8 +8,10 @@ const UpdateCategoryScreen = () => {
   return (
     <div>
       <h1>{categoryname}</h1>
-      <AddWord categoryname={categoryname} />
-      <DeleteWord categoryname={categoryname} />
+      <div className="update-screen-grid">
+        <AddWord categoryname={categoryname} />
+        <DeleteWord categoryname={categoryname} />
+      </div>
     </div>
   );
 };
